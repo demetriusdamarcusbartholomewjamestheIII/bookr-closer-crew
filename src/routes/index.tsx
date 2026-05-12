@@ -153,7 +153,7 @@ function Problem() {
           </StaggerItem>
         </Stagger>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
           <StaggerItem>
             <StatCard
               valueNode={<CountUp to={47} suffix=" hrs" />}
