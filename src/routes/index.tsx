@@ -321,7 +321,7 @@ function Features() {
         </div>
 
         <FadeUp delay={0.1}>
-          <div className="mt-16 overflow-hidden rounded-2xl ring-1 ring-charcoal/10 md:mt-20">
+          <div className="relative mt-16 overflow-hidden rounded-2xl ring-1 ring-charcoal/10 md:mt-20">
             <img
               src={handshake}
               alt="Real estate agent shaking hands with a buyer in a beautifully staged home"
@@ -330,6 +330,10 @@ function Features() {
               height={896}
               className="h-[260px] w-full object-cover sm:h-[320px] md:h-[380px]"
             />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-charcoal/85 via-charcoal/40 to-transparent" />
+            <p className="absolute inset-x-0 bottom-0 px-6 pb-6 text-center font-display text-lg font-semibold tracking-tight text-white sm:pb-8 sm:text-xl md:text-2xl">
+              What every Bookr appointment ends with.
+            </p>
           </div>
         </FadeUp>
       </div>
