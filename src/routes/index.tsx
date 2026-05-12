@@ -357,7 +357,7 @@ function Pricing() {
           </div>
         </FadeUp>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:mt-16 lg:grid-cols-2 lg:gap-8">
+        <Stagger className="mt-14 grid grid-cols-1 gap-12 md:mt-16 lg:grid-cols-2 lg:gap-8">
           <StaggerItem>
             <PricingCard
               name="Bookr"
