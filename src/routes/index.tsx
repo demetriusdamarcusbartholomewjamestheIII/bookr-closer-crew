@@ -345,7 +345,7 @@ function Features() {
 function Pricing() {
   return (
     <section id="pricing" className="relative bg-white grain-light">
-      <div className="mx-auto max-w-6xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <div className="text-center">
             <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
