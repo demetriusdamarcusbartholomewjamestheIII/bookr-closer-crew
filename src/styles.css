@@ -2,10 +2,13 @@
 @source "../src";
 @import "tw-animate-css";
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap");
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -26,18 +29,21 @@
   --color-border: var(--border);
   --color-offwhite: var(--offwhite);
   --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
   --color-charcoal: var(--charcoal);
   --shadow-card: 0 10px 30px -12px oklch(0.2 0.04 265 / 0.18);
-  --shadow-pro: 0 20px 50px -20px oklch(0.42 0.05 265 / 0.35);
+  --shadow-pro: 0 30px 60px -25px oklch(0.42 0.05 265 / 0.45);
+  --shadow-lift: 0 20px 40px -18px oklch(0.2 0.04 265 / 0.30);
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.875rem;
   /* Brand */
-  --navy: oklch(0.42 0.05 265);          /* #3B4A6B-ish */
-  --charcoal: oklch(0.27 0.02 260);      /* #1F2937 */
-  --offwhite: oklch(0.985 0.003 90);     /* #F8F8F6 */
-  --gold: oklch(0.74 0.09 80);           /* #C8A96A */
+  --navy: oklch(0.42 0.05 265);
+  --navy-soft: oklch(0.50 0.06 265);
+  --charcoal: oklch(0.27 0.02 260);
+  --offwhite: oklch(0.985 0.003 90);
+  --gold: oklch(0.78 0.10 80);
 
   --background: oklch(1 0 0);
   --foreground: var(--charcoal);
@@ -72,6 +78,7 @@
     line-height: 1.65;
   }
   h1, h2, h3, h4 {
+    font-family: var(--font-display);
     letter-spacing: -0.025em;
     line-height: 1.08;
     font-weight: 700;
@@ -80,6 +87,48 @@
 }
 
 @layer utilities {
+  /* Grain overlay using inline SVG */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .grain-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .bg-navy-radial {
+    background-color: var(--navy);
+    background-image:
+      radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in oklch, var(--navy-soft) 80%, white 8%) 0%, var(--navy) 65%);
+  }
+  .bg-charcoal-radial {
+    background-color: var(--charcoal);
+    background-image:
+      radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in oklch, var(--charcoal) 70%, white 8%) 0%, var(--charcoal) 70%);
+  }
+  .bg-warm-fade {
+    background-image: linear-gradient(to bottom, #ffffff 0%, var(--offwhite) 100%);
+  }
+  /* Section bridges */
+  .fade-from-charcoal {
+    background-image: linear-gradient(to bottom, var(--charcoal), transparent);
+  }
+  .fade-to-charcoal {
+    background-image: linear-gradient(to bottom, transparent, var(--charcoal));
+  }
+  .fade-from-navy {
+    background-image: linear-gradient(to bottom, var(--navy), transparent);
+  }
+
   .fade-in-up {
     opacity: 0;
     transform: translateY(16px);
