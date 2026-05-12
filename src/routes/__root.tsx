@@ -72,6 +72,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#FFFFFF" },
       { title: "Bookr — Realtors close deals. We do everything else." },
       { name: "description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
       { name: "twitter:card", content: "summary_large_image" },
