@@ -195,7 +195,7 @@ function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: str
 function Solution() {
   return (
     <section className="relative overflow-hidden bg-warm-fade grain-light">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-20 sm:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20 lg:py-32">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 sm:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Get your evenings back. <span className="text-navy">Keep the deals.</span>
