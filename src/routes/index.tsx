@@ -296,7 +296,7 @@ function Features() {
   ];
   return (
     <section className="relative bg-offwhite grain-light">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="max-w-4xl text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Everything between "lead arrives" and "you shake hands."
