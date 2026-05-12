@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import { BrandLoader } from "../components/BrandLoader";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
