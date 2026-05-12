@@ -75,6 +75,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Bookr — Realtors close deals. We do everything else." },
       { name: "description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Bookr — Realtors close deals. We do everything else." },
+      { name: "twitter:title", content: "Bookr — Realtors close deals. We do everything else." },
+      { property: "og:description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
+      { name: "twitter:description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b11dfc51-a1f3-4af9-b63a-c3fa76f3b273/id-preview-fab62ca9--39125925-7c08-477a-833c-0c9422ed0dfd.lovable.app-1778555090244.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b11dfc51-a1f3-4af9-b63a-c3fa76f3b273/id-preview-fab62ca9--39125925-7c08-477a-833c-0c9422ed0dfd.lovable.app-1778555090244.png" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       {
