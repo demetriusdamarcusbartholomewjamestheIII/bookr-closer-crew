@@ -9,9 +9,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
 import { CountUp } from "@/components/CountUp";
-import familyDinner from "@/assets/family-dinner.jpg";
-import goldenHome from "@/assets/golden-home.jpg";
-import handshake from "@/assets/handshake.jpg";
+const familyDinner = "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80&auto=format";
+const goldenHome = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80&auto=format";
+const handshake = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80&auto=format";
 
 export const Route = createFileRoute("/")({
   head: () => ({
