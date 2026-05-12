@@ -69,8 +69,8 @@ function Hero() {
         }}
       />
       <SiteHeader variant="navy" />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-28 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
-        <div className="lg:col-span-6 lg:pt-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-24 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
+        <div className="order-1 lg:col-span-6 lg:pt-6">
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,12 +102,14 @@ function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease, delay: 1.15 }}
-            className="mt-7 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm"
+            className="mt-7 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <span className="font-medium">English</span>
-            <span className="h-1 w-1 rounded-full bg-white/40" />
-            <span className="font-medium">Español</span>
-            <span className="hidden text-white/55 sm:inline">— auto-detects your lead's language</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm">
+              <span className="font-medium">🇺🇸 English</span>
+              <span className="h-1 w-1 rounded-full bg-white/40" />
+              <span className="font-medium">🇲🇽 Español</span>
+            </span>
+            <span className="text-xs text-white/60 sm:text-sm">— auto-detects your lead's language</span>
           </motion.div>
         </div>
 
@@ -115,7 +117,7 @@ function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 1.3 }}
-          className="lg:col-span-6"
+          className="order-2 px-0 lg:col-span-6"
         >
           <BookrFormEmbed />
           <p className="mt-4 text-center text-sm text-white/60">
@@ -133,7 +135,7 @@ function Hero() {
 function Problem() {
   return (
     <section className="relative overflow-hidden bg-charcoal-radial text-white grain">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] sm:text-4xl md:text-5xl lg:text-6xl">
             Your phone is stealing your life.
@@ -151,7 +153,7 @@ function Problem() {
           </StaggerItem>
         </Stagger>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
           <StaggerItem>
             <StatCard
               valueNode={<CountUp to={47} suffix=" hrs" />}
@@ -179,7 +181,7 @@ function Problem() {
 function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm transition-colors hover:bg-white/[0.06] sm:p-8">
-      <div className="font-display text-5xl font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
+      <div className="font-display text-[72px] font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
         {valueNode}
       </div>
       <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/65 sm:text-sm sm:tracking-wider">
@@ -193,7 +195,7 @@ function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: str
 function Solution() {
   return (
     <section className="relative overflow-hidden bg-warm-fade grain-light">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-20 sm:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20 lg:py-32">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 sm:px-8 md:py-28 lg:grid-cols-2 lg:items-center lg:gap-20 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Get your evenings back. <span className="text-navy">Keep the deals.</span>
@@ -226,7 +228,7 @@ function Solution() {
 function BilingualStrip() {
   return (
     <section className="relative bg-offwhite grain-light">
-      <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:px-8 md:py-24">
+      <div className="mx-auto max-w-3xl px-6 py-12 text-center sm:px-8 md:py-24">
         <FadeUp>
           <p className="text-3xl font-bold leading-[1.15] tracking-tight text-charcoal sm:text-4xl md:text-5xl">
             <span className="italic text-navy">1 in 3</span> home buyers in the US speaks Spanish at home.
@@ -256,19 +258,19 @@ function HowItWorks() {
   ];
   return (
     <section className="relative bg-white grain-light">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="max-w-3xl text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             3 steps. Then it runs forever.
           </h2>
         </FadeUp>
-        <Stagger className="mt-14 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-3 md:gap-6">
+        <Stagger className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-3 md:gap-6">
           {steps.map((s) => (
             <StaggerItem key={s.n}>
-              <div className="group h-full rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+              <div className="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
                 <div className="font-display text-5xl font-bold tracking-tight text-navy transition-colors group-hover:text-charcoal md:text-6xl">{s.n}</div>
-                <h3 className="mt-6 text-xl font-semibold text-charcoal">{s.t}</h3>
-                <p className="mt-3 text-charcoal/70">{s.d}</p>
+                <h3 className="mt-3 text-xl font-semibold text-charcoal md:mt-6">{s.t}</h3>
+                <p className="mt-2 text-charcoal/70 md:mt-3">{s.d}</p>
               </div>
             </StaggerItem>
           ))}
@@ -294,7 +296,7 @@ function Features() {
   ];
   return (
     <section className="relative bg-offwhite grain-light">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="max-w-4xl text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Everything between "lead arrives" and "you shake hands."
@@ -319,7 +321,7 @@ function Features() {
         </div>
 
         <FadeUp delay={0.1}>
-          <div className="mt-16 overflow-hidden rounded-2xl ring-1 ring-charcoal/10 md:mt-20">
+          <div className="relative mt-16 overflow-hidden rounded-2xl ring-1 ring-charcoal/10 md:mt-20">
             <img
               src={handshake}
               alt="Real estate agent shaking hands with a buyer in a beautifully staged home"
@@ -328,6 +330,10 @@ function Features() {
               height={896}
               className="h-[260px] w-full object-cover sm:h-[320px] md:h-[380px]"
             />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-charcoal/85 via-charcoal/40 to-transparent" />
+            <p className="absolute inset-x-0 bottom-0 px-6 pb-6 text-center font-display text-lg font-semibold tracking-tight text-white sm:pb-8 sm:text-xl md:text-2xl">
+              What every Bookr appointment ends with.
+            </p>
           </div>
         </FadeUp>
       </div>
@@ -339,7 +345,7 @@ function Features() {
 function Pricing() {
   return (
     <section id="pricing" className="relative bg-white grain-light">
-      <div className="mx-auto max-w-6xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <div className="text-center">
             <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
@@ -351,7 +357,7 @@ function Pricing() {
           </div>
         </FadeUp>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:mt-16 lg:grid-cols-2 lg:gap-8">
+        <Stagger className="mt-14 grid grid-cols-1 gap-12 md:mt-16 lg:grid-cols-2 lg:gap-8">
           <StaggerItem>
             <PricingCard
               name="Bookr"
@@ -409,7 +415,10 @@ function PricingCard({
       ].join(" ")}
     >
       {highlighted && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold tracking-[0.14em] text-charcoal uppercase shadow-md">
+        <div
+          className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+          style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.18)" }}
+        >
           Most Popular
         </div>
       )}
@@ -550,7 +559,7 @@ function FinalCta() {
           backgroundPosition: "center",
         }}
       />
-      <div className="mx-auto max-w-5xl px-6 py-20 text-center sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-16 text-center sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Your family is worth it. Your business is worth it. You're worth it.
@@ -561,7 +570,7 @@ function FinalCta() {
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <div className="mt-12">
+          <div>
             <BookrFormEmbed />
             <p className="mt-4 text-sm text-white/60">
               No credit card. No pressure. Just a quick call.

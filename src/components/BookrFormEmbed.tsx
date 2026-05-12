@@ -15,10 +15,10 @@ export function BookrFormEmbed({ label = "Book a 15-minute demo" }: { label?: st
       <p className="mb-4 text-sm font-semibold tracking-wide text-charcoal uppercase">
         {label}
       </p>
-      <div style={{ height: 652 }} className="w-full">
+      <div style={{ height: 652 }} className="w-full overflow-hidden rounded-lg bg-white">
         <iframe
           src="https://api.leadconnectorhq.com/widget/form/HyUF0g5OS3M1aVYjGOek"
-          style={{ width: "100%", height: "100%", border: "none", borderRadius: 8 }}
+          style={{ width: "100%", height: "100%", border: "none", borderRadius: 8, background: "#FFFFFF" }}
           id="inline-HyUF0g5OS3M1aVYjGOek"
           data-layout="{'id':'INLINE'}"
           data-trigger-type="alwaysShow"
