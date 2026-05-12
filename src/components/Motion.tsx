@@ -1,14 +1,17 @@
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.04, delayChildren: 0.02 } },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease } },
 };
 
 export function FadeUp({
@@ -20,13 +23,15 @@ export function FadeUp({
   className?: string;
   delay?: number;
 }) {
+  const isMobile = useIsMobile();
+  if (isMobile) return <div className={className}>{children}</div>;
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.3, ease, delay }}
     >
       {children}
     </motion.div>
@@ -40,13 +45,15 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
+  const isMobile = useIsMobile();
+  if (isMobile) return <div className={className}>{children}</div>;
   return (
     <motion.div
       className={className}
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0.15 }}
     >
       {children}
     </motion.div>
@@ -60,6 +67,8 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
+  const isMobile = useIsMobile();
+  if (isMobile) return <div className={className}>{children}</div>;
   return (
     <motion.div className={className} variants={item}>
       {children}
