@@ -267,7 +267,7 @@ function HowItWorks() {
         <Stagger className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-3 md:gap-6">
           {steps.map((s) => (
             <StaggerItem key={s.n}>
-              <div className="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
+              <div className="group rounded-2xl border border-border bg-white p-6 transition-all duration-150 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
                 <div className="font-display text-5xl font-bold tracking-tight text-navy transition-colors group-hover:text-charcoal md:text-6xl">{s.n}</div>
                 <h3 className="mt-3 text-xl font-semibold text-charcoal md:mt-6">{s.t}</h3>
                 <p className="mt-2 text-charcoal/70 md:mt-3">{s.d}</p>
