@@ -181,7 +181,7 @@ function Problem() {
 function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm transition-colors hover:bg-white/[0.06] sm:p-8">
-      <div className="font-display text-5xl font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
+      <div className="font-display text-[72px] font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
         {valueNode}
       </div>
       <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/65 sm:text-sm sm:tracking-wider">
