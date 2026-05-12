@@ -407,7 +407,7 @@ function PricingCard({
   return (
     <div
       className={[
-        "group relative flex h-full flex-col rounded-2xl p-8 transition-all duration-300 md:p-10",
+        "group relative flex h-full flex-col rounded-2xl p-8 transition-all duration-150 md:p-10",
         "hover:-translate-y-1.5",
         highlighted
           ? "border-2 border-navy bg-white shadow-pro -translate-y-1 hover:shadow-pro"
