@@ -72,26 +72,26 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-24 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
         <div className="order-1 lg:col-span-6 lg:pt-6">
           <motion.h1
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.1 }}
+            transition={{ duration: 0.4, ease, delay: 0.05 }}
             className="text-[2.25rem] leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl"
           >
             Realtors close deals.
             <br />
             <motion.span
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease, delay: 0.45 }}
+              transition={{ duration: 0.4, ease, delay: 0.2 }}
               className="inline-block text-white/85"
             >
               Bookr does everything else.
             </motion.span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.9 }}
+            transition={{ duration: 0.35, ease, delay: 0.35 }}
             className="mt-6 max-w-[620px] text-base text-white/80 sm:text-lg md:text-xl"
           >
             Stop missing dinners chasing leads. Bookr replies, qualifies, and
@@ -99,9 +99,9 @@ function Hero() {
             You just show up.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease, delay: 1.15 }}
+            transition={{ duration: 0.3, ease, delay: 0.5 }}
             className="mt-7 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm">
@@ -114,9 +114,9 @@ function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease, delay: 1.3 }}
+          transition={{ duration: 0.4, ease, delay: 0.6 }}
           className="order-2 px-0 lg:col-span-6"
         >
           <BookrFormEmbed />
@@ -267,7 +267,7 @@ function HowItWorks() {
         <Stagger className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-3 md:gap-6">
           {steps.map((s) => (
             <StaggerItem key={s.n}>
-              <div className="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
+              <div className="group rounded-2xl border border-border bg-white p-6 transition-all duration-150 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
                 <div className="font-display text-5xl font-bold tracking-tight text-navy transition-colors group-hover:text-charcoal md:text-6xl">{s.n}</div>
                 <h3 className="mt-3 text-xl font-semibold text-charcoal md:mt-6">{s.t}</h3>
                 <p className="mt-2 text-charcoal/70 md:mt-3">{s.d}</p>
@@ -407,7 +407,7 @@ function PricingCard({
   return (
     <div
       className={[
-        "group relative flex h-full flex-col rounded-2xl p-8 transition-all duration-300 md:p-10",
+        "group relative flex h-full flex-col rounded-2xl p-8 transition-all duration-150 md:p-10",
         "hover:-translate-y-1.5",
         highlighted
           ? "border-2 border-navy bg-white shadow-pro -translate-y-1 hover:shadow-pro"
@@ -449,7 +449,7 @@ function PricingCard({
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className={[
-          "mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200",
+          "mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-[120ms]",
           "active:scale-[0.98]",
           highlighted
             ? "bg-navy text-white hover:bg-navy/90 hover:shadow-lg"
