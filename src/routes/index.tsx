@@ -415,7 +415,10 @@ function PricingCard({
       ].join(" ")}
     >
       {highlighted && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold tracking-[0.14em] text-charcoal uppercase shadow-md">
+        <div
+          className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white"
+          style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.18)" }}
+        >
           Most Popular
         </div>
       )}
