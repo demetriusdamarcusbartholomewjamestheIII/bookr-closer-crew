@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function CountUp({
   to,
-  duration = 1500,
+  duration = 800,
   prefix = "",
   suffix = "",
   format = (n: number) => Math.round(n).toString(),
