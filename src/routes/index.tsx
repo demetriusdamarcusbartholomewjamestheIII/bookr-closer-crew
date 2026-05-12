@@ -449,7 +449,7 @@ function PricingCard({
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className={[
-          "mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200",
+          "mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-[120ms]",
           "active:scale-[0.98]",
           highlighted
             ? "bg-navy text-white hover:bg-navy/90 hover:shadow-lg"
