@@ -3,24 +3,33 @@ import logo from "@/assets/bookr-logo.png";
 
 export function BrandLoader() {
   const [isLoading, setIsLoading] = useState(true);
-  const [hide, setHide] = useState(false);
+  const [removed, setRemoved] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setIsLoading(false), 1400);
-    const t2 = setTimeout(() => setHide(true), 1800);
+    const hideTimer = setTimeout(() => {
+      console.log("Loader timeout fired, hiding loader");
+      setIsLoading(false);
+    }, 1800);
+    const removeTimer = setTimeout(() => {
+      setRemoved(true);
+    }, 2200);
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+      clearTimeout(hideTimer);
+      clearTimeout(removeTimer);
     };
   }, []);
 
-  if (hide) return null;
+  if (removed) return null;
 
   return (
     <div
       aria-hidden="true"
       className="brand-loader"
-      data-fading={!isLoading ? "true" : undefined}
+      style={{
+        opacity: isLoading ? 1 : 0,
+        pointerEvents: isLoading ? "auto" : "none",
+        transition: "opacity 400ms ease-out",
+      }}
     >
       <div className="brand-loader__inner">
         <img src={logo} alt="" className="brand-loader__icon" />
