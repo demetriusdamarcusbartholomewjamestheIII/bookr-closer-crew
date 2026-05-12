@@ -69,8 +69,8 @@ function Hero() {
         }}
       />
       <SiteHeader variant="navy" />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-28 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
-        <div className="lg:col-span-6 lg:pt-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-24 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
+        <div className="order-1 lg:col-span-6 lg:pt-6">
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,12 +102,14 @@ function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease, delay: 1.15 }}
-            className="mt-7 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm"
+            className="mt-7 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <span className="font-medium">English</span>
-            <span className="h-1 w-1 rounded-full bg-white/40" />
-            <span className="font-medium">Español</span>
-            <span className="hidden text-white/55 sm:inline">— auto-detects your lead's language</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm">
+              <span className="font-medium">🇺🇸 English</span>
+              <span className="h-1 w-1 rounded-full bg-white/40" />
+              <span className="font-medium">🇲🇽 Español</span>
+            </span>
+            <span className="text-xs text-white/60 sm:text-sm">— auto-detects your lead's language</span>
           </motion.div>
         </div>
 
@@ -115,7 +117,7 @@ function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease, delay: 1.3 }}
-          className="lg:col-span-6"
+          className="order-2 px-0 lg:col-span-6"
         >
           <BookrFormEmbed />
           <p className="mt-4 text-center text-sm text-white/60">
