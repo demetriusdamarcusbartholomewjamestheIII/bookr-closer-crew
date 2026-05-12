@@ -135,7 +135,7 @@ function Hero() {
 function Problem() {
   return (
     <section className="relative overflow-hidden bg-charcoal-radial text-white grain">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] sm:text-4xl md:text-5xl lg:text-6xl">
             Your phone is stealing your life.
