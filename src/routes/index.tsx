@@ -9,9 +9,9 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
 import { CountUp } from "@/components/CountUp";
-import familyDinner from "@/assets/family-dinner.jpg";
-import goldenHome from "@/assets/golden-home.jpg";
-import handshake from "@/assets/handshake.jpg";
+const familyDinner = "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80&auto=format";
+const goldenHome = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80&auto=format";
+const handshake = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80&auto=format";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -153,20 +153,20 @@ function Problem() {
           </StaggerItem>
         </Stagger>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6">
-          <StaggerItem>
+        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6 md:auto-rows-fr">
+          <StaggerItem className="h-full">
             <StatCard
               valueNode={<CountUp to={47} suffix=" hrs" />}
               label="Average realtor's reply time to a new lead"
             />
           </StaggerItem>
-          <StaggerItem>
+          <StaggerItem className="h-full">
             <StatCard
               valueNode={<><span className="text-white/70">&lt; </span><CountUp to={5} suffix=" min" /></>}
               label="Top producers' reply time"
             />
           </StaggerItem>
-          <StaggerItem>
+          <StaggerItem className="h-full">
             <StatCard
               valueNode={<><CountUp to={9} />×</>}
               label="More deals closed by fast responders"
@@ -180,7 +180,7 @@ function Problem() {
 
 function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm transition-colors hover:bg-white/[0.06] sm:p-8">
+    <div className="flex h-full min-h-[260px] flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm transition-colors hover:bg-white/[0.06] sm:p-8 md:min-h-[320px]">
       <div className="font-display text-[72px] font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
         {valueNode}
       </div>
