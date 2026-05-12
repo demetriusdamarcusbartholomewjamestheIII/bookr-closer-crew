@@ -228,7 +228,7 @@ function Solution() {
 function BilingualStrip() {
   return (
     <section className="relative bg-offwhite grain-light">
-      <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:px-8 md:py-24">
+      <div className="mx-auto max-w-3xl px-6 py-12 text-center sm:px-8 md:py-24">
         <FadeUp>
           <p className="text-3xl font-bold leading-[1.15] tracking-tight text-charcoal sm:text-4xl md:text-5xl">
             <span className="italic text-navy">1 in 3</span> home buyers in the US speaks Spanish at home.
