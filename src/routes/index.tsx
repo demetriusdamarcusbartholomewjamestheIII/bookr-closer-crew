@@ -559,7 +559,7 @@ function FinalCta() {
           backgroundPosition: "center",
         }}
       />
-      <div className="mx-auto max-w-5xl px-6 py-20 text-center sm:px-8 md:py-28 lg:py-32">
+      <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-16 text-center sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Your family is worth it. Your business is worth it. You're worth it.
@@ -570,7 +570,7 @@ function FinalCta() {
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <div className="mt-12">
+          <div>
             <BookrFormEmbed />
             <p className="mt-4 text-sm text-white/60">
               No credit card. No pressure. Just a quick call.
