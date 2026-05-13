@@ -28,7 +28,7 @@ export function BrandLoader() {
       style={{
         opacity: isLoading ? 1 : 0,
         pointerEvents: isLoading ? "auto" : "none",
-        transition: "opacity 400ms ease-out",
+        transition: "opacity 500ms ease-out",
       }}
     >
       <div className="brand-loader__inner">
