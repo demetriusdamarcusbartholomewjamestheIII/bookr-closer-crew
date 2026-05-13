@@ -9,10 +9,10 @@ export function BrandLoader() {
     const hideTimer = setTimeout(() => {
       console.log("Loader timeout fired, hiding loader");
       setIsLoading(false);
-    }, 1800);
+    }, 2600);
     const removeTimer = setTimeout(() => {
       setRemoved(true);
-    }, 2200);
+    }, 3000);
     return () => {
       clearTimeout(hideTimer);
       clearTimeout(removeTimer);
