@@ -9,10 +9,10 @@ export function BrandLoader() {
     const hideTimer = setTimeout(() => {
       console.log("Loader timeout fired, hiding loader");
       setIsLoading(false);
-    }, 1800);
+    }, 2600);
     const removeTimer = setTimeout(() => {
       setRemoved(true);
-    }, 2200);
+    }, 3000);
     return () => {
       clearTimeout(hideTimer);
       clearTimeout(removeTimer);
@@ -28,7 +28,7 @@ export function BrandLoader() {
       style={{
         opacity: isLoading ? 1 : 0,
         pointerEvents: isLoading ? "auto" : "none",
-        transition: "opacity 400ms ease-out",
+        transition: "opacity 500ms ease-out",
       }}
     >
       <div className="brand-loader__inner">

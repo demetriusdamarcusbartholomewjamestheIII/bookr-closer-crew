@@ -178,7 +178,7 @@
   width: auto;
   opacity: 0;
   transform: translateY(-200px);
-  animation: bookr-drop 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 100ms forwards;
+  animation: bookr-drop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 100ms forwards;
 }
 .brand-loader__word {
   font-family: "Inter", sans-serif;
@@ -188,7 +188,7 @@
   line-height: 1;
   opacity: 0;
   transform: translateX(-20px);
-  animation: bookr-word 400ms ease-out 600ms forwards;
+  animation: bookr-word 400ms ease-out 1400ms forwards;
 }
 @media (min-width: 768px) {
   .brand-loader__icon { height: 120px; }
