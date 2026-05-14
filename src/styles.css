@@ -39,10 +39,11 @@
 :root {
   --radius: 0.875rem;
   /* Brand */
-  --navy: oklch(0.42 0.05 265);
-  --navy-soft: oklch(0.50 0.06 265);
+  --navy: #455271;
+  --navy-soft: #5A6B8E;
   --charcoal: oklch(0.27 0.02 260);
-  --offwhite: oklch(0.985 0.003 90);
+  --offwhite: #F5F1E8;
+  --cream: #F5F1E8;
   --gold: oklch(0.78 0.10 80);
 
   --background: oklch(1 0 0);
@@ -120,7 +121,21 @@
       radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in oklch, var(--charcoal) 70%, white 8%) 0%, var(--charcoal) 70%);
   }
   .bg-warm-fade {
-    background-image: linear-gradient(to bottom, #ffffff 0%, var(--offwhite) 100%);
+    background-image: linear-gradient(to bottom, #F5F1E8 0%, #EFE9DB 100%);
+  }
+  .bg-warm-navy {
+    background-color: #455271;
+    background-image: linear-gradient(135deg, #455271 0%, #5A6B8E 100%);
+  }
+  .bg-warm-navy-deep {
+    background-color: #3F4B68;
+    background-image: linear-gradient(160deg, #455271 0%, #3F4B68 100%);
+  }
+  .fade-cream-to-navy {
+    background-image: linear-gradient(to bottom, #F5F1E8, #455271);
+  }
+  .fade-navy-to-cream {
+    background-image: linear-gradient(to bottom, #455271, #F5F1E8);
   }
   /* Section bridges */
   .fade-from-charcoal {
