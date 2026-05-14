@@ -39,10 +39,11 @@
 :root {
   --radius: 0.875rem;
   /* Brand */
-  --navy: oklch(0.42 0.05 265);
-  --navy-soft: oklch(0.50 0.06 265);
+  --navy: #455271;
+  --navy-soft: #5A6B8E;
   --charcoal: oklch(0.27 0.02 260);
-  --offwhite: oklch(0.985 0.003 90);
+  --offwhite: #F5F1E8;
+  --cream: #F5F1E8;
   --gold: oklch(0.78 0.10 80);
 
   --background: oklch(1 0 0);
