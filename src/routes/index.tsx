@@ -1,17 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Mic, Languages, Clock, ListChecks, CalendarCheck, BellRing,
-  RefreshCw, Snowflake, Inbox, Mail, Check, Phone,
-} from "lucide-react";
+import { Mic, Languages, Phone, Hand, Eye, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
 import { CountUp } from "@/components/CountUp";
-const familyDinner = "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80&auto=format";
+const livingRoom = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format";
 const goldenHome = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80&auto=format";
-const handshake = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80&auto=format";
+const hispanicNeighborhood = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80&auto=format";
 
 export const Route = createFileRoute("/")({
   head: () => ({
