@@ -451,6 +451,37 @@ function ConversationMockup() {
   );
 }
 
+/* ---------------- HOW IT WORKS ---------------- */
+function HowItWorks() {
+  const steps = [
+    { n: "01", t: "Book a demo", d: "We show you exactly how Bookr works on a 15-minute call. No pitch deck. No pressure." },
+    { n: "02", t: "We set it up for you", d: "You give us access to your Facebook, Instagram, calendar, and phone. We handle everything else." },
+    { n: "03", t: "Get your time back", d: "Leads start getting replies in under 5 minutes. Appointments fill your calendar. You show up and close." },
+  ];
+  return (
+    <section className="relative bg-[#F5F1E8] grain-light">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
+        <FadeUp>
+          <h2 className="max-w-3xl text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            3 steps. Then it runs forever.
+          </h2>
+        </FadeUp>
+        <Stagger className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-3 md:gap-6">
+          {steps.map((s) => (
+            <StaggerItem key={s.n}>
+              <div className="group rounded-2xl border border-charcoal/10 bg-white p-6 transition-all duration-150 hover:-translate-y-1 hover:shadow-lift md:h-full md:p-8">
+                <div className="font-display text-5xl font-bold tracking-tight text-navy transition-colors group-hover:text-charcoal md:text-6xl">{s.n}</div>
+                <h3 className="mt-3 text-xl font-semibold text-charcoal md:mt-6">{s.t}</h3>
+                <p className="mt-2 text-charcoal/70 md:mt-3">{s.d}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- PRICING ---------------- */
 function Pricing() {
   return (
