@@ -39,9 +39,10 @@ function LandingPage() {
       <Hero />
       <Problem />
       <Solution />
-      <BilingualStrip />
+      <FourPillars />
+      <BilingualSection />
+      <SupervisionDashboard />
       <HowItWorks />
-      <Features />
       <Pricing />
       <DataTransparency />
       <ForAndNotFor />
