@@ -57,15 +57,27 @@ function LandingPage() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-radial text-white grain">
-      {/* Lifestyle photo overlay */}
+    <section className="relative isolate overflow-hidden bg-warm-navy text-white">
+      {/* Architectural home photo overlay — blurred & desaturated */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-[0.14] mix-blend-soft-light"
+        className="absolute inset-0 -z-10"
         style={{
           backgroundImage: `url(${goldenHome})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          filter: "blur(8px) saturate(0.7)",
+          opacity: 0.15,
+          transform: "scale(1.05)",
+        }}
+      />
+      {/* Warm light bloom — upper right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 -right-32 h-[520px] w-[520px] -z-10"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255, 196, 140, 0.18) 0%, rgba(255, 196, 140, 0.08) 40%, transparent 70%)",
         }}
       />
       <SiteHeader variant="navy" />
@@ -111,6 +123,14 @@ function Hero() {
             </span>
             <span className="text-xs text-white/60 sm:text-sm">— auto-detects your lead's language</span>
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease, delay: 0.6 }}
+            className="mt-4 max-w-[560px] text-xs text-white/55 sm:text-sm"
+          >
+            No credit card. No sales call. Just a 15-minute look at your week with Bookr.
+          </motion.p>
         </div>
 
         <motion.div
@@ -120,13 +140,8 @@ function Hero() {
           className="order-2 px-0 lg:col-span-6"
         >
           <BookrFormEmbed />
-          <p className="mt-4 text-center text-sm text-white/60">
-            No credit card. No pressure. Just a quick call.
-          </p>
         </motion.div>
       </div>
-      {/* Bottom fade into next dark section */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-charcoal" />
     </section>
   );
 }
@@ -134,36 +149,38 @@ function Hero() {
 /* ---------------- PROBLEM ---------------- */
 function Problem() {
   return (
-    <section className="relative overflow-hidden bg-charcoal-radial text-white grain">
+    <section className="relative overflow-hidden bg-warm-navy-deep text-white">
+      {/* Architectural overlay continuing from hero */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage: `url(${goldenHome})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
+          filter: "blur(10px) saturate(0.6)",
+          opacity: 0.12,
+          transform: "scale(1.05)",
+        }}
+      />
       <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
-          <h2 className="text-[2rem] font-bold leading-[1.05] sm:text-4xl md:text-5xl lg:text-6xl">
-            Your phone is stealing your life.
+          <h2 className="text-[2rem] font-bold leading-[1.08] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+            The average lead goes cold in 5 minutes. Most realtors take 47 hours to reply.
           </h2>
         </FadeUp>
-        <Stagger className="mt-10 max-w-3xl space-y-5 text-base text-white/75 sm:text-lg md:text-xl">
-          <StaggerItem>
-            <p>You're at your kid's game. A lead comes in. You ignore it — and lose the deal. You answer it — and miss the inning.</p>
-          </StaggerItem>
-          <StaggerItem>
-            <p>So you're stuck choosing: be present with your family, or be present for your business.</p>
-          </StaggerItem>
-          <StaggerItem>
-            <p className="font-medium text-white">That's a choice nobody should have to make.</p>
-          </StaggerItem>
-        </Stagger>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-6 md:auto-rows-fr">
+        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-3 md:gap-6 md:auto-rows-fr">
           <StaggerItem className="h-full">
             <StatCard
               valueNode={<CountUp to={47} suffix=" hrs" />}
-              label="Average realtor's reply time to a new lead"
+              label="Average realtor reply time to a new lead"
             />
           </StaggerItem>
           <StaggerItem className="h-full">
             <StatCard
               valueNode={<><span className="text-white/70">&lt; </span><CountUp to={5} suffix=" min" /></>}
-              label="Top producers' reply time"
+              label="What top performers reply within"
             />
           </StaggerItem>
           <StaggerItem className="h-full">
@@ -173,7 +190,15 @@ function Problem() {
             />
           </StaggerItem>
         </Stagger>
+
+        <FadeUp delay={0.1}>
+          <p className="mx-auto mt-14 max-w-3xl text-base text-white/80 sm:text-lg md:text-xl md:mt-16">
+            A lead who fills out a form on Zillow is texting three other agents before you finish dinner. By the time you reply, they've already booked with someone else. It's not your fault — you can't be available 24/7. But your competitor's software can.
+          </p>
+        </FadeUp>
       </div>
+      {/* Soft 60px gradient fade into next cream section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60px] bg-gradient-to-b from-transparent to-[#F5F1E8]" />
     </section>
   );
 }
