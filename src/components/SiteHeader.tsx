@@ -7,7 +7,7 @@ export function SiteHeader({ variant = "navy" }: { variant?: "navy" | "light" })
     <header className={`absolute top-0 left-0 right-0 z-20 ${onNavy ? "" : "border-b border-border bg-white"}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8" style={{ paddingTop: 18, paddingBottom: 18 }}>
         <Link to="/" className="flex items-center">
-          <BookrLogo height={32} />
+          <BookrLogo height={32} variant={onNavy ? "light" : "dark"} />
         </Link>
       </div>
     </header>
