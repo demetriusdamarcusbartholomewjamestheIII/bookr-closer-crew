@@ -121,7 +121,21 @@
       radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in oklch, var(--charcoal) 70%, white 8%) 0%, var(--charcoal) 70%);
   }
   .bg-warm-fade {
-    background-image: linear-gradient(to bottom, #ffffff 0%, var(--offwhite) 100%);
+    background-image: linear-gradient(to bottom, #F5F1E8 0%, #EFE9DB 100%);
+  }
+  .bg-warm-navy {
+    background-color: #455271;
+    background-image: linear-gradient(135deg, #455271 0%, #5A6B8E 100%);
+  }
+  .bg-warm-navy-deep {
+    background-color: #3F4B68;
+    background-image: linear-gradient(160deg, #455271 0%, #3F4B68 100%);
+  }
+  .fade-cream-to-navy {
+    background-image: linear-gradient(to bottom, #F5F1E8, #455271);
+  }
+  .fade-navy-to-cream {
+    background-image: linear-gradient(to bottom, #455271, #F5F1E8);
   }
   /* Section bridges */
   .fade-from-charcoal {
