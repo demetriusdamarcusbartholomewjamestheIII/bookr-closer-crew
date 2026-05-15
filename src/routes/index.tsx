@@ -58,17 +58,24 @@ function LandingPage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-warm-navy text-white">
-      {/* Architectural home photo overlay — blurred & desaturated */}
+      {/* Golden-hour home photo — clearly visible, softly warm */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
-          backgroundImage: `url(${goldenHome})`,
+          backgroundImage: `url(${sunsetHome})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(8px) saturate(0.7)",
-          opacity: 0.15,
-          transform: "scale(1.05)",
+          opacity: 0.28,
+        }}
+      />
+      {/* Navy gradient overlay for copy contrast */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(63, 75, 104, 0.78) 0%, rgba(69, 82, 113, 0.62) 60%, rgba(90, 107, 142, 0.55) 100%)",
         }}
       />
       {/* Warm light bloom — upper right */}
@@ -77,7 +84,7 @@ function Hero() {
         className="pointer-events-none absolute -top-32 -right-32 h-[520px] w-[520px] -z-10"
         style={{
           background:
-            "radial-gradient(circle, rgba(255, 196, 140, 0.18) 0%, rgba(255, 196, 140, 0.08) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(255, 196, 140, 0.22) 0%, rgba(255, 196, 140, 0.10) 40%, transparent 70%)",
         }}
       />
       <SiteHeader variant="navy" />
