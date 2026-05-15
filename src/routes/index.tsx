@@ -9,6 +9,8 @@ import { CountUp } from "@/components/CountUp";
 const livingRoom = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format";
 const goldenHome = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80&auto=format";
 const hispanicNeighborhood = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80&auto=format";
+const suburbanAerial = "https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80&auto=format";
+const sunsetHome = "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80&auto=format";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -485,12 +487,12 @@ function HowItWorks() {
 /* ---------------- PRICING ---------------- */
 function Pricing() {
   return (
-    <section id="pricing" className="relative bg-white grain-light">
+    <section id="pricing" className="relative bg-[#F5F1E8] grain-light">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
           <div className="text-center">
             <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Simple pricing. Pick what fits.
+              Two plans. Both make you money in week one.
             </h2>
             <p className="mt-4 text-base text-charcoal/65 sm:text-lg">
               No setup fees. No annual contracts. Cancel anytime.
@@ -501,35 +503,33 @@ function Pricing() {
         <Stagger className="mt-14 grid grid-cols-1 gap-12 md:mt-16 lg:grid-cols-2 lg:gap-8">
           <StaggerItem>
             <PricingCard
-              name="Bookr"
+              name="Bookr Standard"
               price="$197"
-              tagline="For agents who want their texts and DMs handled."
+              tagline="For agents who want their leads handled in every channel — except inbound calls."
               features={[
-                "AI replies to every lead within 5 minutes",
-                "SMS, Facebook Messenger, Instagram DM, FB Lead Ads, website forms",
-                "Learns your voice from your past messages",
-                "English & Spanish auto-detect",
-                "Qualifies and books appointments on your calendar",
-                "Reminders, reschedules, cold-lead re-engagement",
-                "Daily email summary",
-                "White-glove setup (20-min call, we handle the rest)",
+                "Replies to every lead in under 5 minutes",
+                "SMS, Facebook Messenger, Instagram DMs, website forms",
+                "Auto-detects English and Spanish",
+                "Trained on your voice during onboarding",
+                "Books real appointments on your real calendar",
+                "Free supervision dashboard",
+                "Inbound calls: AI notifies you to call back yourself",
               ]}
-              footnote="If a lead asks to talk on the phone, Bookr books them a phone call slot on your calendar — you take the call."
             />
           </StaggerItem>
           <StaggerItem>
             <PricingCard
               name="Bookr Pro"
               price="$397"
-              tagline="Everything in Bookr — plus AI answers your phone calls too."
+              tagline="Everything in Standard — plus AI voice answers your inbound calls when you don't pick up."
               highlighted
               features={[
-                "Everything in Bookr",
-                "AI answers inbound calls when you don't pick up",
+                "Everything in Bookr Standard",
+                "AI voice answers calls when you don't pick up",
                 "Natural-sounding voice (English & Spanish)",
-                "Qualifies callers and books appointments live on the call",
-                "Live-transfers hot leads to your phone OR sends instant SMS notification",
-                "You set when AI takes calls (after hours, when busy, or always)",
+                "Qualifies callers and books appointments live on the phone",
+                "Live transfer hot leads to your phone (15 second screen, SMS notification)",
+                "You set when AI takes over (after hours, always, or when you're busy)",
                 "Custom voice profile matched to your style",
               ]}
             />
@@ -606,24 +606,41 @@ function PricingCard({
 /* ---------------- DATA TRANSPARENCY ---------------- */
 function DataTransparency() {
   const items = [
-    { e: "🔒", t: "We connect Bookr to your existing tools (Facebook, Instagram, calendar, phone). Read-only on past conversations, send-only on new ones." },
-    { e: "🚫", t: "We never sell, share, or analyze your lead data with anyone. Your leads are yours." },
-    { e: "↩️", t: "Revoke Bookr's access in 30 seconds from your existing Facebook, Google, or phone settings. No retention drama." },
+    {
+      ok: true,
+      t: "We connect to your existing Facebook, Instagram, calendar, and website forms — and only those. Past conversations get read once during onboarding to train Bookr on your voice.",
+    },
+    {
+      ok: true,
+      t: "We only see your leads — never your personal contacts, friends, or family conversations. Bookr operates inside its own channel.",
+    },
+    {
+      ok: false,
+      t: "We never sell, share, or analyze your lead data for anyone else. Your leads are yours.",
+    },
   ];
   return (
-    <section className="relative bg-offwhite grain-light">
+    <section className="relative bg-[#F5F1E8] grain-light">
       <div className="mx-auto max-w-4xl px-6 py-16 sm:px-8 md:py-24">
         <FadeUp>
-          <h2 className="text-center text-3xl font-bold tracking-tight md:text-4xl">
-            What we access — and what we don't.
+          <h2 className="text-center text-3xl font-bold tracking-tight text-[#1F2937] md:text-4xl">
+            What Bookr accesses — and what it doesn't.
           </h2>
         </FadeUp>
         <Stagger className="mx-auto mt-10 max-w-3xl space-y-4">
           {items.map((it, i) => (
             <StaggerItem key={i}>
-              <div className="flex gap-4 rounded-xl border border-border bg-white p-5">
-                <span className="text-xl">{it.e}</span>
-                <p className="text-charcoal/80">{it.t}</p>
+              <div className="flex gap-4 rounded-xl border border-charcoal/10 bg-white p-5">
+                {it.ok ? (
+                  <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-emerald-500/15 text-emerald-700">
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
+                  </span>
+                ) : (
+                  <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-rose-500/15 text-rose-700 font-bold">
+                    ✕
+                  </span>
+                )}
+                <p className="text-charcoal/85">{it.t}</p>
               </div>
             </StaggerItem>
           ))}
@@ -636,52 +653,64 @@ function DataTransparency() {
 /* ---------------- WHO IT'S FOR ---------------- */
 function ForAndNotFor() {
   const yes = [
-    "Run Facebook/Instagram ads or have a website pulling in leads",
-    "Are tired of choosing between answering their phone and being present with family",
+    "Run paid lead campaigns on Facebook or Instagram",
+    "Are tired of choosing between answering the phone and being present with family",
     "Don't want to learn another piece of software",
     "Want their evenings, weekends, and vacations back",
-    "Lead a team of 2–15 agents and want consistent lead handling across everyone",
+    "Have a team of 2–25 agents and need consistent lead handling across everyone",
   ];
   const no = [
-    "You think you can chase 200 leads a month yourself and still be a present parent",
-    "You don't generate any leads and want us to fix that (we make leads close — we don't make leads exist)",
-    "You're already running an inside sales team handling every lead in under 5 minutes",
-    "You actually enjoy answering texts at 11 PM",
+    "If you close fewer than 200 leads a month, the math doesn't quite work yet — wait until your volume justifies it",
+    "If you want to write every lead reply yourself, Bookr will frustrate you",
+    "If you only run open houses and don't generate online leads, you don't need us",
+    "If you actively enjoy answering texts at 11pm, godspeed",
   ];
   return (
-    <section className="relative isolate overflow-hidden bg-charcoal-radial text-white grain">
+    <section className="relative isolate overflow-hidden bg-warm-navy text-white">
       <div
         aria-hidden
-        className="absolute inset-y-0 right-0 -z-10 hidden w-1/2 opacity-[0.10] mix-blend-soft-light lg:block"
+        className="absolute inset-0 -z-10"
         style={{
-          backgroundImage: `linear-gradient(to right, var(--charcoal), transparent 60%), url(${goldenHome})`,
+          backgroundImage: `url(${suburbanAerial})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          filter: "blur(6px) saturate(0.7)",
+          opacity: 0.15,
+          transform: "scale(1.05)",
         }}
       />
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 py-20 sm:px-8 md:py-28 lg:grid-cols-2 lg:gap-16 lg:py-32">
+      {/* Top fade from cream */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60px] bg-gradient-to-b from-[#F5F1E8] to-transparent" />
+      <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-28 lg:py-32">
         <FadeUp>
-          <h3 className="font-display text-2xl font-semibold text-white">Bookr is for realtors who:</h3>
-          <ul className="mt-6 space-y-4">
-            {yes.map((y) => (
-              <li key={y} className="flex gap-3 text-white/85">
-                <Check className="mt-0.5 h-5 w-5 flex-none text-accent" />
-                <span>{y}</span>
-              </li>
-            ))}
-          </ul>
+          <h2 className="text-center text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            Who Bookr is for.
+          </h2>
         </FadeUp>
-        <FadeUp delay={0.1}>
-          <h3 className="font-display text-2xl font-semibold text-white">Bookr isn't for everyone:</h3>
-          <ul className="mt-6 space-y-4">
-            {no.map((n) => (
-              <li key={n} className="flex gap-3 text-white/70">
-                <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center text-white/50">✕</span>
-                <span>{n}</span>
-              </li>
-            ))}
-          </ul>
-        </FadeUp>
+        <div className="mt-14 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
+          <FadeUp>
+            <h3 className="font-display text-2xl font-semibold text-white">Bookr is for realtors who:</h3>
+            <ul className="mt-6 space-y-4">
+              {yes.map((y) => (
+                <li key={y} className="flex gap-3 text-[#F5F1E8]">
+                  <Check className="mt-0.5 h-5 w-5 flex-none text-accent" />
+                  <span>{y}</span>
+                </li>
+              ))}
+            </ul>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <h3 className="font-display text-2xl font-semibold text-white">Bookr isn't for everyone:</h3>
+            <ul className="mt-6 space-y-4">
+              {no.map((n) => (
+                <li key={n} className="flex gap-3 text-white/75">
+                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center text-white/55">✕</span>
+                  <span>{n}</span>
+                </li>
+              ))}
+            </ul>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );
@@ -690,14 +719,23 @@ function ForAndNotFor() {
 /* ---------------- FINAL CTA ---------------- */
 function FinalCta() {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-radial text-white grain">
+    <section className="relative isolate overflow-hidden bg-warm-navy text-white">
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-[0.12] mix-blend-soft-light"
+        className="absolute inset-0 -z-10"
         style={{
-          backgroundImage: `url(${goldenHome})`,
+          backgroundImage: `url(${sunsetHome})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          opacity: 0.28,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(255, 178, 110, 0.18) 0%, transparent 65%)",
         }}
       />
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-16 text-center sm:px-8 md:py-28 lg:py-32">
@@ -705,7 +743,7 @@ function FinalCta() {
           <h2 className="text-[2rem] font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Your family is worth it. Your business is worth it. You're worth it.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base text-[#F5F1E8]/90 sm:text-lg">
             Book a 15-minute demo. We'll show you exactly what your week looks
             like with Bookr running in the background.
           </p>
@@ -713,8 +751,8 @@ function FinalCta() {
         <FadeUp delay={0.1}>
           <div>
             <BookrFormEmbed />
-            <p className="mt-4 text-sm text-white/60">
-              No credit card. No pressure. Just a quick call.
+            <p className="mt-4 text-sm text-white/65">
+              No credit card. No pressure. Just a quick look.
             </p>
           </div>
         </FadeUp>
