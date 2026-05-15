@@ -9,6 +9,8 @@ import { CountUp } from "@/components/CountUp";
 const livingRoom = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format";
 const goldenHome = "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80&auto=format";
 const hispanicNeighborhood = "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80&auto=format";
+const suburbanAerial = "https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80&auto=format";
+const sunsetHome = "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80&auto=format";
 
 export const Route = createFileRoute("/")({
   head: () => ({
