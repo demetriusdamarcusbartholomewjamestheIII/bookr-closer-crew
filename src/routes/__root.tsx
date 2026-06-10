@@ -134,3 +134,4 @@ function RootComponent() {
       <Outlet />
     </QueryClientProvider>
   );
+  } 
