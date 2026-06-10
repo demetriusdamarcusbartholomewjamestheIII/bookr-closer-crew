@@ -91,6 +91,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+     scripts: [
+      {
+        src: "https://beta.leadconnectorhq.com/loader.js",
+        "data-resources-url": "https://beta.leadconnectorhq.com/chat-widget/loader.js",
+        "data-widget-id": "6a275596cce0c0ecc8da236a",
+        async: true,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
