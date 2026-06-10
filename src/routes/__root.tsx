@@ -117,15 +117,20 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   useEffect(() => {
-    // Don't inject twice (e.g., during dev hot-reload)
-    if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
+    // Wait for BrandLoader to finish (~3.1s total: 2600ms hold + 500ms fade) before injecting widget
+    const timer = setTimeout(() => {
+      // Don't inject twice (e.g., during dev hot-reload)
+      if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
 
-    const script = document.createElement("script");
-    script.src = "https://beta.leadconnectorhq.com/loader.js";
-    script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
-    script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
-    script.async = true;
-    document.body.appendChild(script);
+      const script = document.createElement("script");
+      script.src = "https://beta.leadconnectorhq.com/loader.js";
+      script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
+      script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
+      script.async = true;
+      document.body.appendChild(script);
+    }, 3500); // 3.5s delay = loader finishes + small buffer
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
