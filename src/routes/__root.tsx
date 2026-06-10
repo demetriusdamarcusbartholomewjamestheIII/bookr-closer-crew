@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -91,14 +92,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
-     scripts: [
-      {
-        src: "https://beta.leadconnectorhq.com/loader.js",
-        "data-resources-url": "https://beta.leadconnectorhq.com/chat-widget/loader.js",
-        "data-widget-id": "6a275596cce0c0ecc8da236a",
-        async: true,
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -123,10 +116,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    // Don't inject twice (e.g., during dev hot-reload)
+    if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
+
+    const script = document.createElement("script");
+    script.src = "https://beta.leadconnectorhq.com/loader.js";
+    script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
+    script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrandLoader />
       <Outlet />
     </QueryClientProvider>
   );
-}
