@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -105,11 +105,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const loaderBootScript = `(function(){try{var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" style={{ backgroundColor: "#FFFFFF" }}>
       <head>
         <HeadContent />
+        <style
+          dangerouslySetInnerHTML={{
+            __html:
+              "html.bookr-loading #bookr-page-content{visibility:hidden}html.bookr-skip-loader .brand-loader{display:none!important}",
+          }}
+        />
+        <script dangerouslySetInnerHTML={{ __html: loaderBootScript }} />
       </head>
       <body style={{ backgroundColor: "#FFFFFF" }}>
         {children}
@@ -133,15 +142,21 @@ function RootComponent() {
       script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
       script.async = true;
       document.body.appendChild(script);
-    }, 1000);
+    }, 3200);
 
     return () => clearTimeout(timer);
   }, []);
 
+  const finishLoader = useCallback(() => {
+    document.documentElement.classList.remove("bookr-loading");
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <BrandLoader />
-      <Outlet />
+      <BrandLoader onFinished={finishLoader} />
+      <div id="bookr-page-content">
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
   } 

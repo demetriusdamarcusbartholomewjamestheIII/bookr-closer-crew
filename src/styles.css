@@ -166,6 +166,12 @@
 }
 
 /* Brand Loader */
+html.bookr-loading #bookr-page-content {
+  visibility: hidden;
+}
+html.bookr-skip-loader .brand-loader {
+  display: none !important;
+}
 .brand-loader {
   position: fixed;
   inset: 0;
