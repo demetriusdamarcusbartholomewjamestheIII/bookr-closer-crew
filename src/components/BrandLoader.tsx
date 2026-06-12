@@ -5,10 +5,18 @@ const HOLD_MS = 2400;
 const FADE_MS = 500;
 const REMOVE_MS = HOLD_MS + FADE_MS;
 
-export function BrandLoader({ onFinished }: { onFinished?: () => void }) {
+export function BrandLoader({
+  onFadeStart,
+  onFinished,
+}: {
+  onFadeStart?: () => void;
+  onFinished?: () => void;
+}) {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
+  const onFadeStartRef = useRef(onFadeStart);
   const onFinishedRef = useRef(onFinished);
+  onFadeStartRef.current = onFadeStart;
   onFinishedRef.current = onFinished;
 
   useLayoutEffect(() => {
@@ -17,13 +25,17 @@ export function BrandLoader({ onFinished }: { onFinished?: () => void }) {
 
     if (seen || reducedMotion) {
       setVisible(false);
+      onFadeStartRef.current?.();
       onFinishedRef.current?.();
       return;
     }
 
     sessionStorage.setItem(LOADER_SEEN_KEY, "1");
 
-    const fadeTimer = window.setTimeout(() => setFading(true), HOLD_MS);
+    const fadeTimer = window.setTimeout(() => {
+      setFading(true);
+      onFadeStartRef.current?.();
+    }, HOLD_MS);
     const removeTimer = window.setTimeout(() => {
       setVisible(false);
       onFinishedRef.current?.();

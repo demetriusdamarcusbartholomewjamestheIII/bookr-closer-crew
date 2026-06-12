@@ -1,11 +1,26 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { usePageReady } from "@/contexts/page-ready";
+import { usePageLoad } from "@/contexts/page-ready";
 
 const FORM_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
 const FORM_SRC =
   "https://api.leadconnectorhq.com/widget/form/HyUF0g5OS3M1aVYjGOek";
 const FORM_ID = "HyUF0g5OS3M1aVYjGOek";
-const FORM_REVEAL_DELAY_MS = 200;
+
+function FormSkeleton() {
+  return (
+    <div className="space-y-4 px-1 py-2" aria-hidden="true">
+      <div className="h-4 w-2/5 rounded bg-charcoal/8" />
+      <div className="h-11 rounded-lg bg-charcoal/6" />
+      <div className="h-4 w-1/3 rounded bg-charcoal/8" />
+      <div className="h-11 rounded-lg bg-charcoal/6" />
+      <div className="h-4 w-2/5 rounded bg-charcoal/8" />
+      <div className="h-11 rounded-lg bg-charcoal/6" />
+      <div className="h-4 w-1/4 rounded bg-charcoal/8" />
+      <div className="h-24 rounded-lg bg-charcoal/6" />
+      <div className="h-11 rounded-lg bg-navy/20" />
+    </div>
+  );
+}
 
 export function BookrFormEmbed({
   label = "Book a 15-minute demo",
@@ -14,51 +29,57 @@ export function BookrFormEmbed({
   label?: string;
   embedId?: string;
 }) {
-  const pageReady = usePageReady();
-  const [showForm, setShowForm] = useState(false);
+  const { ready: pageReady, preload: pagePreload } = usePageLoad();
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [formReady, setFormReady] = useState(false);
+  const shouldLoad = pagePreload || pageReady;
 
   useEffect(() => {
-    if (!pageReady) return;
-    const timer = window.setTimeout(() => setShowForm(true), FORM_REVEAL_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, [pageReady]);
-
-  useEffect(() => {
-    if (!showForm) return;
+    if (!shouldLoad) return;
     if (document.querySelector('script[data-bookr-embed="true"]')) return;
     const s = document.createElement("script");
     s.src = FORM_EMBED_SCRIPT;
     s.async = true;
     s.setAttribute("data-bookr-embed", "true");
     document.body.appendChild(s);
-  }, [showForm]);
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    if (!pageReady || !iframeLoaded) return;
+    const timer = window.setTimeout(() => setFormReady(true), 120);
+    return () => window.clearTimeout(timer);
+  }, [pageReady, iframeLoaded]);
 
   const iframeId = `inline-${embedId}`;
 
   return (
     <div
       id={embedId}
-      className={[
-        "mx-auto w-full max-w-[520px] rounded-xl bg-white p-6 shadow-card transition-opacity duration-300 ease-out",
-        showForm ? "opacity-100" : "pointer-events-none opacity-0",
-      ].join(" ")}
-      aria-hidden={!showForm}
+      className="mx-auto w-full max-w-[520px] rounded-xl bg-white p-6 shadow-card"
     >
       <p className="mb-4 text-sm font-semibold tracking-wide text-charcoal uppercase">
         {label}
       </p>
-      <div className="w-full rounded-lg bg-white" style={{ minHeight: 720 }}>
-        {showForm ? (
+      <div className="relative w-full overflow-hidden rounded-lg bg-white" style={{ minHeight: 720 }}>
+        {pageReady && !formReady && (
+          <div className="absolute inset-0 z-10 bg-white">
+            <FormSkeleton />
+          </div>
+        )}
+        {shouldLoad && (
           <iframe
             src={FORM_SRC}
+            onLoad={() => setIframeLoaded(true)}
             style={{
               width: "100%",
               minHeight: 720,
-              height: "100%",
+              height: 720,
               border: "none",
               borderRadius: 8,
               background: "#FFFFFF",
               display: "block",
+              opacity: formReady ? 1 : 0,
+              transition: "opacity 250ms ease-out",
             }}
             id={iframeId}
             data-layout="{'id':'INLINE'}"
@@ -74,7 +95,7 @@ export function BookrFormEmbed({
             data-form-id={FORM_ID}
             title="Bookr Demo Request"
           />
-        ) : null}
+        )}
       </div>
     </div>
   );

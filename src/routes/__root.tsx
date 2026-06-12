@@ -90,6 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://api.leadconnectorhq.com" },
+      { rel: "preconnect", href: "https://link.msgsndr.com" },
+      { rel: "preconnect", href: "https://beta.leadconnectorhq.com" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap",
@@ -129,35 +132,55 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function injectChatWidget() {
+  if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
+
+  const script = document.createElement("script");
+  script.src = "https://beta.leadconnectorhq.com/loader.js";
+  script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
+  script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
+  script.async = true;
+  document.body.appendChild(script);
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const [pageReady, setPageReady] = useState(false);
+  const [pageLoad, setPageLoad] = useState({ ready: false, preload: false });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // Don't inject twice (e.g., during dev hot-reload)
-      if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
+    if (!pageLoad.preload) return;
 
-      const script = document.createElement("script");
-      script.src = "https://beta.leadconnectorhq.com/loader.js";
-      script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
-      script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
-      script.async = true;
-      document.body.appendChild(script);
-    }, 3200);
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "script";
+    link.href = "https://beta.leadconnectorhq.com/loader.js";
+    document.head.appendChild(link);
 
-    return () => clearTimeout(timer);
+    return () => {
+      link.remove();
+    };
+  }, [pageLoad.preload]);
+
+  useEffect(() => {
+    if (!pageLoad.ready) return;
+
+    const timer = window.setTimeout(injectChatWidget, 150);
+    return () => window.clearTimeout(timer);
+  }, [pageLoad.ready]);
+
+  const startPreload = useCallback(() => {
+    setPageLoad((s) => (s.preload ? s : { ...s, preload: true }));
   }, []);
 
   const finishLoader = useCallback(() => {
     document.documentElement.classList.remove("bookr-loading");
-    setPageReady(true);
+    setPageLoad((s) => ({ ...s, ready: true, preload: true }));
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PageReadyProvider ready={pageReady}>
-        <BrandLoader onFinished={finishLoader} />
+      <PageReadyProvider state={pageLoad}>
+        <BrandLoader onFadeStart={startPreload} onFinished={finishLoader} />
         <div id="bookr-page-content">
           <Outlet />
         </div>
