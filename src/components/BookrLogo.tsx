@@ -17,7 +17,7 @@ export function BookrLogo({ height = 32, className, variant = "dark" }: BookrLog
       viewBox="0 0 130 32"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="bookr"
+      aria-label="Bookr"
       className={className}
     >
       <text
@@ -29,7 +29,7 @@ export function BookrLogo({ height = 32, className, variant = "dark" }: BookrLog
         fill={wordColor}
         letterSpacing="-0.04em"
       >
-        bookr
+        Bookr
       </text>
       <rect x="82" y="4" width="12" height="5" rx="1.5" fill={lineColors[0]} />
       <rect x="82" y="13" width="22" height="5" rx="1.5" fill={lineColors[1]} />

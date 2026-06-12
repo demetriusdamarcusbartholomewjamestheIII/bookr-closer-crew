@@ -113,10 +113,12 @@ export function BookDemoButton({
       href="#bookr-demo-form"
       onClick={(e) => {
         e.preventDefault();
-        document.getElementById("bookr-demo-form")?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
+        const target = document.getElementById("bookr-demo-form");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+        window.location.assign("/#bookr-demo-form");
       }}
       className={className}
     >

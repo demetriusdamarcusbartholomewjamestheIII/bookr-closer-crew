@@ -68,7 +68,21 @@ function Hero() {
       <SiteHeader variant="light" />
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pb-20 pt-28 sm:px-8 lg:grid-cols-2 lg:items-start lg:gap-16 lg:pb-28 lg:pt-36">
         <div className="lg:pt-4">
-          <BookrStripeWide className="mb-8" />
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white/90 px-3 py-1.5 text-xs font-medium text-charcoal/80 shadow-sm">
+              <span className="relative flex h-2 w-2" aria-hidden>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              Live 24/7 — replies in under 5 minutes
+            </span>
+            <span className="hidden text-charcoal/30 sm:inline" aria-hidden>
+              ·
+            </span>
+            <span className="text-xs font-medium text-charcoal/55">
+              Done-for-you setup — no DIY automation
+            </span>
+          </div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
             Done-for-you speed-to-lead
           </p>

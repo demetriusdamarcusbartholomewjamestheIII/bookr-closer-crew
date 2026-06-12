@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { BookDemoButton } from "@/components/BookrFormEmbed";
 import { BookrLogo } from "@/components/BookrLogo";
 
 export function SiteHeader({ variant = "light" }: { variant?: "navy" | "light" }) {
@@ -17,12 +18,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "navy" | "light" }
         <Link to="/" className="flex items-center">
           <BookrLogo height={30} variant={onDark ? "light" : "dark"} />
         </Link>
-        <a
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+        <BookDemoButton
           className={[
             "hidden rounded-lg px-4 py-2 text-sm font-semibold transition-all sm:inline-flex",
             onDark
@@ -31,7 +27,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "navy" | "light" }
           ].join(" ")}
         >
           Book demo
-        </a>
+        </BookDemoButton>
       </div>
     </header>
   );

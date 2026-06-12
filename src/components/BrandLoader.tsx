@@ -101,7 +101,7 @@ function AnimatedBookrLogo({ height = 64 }: { height?: number }) {
       viewBox="0 0 130 32"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="bookr"
+      aria-label="Bookr"
     >
       <text
         x="0"
@@ -113,7 +113,7 @@ function AnimatedBookrLogo({ height = 64 }: { height?: number }) {
         letterSpacing="-0.04em"
         className="bookr-loader-word"
       >
-        bookr
+        Bookr
       </text>
       <rect
         x="82"
