@@ -29,6 +29,10 @@
   --color-navy: var(--navy);
   --color-navy-soft: var(--navy-soft);
   --color-charcoal: var(--charcoal);
+  --color-cream: var(--cream);
+  --color-bookr-stripe-1: var(--bookr-stripe-1);
+  --color-bookr-stripe-2: var(--bookr-stripe-2);
+  --color-bookr-stripe-3: var(--bookr-stripe-3);
   --shadow-card: 0 10px 30px -12px oklch(0.2 0.04 265 / 0.18);
   --shadow-pro: 0 30px 60px -25px oklch(0.42 0.05 265 / 0.45);
   --shadow-lift: 0 20px 40px -18px oklch(0.2 0.04 265 / 0.30);
@@ -36,13 +40,16 @@
 
 :root {
   --radius: 0.875rem;
-  /* Brand */
+  /* Brand — aligned to Bookr logo stripes */
   --navy: #455271;
   --navy-soft: #5A6B8E;
-  --charcoal: oklch(0.27 0.02 260);
+  --charcoal: #1F2937;
   --offwhite: #F5F1E8;
   --cream: #F5F1E8;
   --gold: oklch(0.78 0.10 80);
+  --bookr-stripe-1: #A4B0E8;
+  --bookr-stripe-2: #5B6BCE;
+  --bookr-stripe-3: #2E3A8C;
 
   --background: oklch(1 0 0);
   --foreground: var(--charcoal);
@@ -162,6 +169,19 @@
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .bookr-hero {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f6f1 55%, #f5f1e8 100%);
+  }
+  .bookr-hero-glow {
+    background:
+      radial-gradient(ellipse 70% 50% at 90% 10%, rgba(164, 176, 232, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(91, 107, 206, 0.08) 0%, transparent 50%);
+  }
+  .bookr-section-dark {
+    background-color: #1F2937;
+    color: #ffffff;
   }
 }
 

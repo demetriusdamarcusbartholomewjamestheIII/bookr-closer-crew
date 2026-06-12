@@ -1,14 +1,37 @@
 import { Link } from "@tanstack/react-router";
 import { BookrLogo } from "@/components/BookrLogo";
 
-export function SiteHeader({ variant = "navy" }: { variant?: "navy" | "light" }) {
-  const onNavy = variant === "navy";
+export function SiteHeader({ variant = "light" }: { variant?: "navy" | "light" }) {
+  const onDark = variant === "navy";
+
   return (
-    <header className={`absolute top-0 left-0 right-0 z-20 ${onNavy ? "" : "border-b border-border bg-white"}`}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8" style={{ paddingTop: 18, paddingBottom: 18 }}>
+    <header
+      className={`absolute top-0 left-0 right-0 z-20 ${
+        onDark ? "" : "border-b border-charcoal/5 bg-white/80 backdrop-blur-md"
+      }`}
+    >
+      <div
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-8"
+        style={{ paddingTop: 16, paddingBottom: 16 }}
+      >
         <Link to="/" className="flex items-center">
-          <BookrLogo height={32} variant={onNavy ? "light" : "dark"} />
+          <BookrLogo height={30} variant={onDark ? "light" : "dark"} />
         </Link>
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className={[
+            "hidden rounded-lg px-4 py-2 text-sm font-semibold transition-all sm:inline-flex",
+            onDark
+              ? "bg-white text-charcoal hover:bg-white/90"
+              : "bg-bookr-stripe-3 text-white hover:bg-bookr-stripe-2",
+          ].join(" ")}
+        >
+          Book demo
+        </a>
       </div>
     </header>
   );
