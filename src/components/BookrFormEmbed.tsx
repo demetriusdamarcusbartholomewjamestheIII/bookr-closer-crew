@@ -5,7 +5,7 @@ const FORM_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
 const FORM_SRC =
   "https://api.leadconnectorhq.com/widget/form/HyUF0g5OS3M1aVYjGOek";
 const FORM_ID = "HyUF0g5OS3M1aVYjGOek";
-const FORM_REVEAL_DELAY_MS = 500;
+const FORM_REVEAL_DELAY_MS = 200;
 
 export function BookrFormEmbed({
   label = "Book a 15-minute demo",
@@ -39,7 +39,7 @@ export function BookrFormEmbed({
     <div
       id={embedId}
       className={[
-        "mx-auto w-full max-w-[520px] rounded-xl bg-white p-6 shadow-card transition-opacity duration-500 ease-out",
+        "mx-auto w-full max-w-[520px] rounded-xl bg-white p-6 shadow-card transition-opacity duration-300 ease-out",
         showForm ? "opacity-100" : "pointer-events-none opacity-0",
       ].join(" ")}
       aria-hidden={!showForm}
