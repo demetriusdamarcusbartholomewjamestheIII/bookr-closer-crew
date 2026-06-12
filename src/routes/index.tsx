@@ -157,10 +157,10 @@ function Hero() {
 function ProblemStats() {
   const stats = [
     {
-      value: "5 min",
-      label: "The window that matters",
-      note: "Leads contacted within 5 minutes are dramatically more likely to convert than those contacted after 30 minutes.",
-      cite: "HBR / MIT lead response research",
+      value: "100×",
+      label: "More likely to connect in under 5 minutes",
+      note: "Leads contacted within 5 minutes are 100× more likely to connect than those contacted after 30 minutes. Speed isn't a nice-to-have — it's the whole game.",
+      cite: "MIT Lead Response Management Study / HBR",
     },
     {
       value: "3+ hrs",
@@ -536,17 +536,17 @@ function BilingualWedge() {
     {
       stat: "30%+",
       label: "of recent U.S. home buyers are Hispanic",
-      note: "One of the fastest-growing buyer segments — and the most underserved by English-only follow-up.",
+      note: "A massive and growing share of your market — often lost to English-only follow-up.",
     },
     {
       stat: "1 in 3",
       label: "households speak Spanish at home",
-      note: "If your lead desk replies in English only, you're invisible to a third of your market.",
+      note: "Reply in English only and you're invisible to a third of buyers before the conversation starts.",
     },
     {
-      stat: "< 5 min",
-      label: "same speed in either language",
-      note: "No second system. No translated templates. One Bookr — fluent in both.",
+      stat: "English-only",
+      label: "is still what most lead software ships",
+      note: "Bilingual autoresponders are rare. Fluent, native-register Spanish that qualifies and books? Almost nonexistent.",
     },
   ];
 
@@ -556,16 +556,17 @@ function BilingualWedge() {
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-1">
-            Our niche — your advantage
+            Built in — not bolted on
           </p>
           <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            The bilingual lead desk built for agents who serve Hispanic markets.
+            Bilingual is our moat. Bookr is the full lead desk.
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/75 sm:text-lg">
-            Most speed-to-lead tools are English-only afterthoughts. Bookr was built bilingual from
-            day one — because in Texas, Florida, California, Arizona, and beyond, the agent who
-            replies <em className="text-white/90">en español</em> in five minutes wins the listing
-            your competitor lost in English.
+            Bookr isn&apos;t a Hispanic-market-only product — it&apos;s speed-to-lead, qualification,
+            and booking for every agent. But bilingual capability is woven into our identity from day
+            one, and that&apos;s something most competitors still can&apos;t match. While the market
+            ships English-only templates, Bookr replies <em className="text-white/90">en español</em>{" "}
+            or English in under five minutes — same pipeline, same calendar, same sales personality.
           </p>
         </div>
 
@@ -592,9 +593,9 @@ function BilingualWedge() {
             Native-register Spanish — not translated English. Auto-detected on every inbound message.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
-            Your Hispanic leads get the same five-minute, personal, professional experience your
-            English leads do. Same qualification. Same booking flow. Same calendar. One system
-            that actually serves both markets.
+            Virtually no other lead software does this end-to-end: intake, qualify, and book in both
+            languages. Your Hispanic leads get the same five-minute, personal, professional
+            experience your English leads do — same qualification, same booking flow, same calendar.
           </p>
           <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-5 py-2.5 text-sm font-medium text-white/90">
             <span>🇺🇸 English</span>
@@ -658,7 +659,7 @@ function PricingSection() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-charcoal/55">
-          Best for agents and teams with 200+ online leads/month running paid social or portal leads.
+          Built for solo agents and growing teams running paid social, portal, or referral leads.
           No setup fees. Cancel anytime.
         </p>
       </div>
@@ -746,10 +747,6 @@ function FaqTrust() {
     {
       q: "How fast is setup?",
       a: "One 15-minute demo, then a ~20-minute onboarding call. We connect your channels, configure your sales personality, and handle the tech. Most agents are live within a few days.",
-    },
-    {
-      q: "Is this right for my volume?",
-      a: "Bookr works best if you're handling 200+ online leads per month from paid social, portals, or team lead flow. Below that, the ROI math may not justify it yet.",
     },
   ];
 
