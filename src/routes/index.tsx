@@ -455,7 +455,7 @@ function ProductProof() {
 
         <div className="mt-20 grid gap-6 sm:grid-cols-3">
           {[
-            { icon: Calendar, step: "1", title: "Book a 15-min demo", desc: "See your week with Bookr running." },
+            { icon: Calendar, step: "1", title: "Book a 30-min demo", desc: "See your week with Bookr running." },
             { icon: MessageSquare, step: "2", title: "We set it up", desc: "20-minute onboarding call. We handle the tech." },
             { icon: Check, step: "3", title: "Leads get handled", desc: "Under 5-min replies. You close." },
           ].map((item) => (
@@ -544,9 +544,9 @@ function BilingualWedge() {
       note: "Reply in English only and you're invisible to a third of buyers before the conversation starts.",
     },
     {
-      stat: "English-only",
-      label: "is still what most lead software ships",
-      note: "Bilingual autoresponders are rare. Fluent, native-register Spanish that qualifies and books? Almost nonexistent.",
+      stat: "EN + ES",
+      headline: "We speak both. Most software doesn't.",
+      note: "While the market ships English-only templates and bolt-on translations, Bookr was bilingual from day one — auto-detected per lead, native register in both.",
     },
   ];
 
@@ -559,29 +559,32 @@ function BilingualWedge() {
             Built in — not bolted on
           </p>
           <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Bilingual is our moat. Bookr is the full lead desk.
+            Bilingual from day one. Most software isn&apos;t.
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/75 sm:text-lg">
-            Bookr isn&apos;t a Hispanic-market-only product — it&apos;s speed-to-lead, qualification,
-            and booking for every agent. But bilingual capability is woven into our identity from day
-            one, and that&apos;s something most competitors still can&apos;t match. While the market
-            ships English-only templates, Bookr replies <em className="text-white/90">en español</em>{" "}
-            or English in under five minutes — same pipeline, same calendar, same sales personality.
+            Bookr is built for every agent — but it speaks both English and Spanish from the first
+            message, automatically. Same speed, same qualification, same booking. Your Hispanic leads
+            get the same five-minute experience your English leads do — no translation guesswork, no
+            separate system.
           </p>
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {differentiators.map((d) => (
             <div
-              key={d.label}
+              key={d.stat}
               className="rounded-2xl border border-white/12 bg-white/[0.05] p-7 text-center sm:p-8"
             >
               <p className="font-display text-4xl font-bold tracking-tight text-bookr-stripe-1 sm:text-5xl">
                 {d.stat}
               </p>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/90">
-                {d.label}
-              </p>
+              {"headline" in d && d.headline ? (
+                <p className="mt-3 text-sm font-semibold leading-snug text-white/90">{d.headline}</p>
+              ) : (
+                <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/90">
+                  {d.label}
+                </p>
+              )}
               <p className="mt-3 text-sm leading-relaxed text-white/60">{d.note}</p>
             </div>
           ))}
@@ -746,7 +749,7 @@ function FaqTrust() {
     },
     {
       q: "How fast is setup?",
-      a: "One 15-minute demo, then a ~20-minute onboarding call. We connect your channels, configure your sales personality, and handle the tech. Most agents are live within a few days.",
+      a: "One 30-minute demo, then a ~20-minute onboarding call. We connect your channels, configure your sales personality, and handle the tech. Most agents are live within a few days.",
     },
   ];
 
@@ -801,11 +804,11 @@ function FinalCta() {
           Stop losing leads to agents who reply faster.
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-base text-white/70">
-          Book a 15-minute demo. We'll walk through exactly how Bookr would handle
+          Book a 30-minute demo. We'll walk through exactly how Bookr would handle
           your leads this week — in English and Spanish.
         </p>
         <BookDemoButton className="mt-10 inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-charcoal transition-all hover:bg-cream active:scale-[0.98]">
-          Book a 15-minute demo
+          Book a 30-minute demo
         </BookDemoButton>
         <p className="mt-4 text-sm text-white/45">No credit card required</p>
       </div>
