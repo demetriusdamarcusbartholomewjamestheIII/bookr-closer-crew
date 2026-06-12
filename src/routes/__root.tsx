@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { PageReadyProvider } from "../contexts/page-ready";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -130,6 +131,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [pageReady, setPageReady] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -149,14 +151,17 @@ function RootComponent() {
 
   const finishLoader = useCallback(() => {
     document.documentElement.classList.remove("bookr-loading");
+    setPageReady(true);
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrandLoader onFinished={finishLoader} />
-      <div id="bookr-page-content">
-        <Outlet />
-      </div>
+      <PageReadyProvider ready={pageReady}>
+        <BrandLoader onFinished={finishLoader} />
+        <div id="bookr-page-content">
+          <Outlet />
+        </div>
+      </PageReadyProvider>
     </QueryClientProvider>
   );
   } 
