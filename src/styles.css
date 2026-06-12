@@ -172,12 +172,40 @@
   }
 
   .bookr-hero {
-    background: linear-gradient(180deg, #ffffff 0%, #f8f6f1 55%, #f5f1e8 100%);
+    background:
+      linear-gradient(165deg, #ffffff 0%, #faf8f4 42%, #f3efe6 100%);
+  }
+  .bookr-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    background-image:
+      linear-gradient(rgba(46, 58, 140, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 58, 140, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+  }
+  .bookr-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 45% at 100% 0%, rgba(164, 176, 232, 0.14) 0%, transparent 58%),
+      radial-gradient(ellipse 40% 35% at 0% 100%, rgba(245, 230, 210, 0.35) 0%, transparent 55%);
   }
   .bookr-hero-glow {
-    background:
-      radial-gradient(ellipse 70% 50% at 90% 10%, rgba(164, 176, 232, 0.18) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(91, 107, 206, 0.08) 0%, transparent 50%);
+    background: none;
+  }
+  .bookr-section-light {
+    background-color: #faf8f4;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(164, 176, 232, 0.06) 0%, transparent 60%),
+      linear-gradient(rgba(46, 58, 140, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 58, 140, 0.025) 1px, transparent 1px);
+    background-size: auto, 72px 72px, 72px 72px;
   }
   .bookr-section-dark {
     background-color: #1F2937;

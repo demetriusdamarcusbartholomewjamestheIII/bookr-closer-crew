@@ -11,10 +11,10 @@ import {
 } from "lucide-react";
 import { BookDemoButton, BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BookrStripe, BookrStripeWide } from "@/components/BookrStripe";
+import { BookrIconMark } from "@/components/BookrIconMark";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
-import bookrLogo from "@/assets/bookr-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,13 +107,7 @@ function Hero() {
           </div>
 
           <div className="mt-10 flex items-center gap-4 rounded-2xl border border-charcoal/8 bg-white/80 p-4 shadow-sm backdrop-blur-sm">
-            <img
-              src={bookrLogo}
-              alt=""
-              className="h-12 w-12 rounded-xl object-contain"
-              width={48}
-              height={48}
-            />
+            <BookrIconMark size={48} className="shrink-0" />
             <div>
               <p className="text-sm font-semibold text-charcoal">Built for working agents</p>
               <p className="mt-0.5 text-xs leading-relaxed text-charcoal/60">
@@ -359,7 +353,7 @@ function BilingualWedge() {
 /* ─── PRICING ─── */
 function PricingSection() {
   return (
-    <section id="pricing" className="bg-cream/40 py-20 sm:py-28">
+    <section id="pricing" className="bookr-section-light py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">

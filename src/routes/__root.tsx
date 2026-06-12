@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#FFFFFF" },
+      { name: "theme-color", content: "#1F2937" },
       { title: "Bookr — Realtors close deals. We do everything else." },
       { name: "description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
       { name: "twitter:card", content: "summary_large_image" },
@@ -88,6 +88,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "preconnect", href: "https://api.leadconnectorhq.com" },
