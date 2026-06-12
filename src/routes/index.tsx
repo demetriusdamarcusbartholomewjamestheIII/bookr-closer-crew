@@ -73,7 +73,7 @@ function Hero() {
   return (
     <section id="top" className="bookr-hero relative overflow-hidden">
       <div className="bookr-hero-glow pointer-events-none absolute inset-0" aria-hidden />
-      <SiteHeader variant="light" />
+      <SiteHeader variant="navy" />
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pb-20 pt-28 sm:px-8 lg:grid-cols-2 lg:items-start lg:gap-16 lg:pb-28 lg:pt-36">
         <div className="lg:pt-4">
           <div className="mb-6 flex flex-wrap items-center gap-3">

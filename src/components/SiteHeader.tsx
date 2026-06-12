@@ -9,7 +9,7 @@ export function SiteHeader({ variant = "light" }: { variant?: "navy" | "light" }
     <header
       className={`absolute top-0 left-0 right-0 z-20 ${
         onDark
-          ? ""
+          ? "border-b border-white/10 bg-bookr-stripe-3 shadow-[0_4px_24px_-6px_rgba(15,23,42,0.4)]"
           : "border-b-2 border-charcoal/20 bg-white shadow-[0_4px_20px_-6px_rgba(31,41,55,0.18)]"
       }`}
     >
