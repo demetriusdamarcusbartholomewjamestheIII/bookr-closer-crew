@@ -1,13 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  ArrowRight,
   Check,
   ChevronDown,
+  Inbox,
   Languages,
   Mic,
   Shield,
   Calendar,
   MessageSquare,
   Phone,
+  Sparkles,
+  UserCheck,
+  Zap,
 } from "lucide-react";
 import { BookDemoButton, BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BookrStripe, BookrStripeWide } from "@/components/BookrStripe";
@@ -37,12 +42,13 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const INTEGRATIONS = [
+const LEAD_CHANNELS = [
+  "Zillow & portal inquiries",
   "Facebook Lead Ads",
   "Instagram DMs",
   "Website forms",
-  "Google Calendar",
-  "SMS",
+  "SMS & text threads",
+  "Inbound calls (Pro)",
 ];
 
 function LandingPage() {
@@ -50,8 +56,10 @@ function LandingPage() {
     <main className="bg-white text-charcoal">
       <Hero />
       <ProblemStats />
-      <ProductProof />
+      <LeadPipeline />
+      <SalesPersonality />
       <BilingualWedge />
+      <ProductProof />
       <PricingSection />
       <FaqTrust />
       <FinalCta />
@@ -98,9 +106,9 @@ function Hero() {
 
           <ul className="mt-8 space-y-3">
             {[
+              "Intakes leads from Zillow, social, SMS, forms & calls",
+              "Responds, qualifies, and books — your perfect assistant",
               "English & Spanish — auto-detected per lead",
-              "Trained on your real conversation style",
-              "Live supervision dashboard included",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3 text-sm text-charcoal/85 sm:text-base">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-bookr-stripe-3" strokeWidth={2.5} />
@@ -109,11 +117,11 @@ function Hero() {
             ))}
           </ul>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            {INTEGRATIONS.map((name) => (
+          <div className="mt-10 flex flex-wrap items-center gap-2.5">
+            {LEAD_CHANNELS.map((name) => (
               <span
                 key={name}
-                className="rounded-full border border-charcoal/10 bg-white px-3 py-1 text-xs font-medium text-charcoal/70 shadow-sm"
+                className="rounded-full border border-charcoal/12 bg-white px-3 py-1 text-xs font-medium text-charcoal/70 shadow-sm"
               >
                 {name}
               </span>
@@ -203,23 +211,208 @@ function ProblemStats() {
   );
 }
 
+/* ─── LEAD PIPELINE (data intake) ─── */
+function LeadPipeline() {
+  const stages = [
+    {
+      icon: Inbox,
+      step: "01",
+      title: "Intake — every channel, one inbox",
+      body: "A Zillow inquiry, Facebook form fill, Instagram DM, website form, SMS reply, or missed call (Pro) hits Bookr the moment it arrives. No copying leads between apps. No manual forwarding.",
+    },
+    {
+      icon: Zap,
+      step: "02",
+      title: "Respond — under 5 minutes, every time",
+      body: "Bookr opens the conversation immediately — in English or Spanish, auto-detected. Warm, personal, on-brand. Your lead never sits in a queue while they're texting three other agents.",
+    },
+    {
+      icon: UserCheck,
+      step: "03",
+      title: "Qualify — the questions that matter",
+      body: "Timeline, financing, motivation, property fit, showing availability — asked naturally, in conversation. Bookr filters tire-kickers and surfaces buyers and sellers who are ready to move.",
+    },
+    {
+      icon: Calendar,
+      step: "04",
+      title: "Book — real appointments, your calendar",
+      body: "Bookr proposes live slots from your Google Calendar, confirms the showing or consultation, sends reminders, and logs the outcome. You wake up to booked tours — not a backlog of unread texts.",
+    },
+  ];
+
+  return (
+    <section className="bookr-section-light relative py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        <FadeUp>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
+            What you&apos;re actually buying
+          </p>
+          <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            One assistant that intakes, responds, qualifies, and books — from every lead source.
+          </h2>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-charcoal/70 sm:text-lg">
+            Most agents don&apos;t lose deals because they can&apos;t close. They lose them because
+            leads arrive scattered across Zillow, Instagram, Facebook, SMS, and voicemail — and
+            nobody handles the full pipeline fast enough. Bookr does. End to end.
+          </p>
+        </FadeUp>
+
+        <div className="mt-14 grid gap-5 lg:grid-cols-2">
+          {stages.map((s, i) => (
+            <FadeUp key={s.step} delay={i * 0.05}>
+              <div className="flex h-full gap-5 rounded-2xl border border-charcoal/10 bg-white p-7 shadow-card">
+                <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-bookr-stripe-3 text-white">
+                  <s.icon className="h-5 w-5" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-bookr-stripe-3">
+                    {s.step}
+                  </p>
+                  <h3 className="mt-1 text-lg font-semibold text-charcoal">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{s.body}</p>
+                </div>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+
+        <FadeUp delay={0.15}>
+          <div className="mt-10 rounded-2xl border-2 border-bookr-stripe-3/20 bg-white p-8 shadow-pro sm:p-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <h3 className="text-xl font-bold text-charcoal sm:text-2xl">
+                  Zillow form → qualified buyer → Saturday showing. Automatically.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-charcoal/65 sm:text-base">
+                  Bookr isn&apos;t a CRM you log into or a chat widget you configure. It&apos;s
+                  done-for-you lead operations: every inbound signal becomes a handled conversation,
+                  a qualified prospect, and — when they&apos;re ready — a confirmed appointment on
+                  your calendar.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
+                {LEAD_CHANNELS.map((ch) => (
+                  <span
+                    key={ch}
+                    className="rounded-lg bg-bookr-stripe-3/8 px-3 py-1.5 text-xs font-semibold text-bookr-stripe-3"
+                  >
+                    {ch}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-charcoal/8 pt-6 text-sm text-charcoal/70">
+              <span className="inline-flex items-center gap-2 font-medium text-charcoal">
+                <ArrowRight className="h-4 w-4 text-bookr-stripe-3" />
+                Lead arrives
+              </span>
+              <span className="text-charcoal/30">→</span>
+              <span>Instant reply</span>
+              <span className="text-charcoal/30">→</span>
+              <span>Qualification</span>
+              <span className="text-charcoal/30">→</span>
+              <span className="font-semibold text-emerald-700">Appointment booked</span>
+            </div>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ─── SALES PERSONALITY ─── */
+function SalesPersonality() {
+  const paths = [
+    {
+      icon: Mic,
+      title: "Trained on your sales style",
+      badge: "Most popular",
+      body: "Sales is your #1 asset as a realtor — your tone, your qualifying questions, how you build trust. During onboarding we study your real lead conversations and configure Bookr to sell like you: your phrases, your pace, your personality.",
+      points: [
+        "Built from your past texts, DMs, and email threads",
+        "Matches how you handle objections and ask for the appointment",
+        "Leads experience continuity — not a generic script",
+      ],
+    },
+    {
+      icon: Sparkles,
+      title: "Bookr Signature sales personality",
+      badge: "Research-backed",
+      body: "New agent or light conversation history? We deploy our signature sales personality — engineered from extensive market research across thousands of real estate conversations — proven to qualify buyers and sellers and move them to a booked showing.",
+      points: [
+        "Tested qualifying flows for buyers, sellers, and renters",
+        "Professional, warm, and conversion-focused out of the box",
+        "We refine it to your market during your onboarding call",
+      ],
+    },
+  ];
+
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        <FadeUp>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
+            Your edge, protected
+          </p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            Sales is everything in real estate. Bookr sells like you — or like the best in the business.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-charcoal/70 sm:text-lg">
+            Generic follow-up loses listings. Bookr is personalized marketing software — configured
+            either from <strong className="font-semibold text-charcoal">your</strong> proven style or
+            our <strong className="font-semibold text-charcoal">signature</strong> personality built
+            from real market data. Either way, every lead gets a salesperson — not a template.
+          </p>
+        </FadeUp>
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+          {paths.map((path, i) => (
+            <FadeUp key={path.title} delay={i * 0.08}>
+              <div className="relative flex h-full flex-col rounded-2xl border-2 border-charcoal/10 bg-cream/40 p-8 shadow-card">
+                <span className="absolute -top-3 left-6 rounded-full bg-bookr-stripe-3 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+                  {path.badge}
+                </span>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-white">
+                  <path.icon className="h-5 w-5" strokeWidth={2} />
+                </div>
+                <h3 className="mt-5 text-xl font-bold text-charcoal">{path.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-charcoal/70 sm:text-base">
+                  {path.body}
+                </p>
+                <ul className="mt-6 space-y-2.5 border-t border-charcoal/8 pt-6">
+                  {path.points.map((pt) => (
+                    <li key={pt} className="flex gap-2.5 text-sm text-charcoal/80">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-bookr-stripe-3" strokeWidth={2.5} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── PRODUCT PROOF ─── */
 function ProductProof() {
   const benefits = [
     {
-      icon: Languages,
-      title: "Bilingual by default",
-      body: "Every lead gets a native-quality reply in English or Spanish — auto-detected. One Bookr, both markets.",
-    },
-    {
-      icon: Mic,
-      title: "Sounds like you",
-      body: "We train on your past lead conversations so replies match your tone — not a generic chatbot.",
-    },
-    {
       icon: Shield,
       title: "Hands-off, with a window in",
-      body: "Bookr runs 24/7. Your free supervision dashboard lets you read every conversation, anytime.",
+      body: "Bookr runs 24/7 across every connected channel. Your free supervision dashboard lets you read every conversation, see who got qualified, and verify every booking — anytime.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Full pipeline visibility",
+      body: "Watch intake, response, qualification, and booking in one place. No guessing what happened to last night's Zillow lead — it's all there.",
+    },
+    {
+      icon: Calendar,
+      title: "Calendar-connected booking",
+      body: "Real slots from your Google Calendar. Confirmations, reminders, and handoff notes — so you show up prepared to close.",
     },
   ];
 
@@ -229,15 +422,15 @@ function ProductProof() {
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           <FadeUp>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
-              See how it works
+              See it in action
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              From Zillow inquiry to booked showing — automatically.
+              This is what your leads experience — start to finish.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-charcoal/70 sm:text-lg">
-              Bookr replies, asks the right qualifying questions, and puts real
-              appointments on your calendar. You wake up to booked tours — not
-              a backlog of unread texts.
+              A portal inquiry comes in at 8:42 PM. Bookr responds in under five minutes,
+              qualifies timeline and financing, offers real showing slots, and books the
+              appointment — while you&apos;re at dinner.
             </p>
 
             <div className="mt-10 space-y-6">
@@ -339,26 +532,81 @@ function ExampleConversation() {
 
 /* ─── BILINGUAL WEDGE ─── */
 function BilingualWedge() {
+  const differentiators = [
+    {
+      stat: "30%+",
+      label: "of recent U.S. home buyers are Hispanic",
+      note: "One of the fastest-growing buyer segments — and the most underserved by English-only follow-up.",
+    },
+    {
+      stat: "1 in 3",
+      label: "households speak Spanish at home",
+      note: "If your lead desk replies in English only, you're invisible to a third of your market.",
+    },
+    {
+      stat: "< 5 min",
+      label: "same speed in either language",
+      note: "No second system. No translated templates. One Bookr — fluent in both.",
+    },
+  ];
+
   return (
     <section className="bookr-section-dark relative overflow-hidden py-20 sm:py-28">
       <div className="bookr-hero-glow pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-      <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-8">
-        <BookrStripeWide className="mx-auto mb-8" />
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          <span className="text-bookr-stripe-1">30%+</span> of recent U.S. buyers are Hispanic —
-          and growing fast.
-        </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
-          English-only follow-up leaves money on the table. Bookr detects each lead's
-          language and replies in fluent, native-register Spanish or English — same
-          speed, same quality, one system.
-        </p>
-        <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm text-white/90">
-          <span>🇺🇸 English</span>
-          <span className="h-1 w-1 rounded-full bg-white/30" />
-          <span>🇲🇽 Español</span>
+      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-1">
+            Our niche — your advantage
+          </p>
+          <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            The bilingual lead desk built for agents who serve Hispanic markets.
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/75 sm:text-lg">
+            Most speed-to-lead tools are English-only afterthoughts. Bookr was built bilingual from
+            day one — because in Texas, Florida, California, Arizona, and beyond, the agent who
+            replies <em className="text-white/90">en español</em> in five minutes wins the listing
+            your competitor lost in English.
+          </p>
         </div>
-        <p className="mt-6 text-xs text-white/40">Source: NAR Profile of Home Buyers & Sellers</p>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {differentiators.map((d) => (
+            <div
+              key={d.label}
+              className="rounded-2xl border border-white/12 bg-white/[0.05] p-7 text-center sm:p-8"
+            >
+              <p className="font-display text-4xl font-bold tracking-tight text-bookr-stripe-1 sm:text-5xl">
+                {d.stat}
+              </p>
+              <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/90">
+                {d.label}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/60">{d.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-bookr-stripe-1/25 bg-white/[0.06] p-8 text-center sm:p-10">
+          <Languages className="mx-auto h-8 w-8 text-bookr-stripe-1" strokeWidth={1.75} />
+          <p className="mt-4 text-lg font-semibold leading-relaxed text-white sm:text-xl">
+            Native-register Spanish — not translated English. Auto-detected on every inbound message.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
+            Your Hispanic leads get the same five-minute, personal, professional experience your
+            English leads do. Same qualification. Same booking flow. Same calendar. One system
+            that actually serves both markets.
+          </p>
+          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-5 py-2.5 text-sm font-medium text-white/90">
+            <span>🇺🇸 English</span>
+            <span className="h-1 w-1 rounded-full bg-white/35" />
+            <span>🇲🇽 Español</span>
+            <span className="text-white/50">— auto-detected per lead</span>
+          </div>
+        </div>
+
+        <p className="mt-8 text-center text-xs text-white/40">
+          Sources: NAR Profile of Home Buyers & Sellers; U.S. Census Bureau
+        </p>
       </div>
     </section>
   );
@@ -385,22 +633,23 @@ function PricingSection() {
             desc="Every channel except inbound voice — SMS, social DMs, and web forms."
             features={[
               "Under 5-minute replies, 24/7",
-              "Facebook, Instagram, SMS, website forms",
+              "Zillow, Facebook, Instagram, SMS & web forms",
+              "Full intake → qualify → book pipeline",
+              "Your sales style or Bookr Signature personality",
               "English & Spanish auto-detect",
-              "Trained on your voice",
-              "Books on your real calendar",
+              "Books on your real Google Calendar",
               "Supervision dashboard included",
             ]}
           />
           <PricingCard
             name="Bookr Pro"
             price="$397"
-            desc="Everything in Standard, plus AI answers inbound calls when you can't."
+            desc="Everything in Standard, plus automated voice answers inbound calls when you can't."
             highlighted
             features={[
               "Everything in Standard",
-              "AI voice answers missed calls",
-              "Natural voice — English & Spanish",
+              "Voice software answers missed calls",
+              "Natural conversation — English & Spanish",
               "Qualifies and books live on the phone",
               "Hot-lead transfer to your mobile",
               "Custom voice profile",
@@ -461,12 +710,7 @@ function PricingCard({
           </li>
         ))}
       </ul>
-      <a
-        href="#top"
-        onClick={(e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
+      <BookDemoButton
         className={[
           "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-semibold transition-all active:scale-[0.98]",
           highlighted
@@ -475,7 +719,7 @@ function PricingCard({
         ].join(" ")}
       >
         Book my demo
-      </a>
+      </BookDemoButton>
     </div>
   );
 }
@@ -484,16 +728,24 @@ function PricingCard({
 function FaqTrust() {
   const faqs = [
     {
-      q: "Will my leads know it's AI?",
-      a: "Bookr is trained on how you actually talk to leads. Most conversations feel like you — fast, personal, and on-brand. You can watch every reply in your supervision dashboard.",
+      q: "Will my leads know it's software?",
+      a: "Bookr is configured to sound like you — or like our research-backed signature sales personality. Conversations are fast, personal, and on-brand. Most leads experience it as a attentive assistant who knows your listings. You can read every exchange in your supervision dashboard.",
+    },
+    {
+      q: "Where does Bookr actually get leads from?",
+      a: "Zillow and portal inquiries, Facebook Lead Ads, Instagram DMs, website contact forms, SMS threads, and inbound calls (Pro). Every channel feeds the same pipeline: instant response → qualification → booked appointment on your Google Calendar.",
+    },
+    {
+      q: "Can you match how I sell — or do I have to use a generic script?",
+      a: "Both options. If you have conversation history, we train Bookr on your tone, phrases, and qualifying style. If you're newer or prefer a proven playbook, we deploy our Bookr Signature personality — built from extensive real estate market research. Either way, it's personalized marketing software — not a one-size-fits-all autoresponder.",
     },
     {
       q: "What do you need access to?",
-      a: "Facebook, Instagram, your calendar, website forms, and phone (Pro only). We only see lead conversations — never personal contacts. We never sell your data.",
+      a: "Facebook, Instagram, your Google Calendar, website forms, and phone line (Pro only). We only see lead conversations — never personal contacts. We never sell your data.",
     },
     {
       q: "How fast is setup?",
-      a: "One 15-minute demo, then a ~20-minute onboarding call. We configure everything. Most agents are live within a few days.",
+      a: "One 15-minute demo, then a ~20-minute onboarding call. We connect your channels, configure your sales personality, and handle the tech. Most agents are live within a few days.",
     },
     {
       q: "Is this right for my volume?",
