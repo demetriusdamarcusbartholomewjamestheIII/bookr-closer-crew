@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mic, Languages, Phone, Hand, Eye, Check } from "lucide-react";
-import { motion } from "framer-motion";
-import { BookrFormEmbed } from "@/components/BookrFormEmbed";
+import { BookDemoButton, BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp, Stagger, StaggerItem } from "@/components/Motion";
@@ -33,8 +32,6 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 function LandingPage() {
   return (
     <main className="bg-background text-charcoal">
@@ -57,7 +54,7 @@ function LandingPage() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-warm-navy text-white">
+    <section id="top" className="relative isolate overflow-hidden bg-warm-navy text-white">
       {/* Golden-hour home photo — clearly visible, softly warm */}
       <div
         aria-hidden
@@ -90,64 +87,34 @@ function Hero() {
       <SiteHeader variant="navy" />
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pt-24 pb-16 sm:px-8 md:pt-36 md:pb-24 lg:grid-cols-12 lg:gap-16 lg:pt-40">
         <div className="order-1 lg:col-span-6 lg:pt-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease, delay: 0.05 }}
-            className="text-[2.25rem] leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl"
-          >
+          <h1 className="text-[2.25rem] leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl">
             Realtors close deals.
             <br />
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease, delay: 0.2 }}
-              className="inline-block text-white/85"
-            >
+            <span className="inline-block text-white/85">
               Bookr does everything else.
-            </motion.span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease, delay: 0.35 }}
-            className="mt-6 max-w-[620px] text-base text-white/80 sm:text-lg md:text-xl"
-          >
+            </span>
+          </h1>
+          <p className="mt-6 max-w-[620px] text-base text-white/80 sm:text-lg md:text-xl">
             Stop missing dinners chasing leads. Bookr replies, qualifies, and
             books appointments on your calendar — automatically, day and night.
             You just show up.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, ease, delay: 0.5 }}
-            className="mt-7 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center"
-          >
+          </p>
+          <div className="mt-7 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-4 py-1.5 text-xs text-white/90 backdrop-blur sm:text-sm">
               <span className="font-medium">🇺🇸 English</span>
               <span className="h-1 w-1 rounded-full bg-white/40" />
               <span className="font-medium">🇲🇽 Español</span>
             </span>
             <span className="text-xs text-white/60 sm:text-sm">— auto-detects your lead's language</span>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease, delay: 0.6 }}
-            className="mt-4 max-w-[560px] text-xs text-white/55 sm:text-sm"
-          >
+          </div>
+          <p className="mt-4 max-w-[560px] text-xs text-white/55 sm:text-sm">
             No credit card. No sales call. Just a 15-minute look at your week with Bookr.
-          </motion.p>
+          </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease, delay: 0.6 }}
-          className="order-2 px-0 lg:col-span-6"
-        >
-          <BookrFormEmbed />
-        </motion.div>
+        <div className="order-2 px-0 lg:col-span-6">
+          <BookrFormEmbed embedId="bookr-demo-form" />
+        </div>
       </div>
     </section>
   );
@@ -213,7 +180,7 @@ function Problem() {
 function StatCard({ valueNode, label }: { valueNode: React.ReactNode; label: string }) {
   return (
     <div className="flex h-full min-h-[260px] flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm transition-colors hover:bg-white/[0.06] sm:p-8 md:min-h-[320px]">
-      <div className="font-display text-[72px] font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
+      <div className="font-display text-5xl font-bold leading-none tracking-tight text-accent sm:text-6xl md:text-[5.5rem]">
         {valueNode}
       </div>
       <p className="mt-5 text-xs uppercase tracking-[0.12em] text-white/65 sm:text-sm sm:tracking-wider">
@@ -757,7 +724,9 @@ function FinalCta() {
         </FadeUp>
         <FadeUp delay={0.1}>
           <div>
-            <BookrFormEmbed />
+            <BookDemoButton className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-navy transition-all duration-[120ms] hover:bg-white/90 active:scale-[0.98]">
+              Book a 15-minute demo
+            </BookDemoButton>
             <p className="mt-4 text-sm text-white/65">
               No credit card. No pressure. Just a quick look.
             </p>

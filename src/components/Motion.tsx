@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,6 +15,21 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.3, ease } },
 };
 
+function useMotionEnabled() {
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return {
+    mounted,
+    motionEnabled: mounted && !isMobile && !prefersReducedMotion,
+  };
+}
+
 export function FadeUp({
   children,
   className = "",
@@ -23,8 +39,12 @@ export function FadeUp({
   className?: string;
   delay?: number;
 }) {
-  const isMobile = useIsMobile();
-  if (isMobile) return <div className={className}>{children}</div>;
+  const { mounted, motionEnabled } = useMotionEnabled();
+
+  if (!mounted || !motionEnabled) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
@@ -45,8 +65,12 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
-  const isMobile = useIsMobile();
-  if (isMobile) return <div className={className}>{children}</div>;
+  const { mounted, motionEnabled } = useMotionEnabled();
+
+  if (!mounted || !motionEnabled) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
@@ -67,8 +91,12 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  const isMobile = useIsMobile();
-  if (isMobile) return <div className={className}>{children}</div>;
+  const { mounted, motionEnabled } = useMotionEnabled();
+
+  if (!mounted || !motionEnabled) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div className={className} variants={item}>
       {children}

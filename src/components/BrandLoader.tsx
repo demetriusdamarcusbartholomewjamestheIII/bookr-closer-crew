@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 
+const LOADER_SEEN_KEY = "bookr-loader-seen";
+
 export function BrandLoader() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [removed, setRemoved] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const hideTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2600);
-    const removeTimer = setTimeout(() => {
-      setRemoved(true);
-    }, 3000);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const seen = sessionStorage.getItem(LOADER_SEEN_KEY);
+    if (seen || reducedMotion) return;
+
+    sessionStorage.setItem(LOADER_SEEN_KEY, "1");
+    setVisible(true);
+
+    const hideTimer = window.setTimeout(() => setFading(true), 500);
+    const removeTimer = window.setTimeout(() => setVisible(false), 800);
+
     return () => {
-      clearTimeout(hideTimer);
-      clearTimeout(removeTimer);
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(removeTimer);
     };
   }, []);
 
-  if (removed) return null;
+  if (!visible) return null;
 
   return (
     <div
       aria-hidden="true"
       className="brand-loader"
       style={{
-        opacity: isLoading ? 1 : 0,
-        pointerEvents: isLoading ? "auto" : "none",
-        transition: "opacity 500ms ease-out",
+        opacity: fading ? 0 : 1,
+        pointerEvents: fading ? "none" : "auto",
+        transition: "opacity 300ms ease-out",
       }}
     >
       <div className="brand-loader__inner">
@@ -45,7 +51,7 @@ export function BrandLoader() {
         }
         .bookr-loader-word {
           opacity: 0;
-          animation: bookr-word-fade 500ms ease-out 100ms forwards;
+          animation: bookr-word-fade 300ms ease-out 50ms forwards;
         }
         @keyframes bookr-word-fade {
           to { opacity: 1; }
@@ -54,11 +60,11 @@ export function BrandLoader() {
           transform-origin: left center;
           transform: scaleX(0);
           opacity: 0;
-          animation: bookr-line-in 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: bookr-line-in 250ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        .bookr-loader-line-1 { animation-delay: 600ms; }
-        .bookr-loader-line-2 { animation-delay: 850ms; }
-        .bookr-loader-line-3 { animation-delay: 1100ms; }
+        .bookr-loader-line-1 { animation-delay: 200ms; }
+        .bookr-loader-line-2 { animation-delay: 300ms; }
+        .bookr-loader-line-3 { animation-delay: 400ms; }
       `}</style>
     </div>
   );
