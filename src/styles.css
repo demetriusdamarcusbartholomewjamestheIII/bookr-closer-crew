@@ -6,7 +6,7 @@
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -41,7 +41,7 @@
 :root {
   --radius: 0.875rem;
   /* Brand — aligned to Bookr logo stripes */
-  --navy: #455271;
+  --navy: #3B4A6B;
   --navy-soft: #5A6B8E;
   --charcoal: #1F2937;
   --offwhite: #F5F1E8;
@@ -210,6 +210,19 @@
   .bookr-section-dark {
     background-color: #1F2937;
     color: #ffffff;
+  }
+
+  .bookr-mark-orbit {
+    animation: bookr-mark-spin 24s linear infinite;
+  }
+  @keyframes bookr-mark-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bookr-mark-orbit {
+      animation: none;
+    }
   }
 }
 

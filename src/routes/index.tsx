@@ -1,40 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Check,
-  ChevronDown,
-  Inbox,
-  Languages,
-  Mic,
-  Shield,
-  Calendar,
-  MessageSquare,
-  Phone,
-  Sparkles,
-  UserCheck,
-  Zap,
-} from "lucide-react";
-import { BookDemoButton, BookrFormEmbed } from "@/components/BookrFormEmbed";
-import { BookrStripe, BookrStripeWide } from "@/components/BookrStripe";
-import { BookrIconMark } from "@/components/BookrIconMark";
-import { SiteHeader } from "@/components/SiteHeader";
+import { Check, ChevronDown } from "lucide-react";
+import { BookrFormEmbed } from "@/components/BookrFormEmbed";
+import { BookrMarkOrbit } from "@/components/landing/BookrMarkOrbit";
+import { HeroLiveChat } from "@/components/landing/HeroLiveChat";
+import { LandingNav } from "@/components/landing/LandingNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
+import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/bookr-constants";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bookr — 24/7 bilingual lead desk for realtors" },
+      { title: "Bookr — Every lead, answered in seconds" },
       {
         name: "description",
         content:
-          "Bookr replies to every online lead in under 5 minutes, in English or Spanish, and books appointments on your calendar. Done-for-you setup.",
+          "Bookr replies to every new lead in seconds, in English or Spanish, qualifies them, and books them on your calendar. Done for you.",
       },
-      { property: "og:title", content: "Bookr — 24/7 bilingual lead desk for realtors" },
+      { property: "og:title", content: "Bookr — Every lead, answered in seconds" },
       {
         property: "og:description",
         content:
-          "Stop losing Zillow and Facebook leads to faster agents. Bookr qualifies and books while you close deals.",
+          "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -42,27 +29,22 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const LEAD_CHANNELS = [
-  "Zillow & portal inquiries",
-  "Facebook Lead Ads",
-  "Instagram DMs",
-  "Website forms",
-  "SMS & text threads",
-  "Inbound calls (Pro)",
-];
-
 function LandingPage() {
   return (
-    <main className="bg-white text-charcoal">
+    <main className="bg-navy text-white">
+      <LandingNav />
       <Hero />
-      <ProblemStats />
-      <LeadPipeline />
-      <SalesPersonality />
-      <BilingualWedge />
-      <ProductProof />
-      <PricingSection />
-      <FaqTrust />
+      <Problem />
+      <HowItWorks />
+      <Bilingual />
+      <DoneForYou />
+      <Guarantee />
+      <Pricing />
+      <Founder />
+      <TestimonialsPlaceholder />
+      <Faq />
       <FinalCta />
+      <ContactForm />
       <SiteFooter />
     </main>
   );
@@ -71,405 +53,149 @@ function LandingPage() {
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section id="top" className="bookr-hero relative overflow-hidden">
-      <div className="bookr-hero-glow pointer-events-none absolute inset-0" aria-hidden />
-      <SiteHeader variant="navy" />
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pb-20 pt-28 sm:px-8 lg:grid-cols-2 lg:items-start lg:gap-16 lg:pb-28 lg:pt-36">
-        <div className="lg:pt-4">
-          <div className="mb-6 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white/90 px-3 py-1.5 text-xs font-medium text-charcoal/80 shadow-sm">
-              <span className="relative flex h-2 w-2" aria-hidden>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              Live 24/7 — replies in under 5 minutes
-            </span>
-            <span className="hidden text-charcoal/30 sm:inline" aria-hidden>
-              ·
-            </span>
-            <span className="text-xs font-medium text-charcoal/55">
-              Done-for-you setup — no DIY automation
-            </span>
-          </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
-            Done-for-you speed-to-lead
-          </p>
-          <h1 className="mt-4 max-w-xl text-[2.125rem] font-bold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.25rem]">
-            Realtors close deals.
-            <span className="mt-1 block text-navy">Bookr handles every lead.</span>
-          </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-charcoal/75 sm:text-lg">
-            Your 24/7 bilingual lead desk — replies in under 5 minutes, qualifies
-            buyers and sellers, and books real appointments on your calendar. We
-            set it up. You show up and close.
-          </p>
-
-          <ul className="mt-8 space-y-3">
-            {[
-              "Intakes leads from Zillow, social, SMS, forms & calls",
-              "Responds, qualifies, and books — your perfect assistant",
-              "English & Spanish — auto-detected per lead",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm text-charcoal/85 sm:text-base">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-bookr-stripe-3" strokeWidth={2.5} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-10 flex flex-wrap items-center gap-2.5">
-            {LEAD_CHANNELS.map((name) => (
-              <span
-                key={name}
-                className="rounded-full border border-charcoal/12 bg-white px-3 py-1 text-xs font-medium text-charcoal/70 shadow-sm"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-10 flex items-center gap-4 rounded-2xl border border-charcoal/8 bg-white/80 p-4 shadow-sm backdrop-blur-sm">
-            <BookrIconMark size={48} className="shrink-0" />
-            <div>
-              <p className="text-sm font-semibold text-charcoal">Built for working agents</p>
-              <p className="mt-0.5 text-xs leading-relaxed text-charcoal/60">
-                Real setup, real people. Questions?{" "}
-                <a href="mailto:ian@heybookr.com" className="font-medium text-navy underline-offset-2 hover:underline">
-                  ian@heybookr.com
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:sticky lg:top-28">
-          <BookrFormEmbed embedId="bookr-demo-form" label="Book your 15-minute demo" />
-          <p className="mt-3 text-center text-xs text-charcoal/50">
-            No credit card · No annual contract · Cancel anytime
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── PROBLEM + STATS ─── */
-function ProblemStats() {
-  const stats = [
-    {
-      value: "100×",
-      label: "More likely to connect in under 5 minutes",
-      note: "Leads contacted within 5 minutes are 100× more likely to connect than those contacted after 30 minutes. Speed isn't a nice-to-have — it's the whole game.",
-      cite: "MIT Lead Response Management Study / HBR",
-    },
-    {
-      value: "3+ hrs",
-      label: "Average agent reply time",
-      note: "Most agents respond hours later — long after your lead has texted someone else.",
-      cite: "Industry speed-to-lead benchmarks",
-    },
-    {
-      value: "30%+",
-      label: "Hispanic buyer share",
-      note: "One of the fastest-growing segments in U.S. home buying — often underserved in English-only follow-up.",
-      cite: "NAR Profile of Home Buyers & Sellers",
-    },
-  ];
-
-  return (
-    <section className="bookr-section-dark relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <FadeUp>
-          <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Your lead filled out a form at dinner. Three other agents replied before dessert.
-          </h2>
-          <p className="mt-5 max-w-2xl text-base text-white/70 sm:text-lg">
-            Speed wins listings. Bookr makes you the agent who always answers first —
-            in the right language — without missing your life.
-          </p>
-        </FadeUp>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 sm:p-8"
-            >
-              <p className="font-display text-4xl font-bold tracking-tight text-bookr-stripe-1 sm:text-5xl">
-                {s.value}
-              </p>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/90">
-                {s.label}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/65">{s.note}</p>
-              <p className="mt-4 text-[11px] text-white/40">{s.cite}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── LEAD PIPELINE (data intake) ─── */
-function LeadPipeline() {
-  const stages = [
-    {
-      icon: Inbox,
-      step: "01",
-      title: "Intake — every channel, one inbox",
-      body: "A Zillow inquiry, Facebook form fill, Instagram DM, website form, SMS reply, or missed call (Pro) hits Bookr the moment it arrives. No copying leads between apps. No manual forwarding.",
-    },
-    {
-      icon: Zap,
-      step: "02",
-      title: "Respond — under 5 minutes, every time",
-      body: "Bookr opens the conversation immediately — in English or Spanish, auto-detected. Warm, personal, on-brand. Your lead never sits in a queue while they're texting three other agents.",
-    },
-    {
-      icon: UserCheck,
-      step: "03",
-      title: "Qualify — the questions that matter",
-      body: "Timeline, financing, motivation, property fit, showing availability — asked naturally, in conversation. Bookr filters tire-kickers and surfaces buyers and sellers who are ready to move.",
-    },
-    {
-      icon: Calendar,
-      step: "04",
-      title: "Book — real appointments, your calendar",
-      body: "Bookr proposes live slots from your Google Calendar, confirms the showing or consultation, sends reminders, and logs the outcome. You wake up to booked tours — not a backlog of unread texts.",
-    },
-  ];
-
-  return (
-    <section className="bookr-section-light relative py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <FadeUp>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
-            What you&apos;re actually buying
-          </p>
-          <h2 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            One assistant that intakes, responds, qualifies, and books — from every lead source.
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-charcoal/70 sm:text-lg">
-            Most agents don&apos;t lose deals because they can&apos;t close. They lose them because
-            leads arrive scattered across Zillow, Instagram, Facebook, SMS, and voicemail — and
-            nobody handles the full pipeline fast enough. Bookr does. End to end.
-          </p>
-        </FadeUp>
-
-        <div className="mt-14 grid gap-5 lg:grid-cols-2">
-          {stages.map((s, i) => (
-            <FadeUp key={s.step} delay={i * 0.05}>
-              <div className="flex h-full gap-5 rounded-2xl border border-charcoal/10 bg-white p-7 shadow-card">
-                <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-bookr-stripe-3 text-white">
-                  <s.icon className="h-5 w-5" strokeWidth={2} />
-                </div>
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-widest text-bookr-stripe-3">
-                    {s.step}
-                  </p>
-                  <h3 className="mt-1 text-lg font-semibold text-charcoal">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{s.body}</p>
-                </div>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-
-        <FadeUp delay={0.15}>
-          <div className="mt-10 rounded-2xl border-2 border-bookr-stripe-3/20 bg-white p-8 shadow-pro sm:p-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-2xl">
-                <h3 className="text-xl font-bold text-charcoal sm:text-2xl">
-                  Zillow form → qualified buyer → Saturday showing. Automatically.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/65 sm:text-base">
-                  Bookr isn&apos;t a CRM you log into or a chat widget you configure. It&apos;s
-                  done-for-you lead operations: every inbound signal becomes a handled conversation,
-                  a qualified prospect, and — when they&apos;re ready — a confirmed appointment on
-                  your calendar.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
-                {LEAD_CHANNELS.map((ch) => (
-                  <span
-                    key={ch}
-                    className="rounded-lg bg-bookr-stripe-3/8 px-3 py-1.5 text-xs font-semibold text-bookr-stripe-3"
-                  >
-                    {ch}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-charcoal/8 pt-6 text-sm text-charcoal/70">
-              <span className="inline-flex items-center gap-2 font-medium text-charcoal">
-                <ArrowRight className="h-4 w-4 text-bookr-stripe-3" />
-                Lead arrives
-              </span>
-              <span className="text-charcoal/30">→</span>
-              <span>Instant reply</span>
-              <span className="text-charcoal/30">→</span>
-              <span>Qualification</span>
-              <span className="text-charcoal/30">→</span>
-              <span className="font-semibold text-emerald-700">Appointment booked</span>
-            </div>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
-/* ─── SALES PERSONALITY ─── */
-function SalesPersonality() {
-  const paths = [
-    {
-      icon: Mic,
-      title: "Trained on your sales style",
-      badge: "Most popular",
-      body: "Sales is your #1 asset as a realtor — your tone, your qualifying questions, how you build trust. During onboarding we study your real lead conversations and configure Bookr to sell like you: your phrases, your pace, your personality.",
-      points: [
-        "Built from your past texts, DMs, and email threads",
-        "Matches how you handle objections and ask for the appointment",
-        "Leads experience continuity — not a generic script",
-      ],
-    },
-    {
-      icon: Sparkles,
-      title: "Bookr Signature sales personality",
-      badge: "Research-backed",
-      body: "New agent or light conversation history? We deploy our signature sales personality — engineered from extensive market research across thousands of real estate conversations — proven to qualify buyers and sellers and move them to a booked showing.",
-      points: [
-        "Tested qualifying flows for buyers, sellers, and renters",
-        "Professional, warm, and conversion-focused out of the box",
-        "We refine it to your market during your onboarding call",
-      ],
-    },
-  ];
-
-  return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <FadeUp>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
-            Your edge, protected
-          </p>
-          <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Sales is everything in real estate. Bookr sells like you — or like the best in the business.
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-charcoal/70 sm:text-lg">
-            Generic follow-up loses listings. Bookr is personalized marketing software — configured
-            either from <strong className="font-semibold text-charcoal">your</strong> proven style or
-            our <strong className="font-semibold text-charcoal">signature</strong> personality built
-            from real market data. Either way, every lead gets a salesperson — not a template.
-          </p>
-        </FadeUp>
-
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          {paths.map((path, i) => (
-            <FadeUp key={path.title} delay={i * 0.08}>
-              <div className="relative flex h-full flex-col rounded-2xl border-2 border-charcoal/10 bg-cream/40 p-8 shadow-card">
-                <span className="absolute -top-3 left-6 rounded-full bg-bookr-stripe-3 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                  {path.badge}
-                </span>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-white">
-                  <path.icon className="h-5 w-5" strokeWidth={2} />
-                </div>
-                <h3 className="mt-5 text-xl font-bold text-charcoal">{path.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-charcoal/70 sm:text-base">
-                  {path.body}
-                </p>
-                <ul className="mt-6 space-y-2.5 border-t border-charcoal/8 pt-6">
-                  {path.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm text-charcoal/80">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-bookr-stripe-3" strokeWidth={2.5} />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── PRODUCT PROOF ─── */
-function ProductProof() {
-  const benefits = [
-    {
-      icon: Shield,
-      title: "Hands-off, with a window in",
-      body: "Bookr runs 24/7 across every connected channel. Your free supervision dashboard lets you read every conversation, see who got qualified, and verify every booking — anytime.",
-    },
-    {
-      icon: MessageSquare,
-      title: "Full pipeline visibility",
-      body: "Watch intake, response, qualification, and booking in one place. No guessing what happened to last night's Zillow lead — it's all there.",
-    },
-    {
-      icon: Calendar,
-      title: "Calendar-connected booking",
-      body: "Real slots from your Google Calendar. Confirmations, reminders, and handoff notes — so you show up prepared to close.",
-    },
-  ];
-
-  return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+    <section id="top" className="relative overflow-hidden bg-navy">
+      <div className="mx-auto max-w-6xl px-5 pb-20 pt-12 sm:px-8 sm:pb-28 sm:pt-16 lg:pb-32">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
           <FadeUp>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
-              See it in action
+            <h1 className="font-display text-[2rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]">
+              Every lead, answered in seconds — and booked on your calendar.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/72 sm:text-lg">
+              Bookr replies to every new lead in seconds, day or night, in English or Spanish,
+              qualifies them, and books them on your calendar. You never lift a finger — and you
+              never log in.
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              This is what your leads experience — start to finish.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-charcoal/70 sm:text-lg">
-              A portal inquiry comes in at 8:42 PM. Bookr responds in under five minutes,
-              qualifies timeline and financing, offers real showing slots, and books the
-              appointment — while you&apos;re at dinner.
-            </p>
-
-            <div className="mt-10 space-y-6">
-              {benefits.map((b) => (
-                <div key={b.title} className="flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bookr-stripe-3/10 text-bookr-stripe-3">
-                    <b.icon className="h-5 w-5" strokeWidth={2} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-charcoal">{b.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-charcoal/65">{b.body}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href="#bookr-live-demo"
+                className="inline-flex items-center justify-center rounded-lg bg-bookr-stripe-2 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-bookr-stripe-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+              >
+                Talk to Bookr now
+              </a>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-lg border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/35 hover:bg-white/6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+              >
+                Book a 30-min demo
+              </a>
             </div>
           </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <ExampleConversation />
+          <FadeUp delay={0.08}>
+            <div className="relative">
+              <div className="absolute -right-4 -top-6 z-10 hidden sm:block lg:-right-8">
+                <BookrMarkOrbit size={96} />
+              </div>
+              <HeroLiveChat />
+            </div>
           </FadeUp>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-20 grid gap-6 sm:grid-cols-3">
-          {[
-            { icon: Calendar, step: "1", title: "Book a 30-min demo", desc: "See your week with Bookr running." },
-            { icon: MessageSquare, step: "2", title: "We set it up", desc: "20-minute onboarding call. We handle the tech." },
-            { icon: Check, step: "3", title: "Leads get handled", desc: "Under 5-min replies. You close." },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="rounded-2xl border border-charcoal/8 bg-cream/50 p-6"
-            >
-              <div className="flex items-center gap-3">
-                <span className="font-display text-2xl font-bold text-bookr-stripe-3">{item.step}</span>
-                <item.icon className="h-5 w-5 text-charcoal/50" />
-              </div>
-              <h3 className="mt-4 font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm text-charcoal/65">{item.desc}</p>
+/* ─── PROBLEM ─── */
+function Problem() {
+  return (
+    <section className="border-t border-white/8 bg-charcoal py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <h2 className="font-display max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl">
+            You pay for leads you never answer in time.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+            A new inquiry goes cold in minutes. Most agents reply hours later — long after the
+            buyer has moved on to whoever responded first.
+          </p>
+        </FadeUp>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <FadeUp delay={0.05}>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-8">
+              <p className="font-display text-5xl font-semibold tracking-tight text-bookr-stripe-1 sm:text-6xl">
+                78%
+              </p>
+              <p className="mt-3 text-sm font-medium uppercase tracking-wider text-white/85">
+                of customers buy from the first business to respond
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-white/55">
+                If you&apos;re not first, you&apos;re usually out — no matter how good you are at
+                closing.
+              </p>
+              <p className="mt-4 text-[11px] text-white/40">
+                Source: Lead Response Management Study (MIT / InsideSales)
+              </p>
             </div>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-8">
+              <p className="font-display text-5xl font-semibold tracking-tight text-bookr-stripe-1 sm:text-6xl">
+                Minutes
+              </p>
+              <p className="mt-3 text-sm font-medium uppercase tracking-wider text-white/85">
+                is how fast intent fades after a form fill
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-white/55">
+                Zillow at dinner. Facebook at 9pm. Instagram on Sunday. Your leads don&apos;t wait
+                for business hours — and neither does your competition.
+              </p>
+            </div>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── HOW IT WORKS ─── */
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      title: "Lead comes in",
+      body: "Zillow, Facebook, Instagram, your website, SMS, or a missed call (Pro) — Bookr receives it the moment it arrives.",
+    },
+    {
+      n: "02",
+      title: "Answered in seconds",
+      body: "A warm, personal reply in English or Spanish — matched to how you sell, not a generic script.",
+    },
+    {
+      n: "03",
+      title: "Qualified",
+      body: "Timeline, financing, motivation, property fit — asked naturally, in conversation, until you know who's worth your time.",
+    },
+    {
+      n: "04",
+      title: "Booked & handed to you",
+      body: "Real slots from your Google Calendar. Confirmations sent. You show up to a qualified appointment — not a cold callback list.",
+    },
+  ];
+
+  return (
+    <section id="how-it-works" className="bg-white py-20 text-charcoal sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-3">
+            How it works
+          </p>
+          <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            From inquiry to booked showing — without you in the middle.
+          </h2>
+        </FadeUp>
+
+        <div className="mt-14 grid gap-8 sm:grid-cols-2">
+          {steps.map((s, i) => (
+            <FadeUp key={s.n} delay={i * 0.05}>
+              <article className="group rounded-2xl border border-charcoal/8 p-8 transition-shadow hover:shadow-card">
+                <p className="font-display text-3xl font-semibold text-bookr-stripe-3">{s.n}</p>
+                <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-charcoal/65">{s.body}</p>
+              </article>
+            </FadeUp>
           ))}
         </div>
       </div>
@@ -477,183 +203,180 @@ function ProductProof() {
   );
 }
 
-function ExampleConversation() {
-  const messages = [
+/* ─── BILINGUAL ─── */
+function Bilingual() {
+  const enThread = [
     { from: "lead", text: "Hi — is the Maple St listing still available?" },
     { from: "bookr", text: "Hi! Yes, still active. Are you hoping to move in the next 60 days?" },
-    { from: "lead", text: "Yes, we're pre-approved. Within 30 days." },
-    { from: "bookr", text: "Great. I have Saturday 11am or Thursday 5:30pm for a tour. Which works?" },
-    { from: "lead", text: "Saturday 11 works." },
-    { from: "bookr", text: "Booked — you'll get a confirmation shortly. See you Saturday!" },
+    { from: "lead", text: "Yes, pre-approved. Within 30 days." },
+    { from: "bookr", text: "Great — Saturday 11am or Thursday 5:30pm for a tour. Which works?" },
+  ];
+  const esThread = [
+    { from: "lead", text: "Hola — ¿la casa en Maple sigue disponible?" },
+    { from: "bookr", text: "¡Hola! Sí, sigue activa. ¿Busca mudarse en los próximos 60 días?" },
+    { from: "lead", text: "Sí, ya tenemos pre-aprobación. En 30 días." },
+    { from: "bookr", text: "Perfecto — sábado 11am o jueves 5:30pm. ¿Cuál le funciona?" },
   ];
 
   return (
-    <div className="mx-auto w-full max-w-md">
-      <p className="mb-3 text-center text-[11px] font-medium uppercase tracking-wider text-charcoal/45">
-        Example workflow (illustrative)
-      </p>
-      <div className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-pro">
-        <div className="flex items-center justify-between border-b border-charcoal/8 bg-charcoal px-5 py-4">
-          <div className="flex items-center gap-3">
-            <BookrStripe />
-            <div>
-              <p className="text-xs font-medium text-white/60">New Zillow lead</p>
-              <p className="text-sm font-semibold text-white">Qualifying → Booking</p>
+    <section className="border-y border-white/8 bg-navy py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-1">
+            Bilingual from day one
+          </p>
+          <h2 className="font-display mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            Same lead. Same speed. English or Spanish.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/72">
+            Most lead desks on the market are English-only — bilingual support, when it exists, is
+            bolted on later. Bookr detects each lead&apos;s language and replies in native-register
+            Spanish or English from the first message.
+          </p>
+        </FadeUp>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          <FadeUp delay={0.05}>
+            <ThreadCard label="English lead" messages={enThread} />
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <ThreadCard label="Spanish lead" messages={esThread} />
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ThreadCard({
+  label,
+  messages,
+}: {
+  label: string;
+  messages: { from: string; text: string }[];
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/12 bg-charcoal/50">
+      <div className="border-b border-white/10 px-5 py-3">
+        <p className="text-xs font-semibold uppercase tracking-wider text-white/50">{label}</p>
+      </div>
+      <div className="space-y-3 p-5">
+        {messages.map((m, i) => (
+          <div
+            key={i}
+            className={`flex ${m.from === "bookr" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={[
+                "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug",
+                m.from === "bookr"
+                  ? "rounded-br-md bg-bookr-stripe-3 text-white"
+                  : "rounded-bl-md bg-white/10 text-white/90",
+              ].join(" ")}
+            >
+              {m.text}
             </div>
           </div>
-          <span className="rounded-full bg-emerald-500/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-300">
-            &lt; 5 min
-          </span>
-        </div>
-        <div className="space-y-3 bg-cream/30 p-5">
-          {messages.map((m, i) => (
-            <div key={i} className={`flex ${m.from === "bookr" ? "justify-end" : "justify-start"}`}>
-              <div
-                className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug ${
-                  m.from === "bookr"
-                    ? "rounded-br-md bg-bookr-stripe-3 text-white"
-                    : "rounded-bl-md bg-white text-charcoal shadow-sm"
-                }`}
-              >
-                {m.text}
-              </div>
-            </div>
-          ))}
-          <div className="flex justify-center pt-2">
-            <span className="rounded-full bg-emerald-600/10 px-3 py-1 text-[11px] font-semibold text-emerald-700">
-              ✓ Appointment booked · Sat 11:00 AM
-            </span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-/* ─── BILINGUAL WEDGE ─── */
-function BilingualWedge() {
-  const differentiators = [
-    {
-      stat: "30%+",
-      label: "of recent U.S. home buyers are Hispanic",
-      note: "A massive and growing share of your market — often lost to English-only follow-up.",
-    },
-    {
-      stat: "1 in 3",
-      label: "households speak Spanish at home",
-      note: "Reply in English only and you're invisible to a third of buyers before the conversation starts.",
-    },
-    {
-      stat: "EN + ES",
-      headline: "We speak both. Most software doesn't.",
-      note: "While the market ships English-only templates and bolt-on translations, Bookr was bilingual from day one — auto-detected per lead, native register in both.",
-    },
+/* ─── DONE FOR YOU ─── */
+function DoneForYou() {
+  const points = [
+    "We connect your channels during a short onboarding call",
+    "Bookr runs 24/7 — replies, qualifies, books",
+    "Optional supervision dashboard if you want visibility",
+    "No daily check-ins, no configuration rabbit holes",
   ];
 
   return (
-    <section className="bookr-section-dark relative overflow-hidden py-20 sm:py-28">
-      <div className="bookr-hero-glow pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-1">
-            Built in — not bolted on
-          </p>
-          <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Bilingual from day one. Most software isn&apos;t.
+    <section className="bg-white py-20 text-charcoal sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <FadeUp>
+            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+              You never log in.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-charcoal/70 sm:text-lg">
+              Every tool you tried, you abandoned — because it needed you to become an operator on
+              top of being an agent. Bookr is done for you. We set it up. It runs. You close.
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <ul className="space-y-4">
+              {points.map((p) => (
+                <li key={p} className="flex gap-3 text-sm text-charcoal/80 sm:text-base">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-bookr-stripe-3" strokeWidth={2.5} />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── GUARANTEE ─── */
+function Guarantee() {
+  return (
+    <section className="bg-cream py-20 text-charcoal sm:py-28">
+      <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+        <FadeUp>
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            We take the risk on setup.
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/75 sm:text-lg">
-            Bookr is built for every agent — but it speaks both English and Spanish from the first
-            message, automatically. Same speed, same qualification, same booking. Your Hispanic leads
-            get the same five-minute experience your English leads do — no translation guesswork, no
-            separate system.
+          <p className="mt-5 text-base leading-relaxed text-charcoal/75 sm:text-lg">
+            Free setup and a pilot period. You pay when Bookr is booking appointments on your
+            calendar — terms finalized on your demo call. We&apos;d rather earn your trust with
+            results than lock you into something that doesn&apos;t work.
           </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {differentiators.map((d) => (
-            <div
-              key={d.stat}
-              className="rounded-2xl border border-white/12 bg-white/[0.05] p-7 text-center sm:p-8"
-            >
-              <p className="font-display text-4xl font-bold tracking-tight text-bookr-stripe-1 sm:text-5xl">
-                {d.stat}
-              </p>
-              {"headline" in d && d.headline ? (
-                <p className="mt-3 text-sm font-semibold leading-snug text-white/90">{d.headline}</p>
-              ) : (
-                <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-white/90">
-                  {d.label}
-                </p>
-              )}
-              <p className="mt-3 text-sm leading-relaxed text-white/60">{d.note}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-bookr-stripe-1/25 bg-white/[0.06] p-8 text-center sm:p-10">
-          <Languages className="mx-auto h-8 w-8 text-bookr-stripe-1" strokeWidth={1.75} />
-          <p className="mt-4 text-lg font-semibold leading-relaxed text-white sm:text-xl">
-            Native-register Spanish — not translated English. Auto-detected on every inbound message.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
-            Virtually no other lead software does this end-to-end: intake, qualify, and book in both
-            languages. Your Hispanic leads get the same five-minute, personal, professional
-            experience your English leads do — same qualification, same booking flow, same calendar.
-          </p>
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-5 py-2.5 text-sm font-medium text-white/90">
-            <span>🇺🇸 English</span>
-            <span className="h-1 w-1 rounded-full bg-white/35" />
-            <span>🇲🇽 Español</span>
-            <span className="text-white/50">— auto-detected per lead</span>
-          </div>
-        </div>
-
-        <p className="mt-8 text-center text-xs text-white/40">
-          Sources: NAR Profile of Home Buyers & Sellers; U.S. Census Bureau
-        </p>
+        </FadeUp>
       </div>
     </section>
   );
 }
 
 /* ─── PRICING ─── */
-function PricingSection() {
+function Pricing() {
   return (
-    <section id="pricing" className="bookr-section-light py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            One extra closing pays for months of Bookr.
+    <section id="pricing" className="bg-white py-20 text-charcoal sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-4xl">
+            One saved commission covers months of Bookr.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-charcoal/65">
-            Human ISAs cost $1,500–3,000/mo. Bookr starts at $197 — done-for-you, bilingual, 24/7.
+          <p className="mx-auto mt-4 max-w-xl text-center text-base text-charcoal/60">
+            Human inside sales assistants run $1,500–3,000/mo. Bookr starts at $197/mo — done for
+            you, bilingual, around the clock.
           </p>
-        </div>
+        </FadeUp>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           <PricingCard
-            name="Bookr Standard"
+            name="Standard"
             price="$197"
-            desc="Every channel except inbound voice — SMS, social DMs, and web forms."
+            desc="Every digital channel — Zillow, social, SMS, and web forms."
             features={[
-              "Under 5-minute replies, 24/7",
-              "Zillow, Facebook, Instagram, SMS & web forms",
-              "Full intake → qualify → book pipeline",
-              "Your sales style or Bookr Signature personality",
-              "English & Spanish auto-detect",
-              "Books on your real Google Calendar",
+              "Replies in seconds, 24/7",
+              "English & Spanish, auto-detected",
+              "Qualifies and books on your calendar",
+              "Your sales style or Bookr Signature playbook",
               "Supervision dashboard included",
             ]}
           />
           <PricingCard
-            name="Bookr Pro"
+            name="Pro"
             price="$397"
-            desc="Everything in Standard, plus automated voice answers inbound calls when you can't."
+            desc="Everything in Standard, plus inbound call handling."
             highlighted
             features={[
               "Everything in Standard",
-              "Voice software answers missed calls",
-              "Natural conversation — English & Spanish",
+              "Answers missed calls in English & Spanish",
               "Qualifies and books live on the phone",
               "Hot-lead transfer to your mobile",
               "Custom voice profile",
@@ -662,8 +385,7 @@ function PricingSection() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-charcoal/55">
-          Built for solo agents and growing teams running paid social, portal, or referral leads.
-          No setup fees. Cancel anytime.
+          No setup fees. Cancel anytime. Built for solo agents and growing teams.
         </p>
       </div>
     </section>
@@ -686,24 +408,21 @@ function PricingCard({
   return (
     <div
       className={[
-        "relative flex flex-col rounded-2xl bg-white p-8 sm:p-10",
+        "flex flex-col rounded-2xl p-8 sm:p-10",
         highlighted
-          ? "border-2 border-bookr-stripe-3 shadow-pro ring-4 ring-bookr-stripe-3/10"
-          : "border border-charcoal/10 shadow-card",
+          ? "border-2 border-bookr-stripe-3 bg-white shadow-pro ring-4 ring-bookr-stripe-3/10"
+          : "border border-charcoal/10 bg-white shadow-card",
       ].join(" ")}
     >
       {highlighted && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-bookr-stripe-3 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+        <span className="mb-4 w-fit rounded-full bg-bookr-stripe-3 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
           Most popular
         </span>
       )}
-      <div className="flex items-center gap-2">
-        <h3 className="font-display text-2xl font-bold">{name}</h3>
-        {highlighted && <Phone className="h-4 w-4 text-bookr-stripe-3" />}
-      </div>
+      <h3 className="font-display text-2xl font-semibold">{name}</h3>
       <p className="mt-2 text-sm text-charcoal/60">{desc}</p>
       <div className="mt-6 flex items-baseline gap-1">
-        <span className="font-display text-5xl font-bold tracking-tight">{price}</span>
+        <span className="font-display text-5xl font-semibold tracking-tight">{price}</span>
         <span className="text-charcoal/50">/mo</span>
       </div>
       <ul className="mt-8 flex-1 space-y-3">
@@ -714,80 +433,132 @@ function PricingCard({
           </li>
         ))}
       </ul>
-      <BookDemoButton
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         className={[
-          "mt-8 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-sm font-semibold transition-all active:scale-[0.98]",
+          "mt-8 inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-3",
           highlighted
             ? "bg-bookr-stripe-3 text-white hover:bg-bookr-stripe-2"
-            : "border border-charcoal/20 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-white",
+            : "border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white",
         ].join(" ")}
       >
-        Book my demo
-      </BookDemoButton>
+        Book a demo
+      </a>
     </div>
   );
 }
 
-/* ─── FAQ + TRUST ─── */
-function FaqTrust() {
+/* ─── FOUNDER ─── */
+function Founder() {
+  return (
+    <section className="border-t border-white/8 bg-navy py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-14">
+          <FadeUp>
+            <div
+              className="flex h-28 w-28 items-center justify-center rounded-2xl border border-white/12 bg-bookr-stripe-3/20 text-3xl font-semibold text-bookr-stripe-1"
+              aria-hidden
+            >
+              I
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.06}>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bookr-stripe-1">
+              Founder
+            </p>
+            <h2 className="font-display mt-2 text-2xl font-semibold sm:text-3xl">Ian</h2>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-white/72">
+              <p>
+                I built Bookr because I kept watching agents lose deals they should have won — not
+                on skill, but on response time and language. The lead came in at 9pm. The agent
+                replied at 9am. The appointment was already booked with someone else.
+              </p>
+              <p>
+                Bookr is the lead desk I wished existed: fast, bilingual, done for you, and built
+                around how agents actually work. No dashboards you&apos;ll abandon. No operator work
+                on top of your day job.
+              </p>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="inline-block text-sm font-medium text-bookr-stripe-1 underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+              >
+                {CONTACT_EMAIL}
+              </a>
+            </div>
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── TESTIMONIALS PLACEHOLDER ─── */
+function TestimonialsPlaceholder() {
+  return (
+    <section className="border-t border-charcoal/8 bg-white py-16 text-charcoal sm:py-20">
+      <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
+        <FadeUp>
+          <h2 className="font-display text-xl font-semibold text-charcoal/80">
+            What agents are saying
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-charcoal/55">
+            We&apos;re collecting stories from our first cohort. Real names, real results — coming
+            soon.
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FAQ ─── */
+function Faq() {
   const faqs = [
     {
-      q: "Will my leads know it's software?",
-      a: "Bookr is configured to sound like you — or like our research-backed signature sales personality. Conversations are fast, personal, and on-brand. Most leads experience it as a attentive assistant who knows your listings. You can read every exchange in your supervision dashboard.",
+      q: "How much setup do I have to do?",
+      a: "Almost none. One demo call, one short onboarding session — we connect your channels, configure your sales voice, and go live. You don't log in daily or manage workflows.",
     },
     {
-      q: "Where does Bookr actually get leads from?",
-      a: "Zillow and portal inquiries, Facebook Lead Ads, Instagram DMs, website contact forms, SMS threads, and inbound calls (Pro). Every channel feeds the same pipeline: instant response → qualification → booked appointment on your Google Calendar.",
+      q: "Do I have to change my CRM?",
+      a: "No. Bookr plugs into the channels where leads already arrive — Zillow, Facebook, Instagram, your site, SMS — and books on your existing Google Calendar.",
     },
     {
-      q: "Can you match how I sell — or do I have to use a generic script?",
-      a: "Both options. If you have conversation history, we train Bookr on your tone, phrases, and qualifying style. If you're newer or prefer a proven playbook, we deploy our Bookr Signature personality — built from extensive real estate market research. Either way, it's personalized marketing software — not a one-size-fits-all autoresponder.",
+      q: "Will this work with my Zillow leads?",
+      a: "Yes. Portal inquiries are one of the core intake paths. Bookr replies in seconds, qualifies, and moves ready buyers to a booked showing.",
     },
     {
-      q: "What do you need access to?",
-      a: "Facebook, Instagram, your Google Calendar, website forms, and phone line (Pro only). We only see lead conversations — never personal contacts. We never sell your data.",
+      q: "Does it really speak Spanish?",
+      a: "Yes — native-register Spanish, auto-detected per message. Not translated English. The same qualification flow and booking path in both languages.",
     },
     {
-      q: "How fast is setup?",
-      a: "One 30-minute demo, then a ~20-minute onboarding call. We connect your channels, configure your sales personality, and handle the tech. Most agents are live within a few days.",
+      q: "What does it cost?",
+      a: "Standard is $197/mo. Pro — with inbound call handling — is $397/mo. No setup fees. Cancel anytime. One extra closing typically covers months of Bookr.",
     },
   ];
 
   return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-6 sm:px-8">
-        <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">
-          Questions agents ask before they switch
-        </h2>
+    <section id="faq" className="bg-white py-20 text-charcoal sm:py-28">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <FadeUp>
+          <h2 className="font-display text-center text-3xl font-semibold tracking-tight sm:text-4xl">
+            FAQ
+          </h2>
+        </FadeUp>
         <div className="mt-12 space-y-3">
           {faqs.map((faq) => (
             <details
               key={faq.q}
-              className="group rounded-xl border border-charcoal/10 bg-white px-5 py-4 shadow-sm open:shadow-card"
+              className="group rounded-xl border border-charcoal/10 bg-white px-5 py-4 open:shadow-card"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-charcoal marker:content-none">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-charcoal marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-3">
                 {faq.q}
                 <ChevronDown className="h-5 w-5 shrink-0 text-charcoal/40 transition-transform group-open:rotate-180" />
               </summary>
               <p className="mt-3 pb-1 text-sm leading-relaxed text-charcoal/65">{faq.a}</p>
             </details>
           ))}
-        </div>
-
-        <div className="mt-16 rounded-2xl border border-charcoal/8 bg-charcoal p-8 text-white sm:p-10">
-          <h3 className="font-display text-xl font-bold">Who Bookr is for</h3>
-          <ul className="mt-5 space-y-2.5 text-sm text-white/80">
-            {[
-              "Agents running Facebook, Instagram, or Zillow leads",
-              "Teams of 2–25 who need consistent follow-up",
-              "Agents who want evenings and weekends back",
-            ].map((item) => (
-              <li key={item} className="flex gap-2">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-bookr-stripe-1" />
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
@@ -797,20 +568,52 @@ function FaqTrust() {
 /* ─── FINAL CTA ─── */
 function FinalCta() {
   return (
-    <section className="bookr-section-dark py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
-        <BookrStripeWide className="mx-auto mb-8" />
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Stop losing leads to agents who reply faster.
-        </h2>
-        <p className="mx-auto mt-5 max-w-lg text-base text-white/70">
-          Book a 30-minute demo. We'll walk through exactly how Bookr would handle
-          your leads this week — in English and Spanish.
-        </p>
-        <BookDemoButton className="mt-10 inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-charcoal transition-all hover:bg-cream active:scale-[0.98]">
-          Book a 30-minute demo
-        </BookDemoButton>
-        <p className="mt-4 text-sm text-white/45">No credit card required</p>
+    <section className="bg-navy py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+        <FadeUp>
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            Stop losing leads to whoever answers first.
+          </h2>
+          <p className="mx-auto mt-5 max-w-lg text-base text-white/70">
+            Try the live preview above, or book a walkthrough — we&apos;ll map exactly how Bookr
+            would handle your leads this week.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href="#bookr-live-demo"
+              className="inline-flex items-center justify-center rounded-lg bg-bookr-stripe-2 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-bookr-stripe-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+            >
+              Talk to Bookr now
+            </a>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg border border-white/20 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-white/6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+            >
+              Book a 30-min demo
+            </a>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ─── GHL FORM (contact capture — preserved) ─── */
+function ContactForm() {
+  return (
+    <section id="contact" className="border-t border-white/8 bg-charcoal py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-lg text-center">
+          <h2 className="font-display text-xl font-semibold text-white">Get in touch</h2>
+          <p className="mt-2 text-sm text-white/55">
+            Prefer a form? Leave your details and we&apos;ll reach out.
+          </p>
+        </div>
+        <div className="mt-10">
+          <BookrFormEmbed embedId="bookr-demo-form" label="Request a callback" />
+        </div>
       </div>
     </section>
   );
