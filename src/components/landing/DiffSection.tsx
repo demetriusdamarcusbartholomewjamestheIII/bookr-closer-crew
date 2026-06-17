@@ -7,7 +7,7 @@ export function DiffSection({
   title,
   subline,
   visual,
-  dark = true,
+  dark = false,
   large = false,
 }: {
   id?: string;
@@ -23,7 +23,7 @@ export function DiffSection({
       id={id}
       className={[
         "py-20 sm:py-28",
-        dark ? "bg-navy text-white" : "bg-white text-charcoal",
+        dark ? "bg-navy text-white" : "bg-white text-navy",
       ].join(" ")}
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
@@ -38,7 +38,7 @@ export function DiffSection({
               <p
                 className={[
                   "text-[11px] font-semibold uppercase tracking-[0.05em]",
-                  dark ? "text-white/50" : "text-charcoal/45",
+                  dark ? "text-white/50" : "text-navy/45",
                 ].join(" ")}
               >
                 {eyebrow}
@@ -55,7 +55,7 @@ export function DiffSection({
             <p
               className={[
                 "prose-measure mt-4 text-lg leading-relaxed",
-                dark ? "text-white/72" : "text-charcoal/65",
+                dark ? "text-white/72" : "text-navy/65",
               ].join(" ")}
             >
               {subline}

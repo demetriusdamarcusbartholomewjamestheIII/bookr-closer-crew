@@ -1,65 +1,39 @@
 import { useRef } from "react";
+import { TypewriterBubbles } from "@/components/landing/TypewriterBubbles";
 import { useInView } from "@/hooks/use-in-view";
-import { useTypingSequence } from "@/hooks/use-typing-sequence";
+import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 
-const EN_LINES = [
+const EN_SCRIPT: TypewriterLine[] = [
   { role: "lead", text: "Hi — is 1842 Oak St still available?" },
   { role: "bookr", text: "Hi! Yes, still active. Are you hoping to move in the next 60 days?" },
   { role: "lead", text: "Yes — pre-approved, within 30 days." },
   { role: "bookr", text: "Great. Thursday at 2pm or Friday at 10am for a tour?" },
 ];
 
-const ES_LINES = [
+const ES_SCRIPT: TypewriterLine[] = [
   { role: "lead", text: "Hola — ¿sigue disponible la casa en Oak St?" },
   { role: "bookr", text: "¡Hola! Sí, sigue activa. ¿Busca mudarse en los próximos 60 días?" },
   { role: "lead", text: "Sí, con pre-aprobación. En 30 días." },
   { role: "bookr", text: "Perfecto. ¿Jueves 2pm o viernes 10am para un recorrido?" },
 ];
 
-function TypingThread({
-  label,
-  lines,
-  active,
-}: {
-  label: string;
-  lines: { role: string; text: string }[];
-  active: boolean;
-}) {
-  const flat = lines.map((l) => l.text);
-  const { visible } = useTypingSequence(flat, active, 22, 500);
-
+function ThreadCard({ label, script, active }: { label: string; script: TypewriterLine[]; active: boolean }) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-charcoal/50">
-      <div className="border-b border-white/10 px-4 py-2.5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-white/50">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-sm">
+      <div className="border-b border-charcoal/8 px-4 py-3">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
           {label}
         </p>
       </div>
-      <div className="min-h-[220px] space-y-2.5 p-4">
-        {visible.map((text, i) => {
-          const role = lines[i]?.role ?? "lead";
-          const typing = i === visible.length - 1 && text.length < (lines[i]?.text.length ?? 0);
-          return (
-            <div
-              key={i}
-              className={`flex ${role === "bookr" ? "justify-end" : "justify-start"}`}
-            >
-              <div
-                className={[
-                  "max-w-[90%] rounded-2xl px-3 py-2 text-[13px] leading-snug sm:text-sm",
-                  role === "bookr"
-                    ? "rounded-br-md bg-navy-soft text-white"
-                    : "rounded-bl-md bg-white/10 text-white/90",
-                ].join(" ")}
-              >
-                {text}
-                {typing && (
-                  <span className="ml-0.5 inline-block h-3.5 w-0.5 animate-pulse bg-white/70" />
-                )}
-              </div>
-            </div>
-          );
-        })}
+      <div className="p-4">
+        <TypewriterBubbles
+          script={script}
+          active={active}
+          minHeight={220}
+          charMs={26}
+          pauseAfterLineMs={650}
+          pauseBeforeLoopMs={2800}
+        />
       </div>
     </div>
   );
@@ -70,9 +44,9 @@ export function BilingualTypingDemo() {
   const inView = useInView(ref);
 
   return (
-    <div ref={ref} className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <TypingThread label="English lead" lines={EN_LINES} active={inView} />
-      <TypingThread label="Spanish lead" lines={ES_LINES} active={inView} />
+    <div ref={ref} className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+      <ThreadCard label="English lead" script={EN_SCRIPT} active={inView} />
+      <ThreadCard label="Spanish lead" script={ES_SCRIPT} active={inView} />
     </div>
   );
 }

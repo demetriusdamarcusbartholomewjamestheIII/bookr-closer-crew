@@ -15,40 +15,52 @@ export function HandsFreeDemo() {
   const reduced = usePrefersReducedMotion();
   const [phase, setPhase] = useState<"setup" | "running">(reduced ? "running" : "setup");
   const [checked, setChecked] = useState(reduced ? SETUP_STEPS.length : 0);
+  const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
     if (!inView || reduced) return;
 
-    if (checked < SETUP_STEPS.length) {
+    if (phase === "setup" && checked < SETUP_STEPS.length) {
       const t = window.setTimeout(() => setChecked((c) => c + 1), 900);
       return () => window.clearTimeout(t);
     }
 
-    const t = window.setTimeout(() => setPhase("running"), 700);
-    return () => window.clearTimeout(t);
-  }, [inView, checked, reduced]);
+    if (phase === "setup" && checked >= SETUP_STEPS.length) {
+      const t = window.setTimeout(() => setPhase("running"), 700);
+      return () => window.clearTimeout(t);
+    }
+
+    if (phase === "running") {
+      const t = window.setTimeout(() => {
+        setPhase("setup");
+        setChecked(0);
+        setCycle((c) => c + 1);
+      }, 5000);
+      return () => window.clearTimeout(t);
+    }
+  }, [inView, checked, reduced, phase, cycle]);
 
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-2xl border border-white/12 bg-charcoal/40 p-6 sm:p-8"
+      className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm sm:p-8"
       aria-live="polite"
     >
       {phase === "setup" ? (
         <div className="space-y-4">
-          <p className="text-sm font-medium text-white/80">We set it up for you</p>
+          <p className="text-base font-medium text-navy">We set it up for you</p>
           <ul className="space-y-3">
             {SETUP_STEPS.map((step, i) => (
-              <li key={step} className="flex items-center gap-3 text-sm text-white/70">
+              <li key={step} className="flex items-center gap-3 text-base text-charcoal/70">
                 <span
                   className={[
-                    "flex h-6 w-6 items-center justify-center rounded-full border transition-colors",
+                    "flex h-7 w-7 items-center justify-center rounded-full border transition-colors",
                     i < checked
-                      ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-400"
-                      : "border-white/15 text-white/30",
+                      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-600"
+                      : "border-charcoal/15 text-charcoal/25",
                   ].join(" ")}
                 >
-                  {i < checked ? <Check className="h-3.5 w-3.5" strokeWidth={2.5} /> : null}
+                  {i < checked ? <Check className="h-4 w-4" strokeWidth={2.5} /> : null}
                 </span>
                 {step}
               </li>
@@ -56,15 +68,15 @@ export function HandsFreeDemo() {
           </ul>
         </div>
       ) : (
-        <div className="text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-sm font-medium text-emerald-300">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/8 px-3 py-1.5 text-sm font-medium text-emerald-700">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
-              <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-40" />
+              <span className="relative h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             Bookr is running
           </div>
-          <p className="mt-5 text-sm leading-relaxed text-white/65">
+          <p className="prose-measure mt-5 text-base leading-relaxed text-charcoal/65">
             Leads are being answered, qualified, and booked — no dashboard to check, no daily
             login.
           </p>

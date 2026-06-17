@@ -24,16 +24,16 @@ export function LandingNav() {
       className={[
         "sticky top-0 z-50 border-b transition-colors duration-200",
         scrolled
-          ? "border-white/10 bg-navy/95 shadow-[0_8px_32px_-8px_rgba(15,23,42,0.45)] backdrop-blur-md"
-          : "border-transparent bg-navy",
+          ? "border-charcoal/10 bg-white/95 shadow-[0_4px_24px_-8px_rgba(59,74,107,0.12)] backdrop-blur-md"
+          : "border-transparent bg-white/80 backdrop-blur-sm",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
         <Link
           to="/"
-          className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-1"
+          className="shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-2"
         >
-          <BookrLogo height={28} variant="light" />
+          <BookrLogo height={28} variant="dark" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
@@ -41,7 +41,7 @@ export function LandingNav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-1"
+              className="text-sm text-navy/65 transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-2"
             >
               {l.label}
             </a>
@@ -50,10 +50,10 @@ export function LandingNav() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <div
-            className="hidden items-center gap-1 rounded-full border border-white/12 bg-white/6 px-1 py-0.5 text-[10px] font-medium text-white/60 sm:flex"
+            className="hidden items-center gap-1 rounded-full border border-charcoal/10 bg-cream/60 px-1 py-0.5 text-[10px] font-medium text-navy/55 sm:flex"
             aria-hidden
           >
-            <span className="rounded-full bg-white/12 px-2 py-0.5 text-white/90">EN</span>
+            <span className="rounded-full bg-white px-2 py-0.5 text-navy shadow-sm">EN</span>
             <span className="px-1">·</span>
             <span className="px-2 py-0.5">ES</span>
           </div>
