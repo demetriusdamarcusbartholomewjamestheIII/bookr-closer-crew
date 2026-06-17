@@ -69,7 +69,7 @@ export function LeadsFlowDemo() {
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm sm:p-8"
+      className="bookr-card-elevated overflow-hidden rounded-2xl p-6 sm:p-8"
     >
       <div className="flex flex-wrap gap-2">
         {SOURCES.map((src, i) => (

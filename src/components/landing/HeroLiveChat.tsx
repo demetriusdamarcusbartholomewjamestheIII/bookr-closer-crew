@@ -4,15 +4,16 @@ import { useInView } from "@/hooks/use-in-view";
 import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 
 const HERO_SCRIPT: TypewriterLine[] = [
-  { role: "lead", text: "Hola — ¿la casa en Maple sigue disponible?" },
-  { role: "bookr", text: "¡Hola! Sí, sigue activa. ¿Busca mudarse en los próximos 60 días?" },
-  { role: "lead", text: "Sí, pre-aprobados. En 30 días." },
   {
     role: "bookr",
-    text: "Perfecto — sábado 11am o jueves 5:30pm para un recorrido. ¿Cuál le funciona?",
+    text: "Hi! I'm Bookr — I reply to every lead in seconds, in English or Spanish. Looking to buy or sell?",
   },
-  { role: "lead", text: "Sábado 11 está bien." },
-  { role: "bookr", text: "Listo. Quedó agendado — recibirá confirmación en breve." },
+  { role: "lead", text: "Buy — is the Maple St listing still available?" },
+  { role: "bookr", text: "Yes, still active. Are you hoping to move in the next 60 days?" },
+  { role: "lead", text: "Yes — pre-approved, within 30 days." },
+  { role: "bookr", text: "Great. Saturday at 11am or Thursday at 5:30pm for a tour?" },
+  { role: "lead", text: "Saturday at 11 works." },
+  { role: "bookr", text: "You're booked — confirmation on its way." },
 ];
 
 export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
@@ -23,9 +24,9 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
     <div
       id={id}
       ref={ref}
-      className="flex min-h-[400px] flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-card"
+      className="bookr-card-elevated relative z-10 flex min-h-[400px] flex-col overflow-hidden rounded-2xl"
     >
-      <div className="border-b border-charcoal/8 px-5 py-3.5">
+      <div className="border-b border-charcoal/8 bg-white/80 px-5 py-3.5 backdrop-blur-sm">
         <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
           Live preview
         </p>
@@ -33,7 +34,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
       </div>
 
       <div
-        className="flex-1 overflow-y-auto px-5 py-5"
+        className="flex-1 overflow-y-auto bg-white/95 px-5 py-5 backdrop-blur-sm"
         role="log"
         aria-live="polite"
         aria-label="Bookr conversation preview"

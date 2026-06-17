@@ -19,7 +19,7 @@ const ES_SCRIPT: TypewriterLine[] = [
 
 function ThreadCard({ label, script, active }: { label: string; script: TypewriterLine[]; active: boolean }) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-sm">
+    <div className="bookr-card-elevated flex flex-col overflow-hidden rounded-2xl">
       <div className="border-b border-charcoal/8 px-4 py-3">
         <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
           {label}

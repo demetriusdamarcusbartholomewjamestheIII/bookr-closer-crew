@@ -9,6 +9,11 @@ const SETUP_STEPS = [
   "Link your calendar",
 ];
 
+const STEP_MS = 2400;
+const PAUSE_BEFORE_RUNNING_MS = 2000;
+const RUNNING_HOLD_MS = 14000;
+
+
 export function HandsFreeDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
@@ -21,12 +26,12 @@ export function HandsFreeDemo() {
     if (!inView || reduced) return;
 
     if (phase === "setup" && checked < SETUP_STEPS.length) {
-      const t = window.setTimeout(() => setChecked((c) => c + 1), 900);
+      const t = window.setTimeout(() => setChecked((c) => c + 1), STEP_MS);
       return () => window.clearTimeout(t);
     }
 
     if (phase === "setup" && checked >= SETUP_STEPS.length) {
-      const t = window.setTimeout(() => setPhase("running"), 700);
+      const t = window.setTimeout(() => setPhase("running"), PAUSE_BEFORE_RUNNING_MS);
       return () => window.clearTimeout(t);
     }
 
@@ -35,7 +40,7 @@ export function HandsFreeDemo() {
         setPhase("setup");
         setChecked(0);
         setCycle((c) => c + 1);
-      }, 5000);
+      }, RUNNING_HOLD_MS);
       return () => window.clearTimeout(t);
     }
   }, [inView, checked, reduced, phase, cycle]);
@@ -43,7 +48,7 @@ export function HandsFreeDemo() {
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white p-6 shadow-sm sm:p-8"
+      className="bookr-card-elevated overflow-hidden rounded-2xl p-6 sm:p-8"
       aria-live="polite"
     >
       {phase === "setup" ? (
@@ -54,7 +59,7 @@ export function HandsFreeDemo() {
               <li key={step} className="flex items-center gap-3 text-base text-charcoal/70">
                 <span
                   className={[
-                    "flex h-7 w-7 items-center justify-center rounded-full border transition-colors",
+                    "flex h-7 w-7 items-center justify-center rounded-full border transition-colors duration-500",
                     i < checked
                       ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-600"
                       : "border-charcoal/15 text-charcoal/25",

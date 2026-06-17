@@ -4,8 +4,11 @@ import { BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BilingualTypingDemo } from "@/components/landing/BilingualTypingDemo";
 import { CtaBand } from "@/components/landing/CtaBand";
 import { DiffSection } from "@/components/landing/DiffSection";
+import { FloatingPropertyCards } from "@/components/landing/FloatingPropertyCards";
 import { HandsFreeDemo } from "@/components/landing/HandsFreeDemo";
+import { HeroGradientMesh } from "@/components/landing/HeroGradientMesh";
 import { HeroLiveChat } from "@/components/landing/HeroLiveChat";
+import { SectionImageAccent } from "@/components/landing/SectionImageAccent";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LeadsFlowDemo } from "@/components/landing/LeadsFlowDemo";
 import { ListingQaDemo } from "@/components/landing/ListingQaDemo";
@@ -13,6 +16,7 @@ import { PrimaryCta } from "@/components/landing/PrimaryCta";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/bookr-constants";
+import { LANDING_IMAGES } from "@/lib/landing-images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +41,7 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <main className="landing-page bg-white text-navy">
+    <main className="landing-page bg-bookr-base text-navy">
       <LandingNav />
       <Hero />
       <Problem />
@@ -64,6 +68,7 @@ function LandingPage() {
 function Hero() {
   return (
     <section id="top" className="bookr-hero relative overflow-hidden">
+      <HeroGradientMesh />
       <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-8 sm:pb-20 lg:pb-24 lg:pt-14">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
           <div className="lg:pt-4">
@@ -75,13 +80,17 @@ function Hero() {
               qualifies them, and books them on your calendar. You never lift a finger — and you
               never log in.
             </p>
+            <div className="mt-8 hidden sm:block">
+              <PrimaryCta />
+            </div>
           </div>
 
           <div className="flex flex-col">
-            <div>
+            <div className="relative min-h-[420px] pt-4 sm:pt-8">
+              <FloatingPropertyCards />
               <HeroLiveChat />
             </div>
-            <div className="mt-6 flex justify-end">
+            <div className="mt-6 flex justify-end sm:hidden">
               <PrimaryCta />
             </div>
           </div>
@@ -94,28 +103,30 @@ function Hero() {
 /* ─── PROBLEM ─── */
 function Problem() {
   return (
-    <section className="border-t border-charcoal/8 bg-cream py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section className="bookr-section-cream relative overflow-hidden border-t border-charcoal/8 py-20 sm:py-28">
+      <SectionImageAccent
+        src={LANDING_IMAGES.accentKitchen}
+        alt=""
+        className="-right-8 top-8 h-48 w-64 md:h-56 md:w-80"
+      />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
           <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
             You pay for leads you never answer in time.
           </h2>
           <p className="prose-measure mt-4 text-lg leading-relaxed text-navy/65">
-            A new inquiry goes cold in minutes. Most agents reply hours later.
+            Speed wins listings. Most agents reply hours after the lead arrives.
           </p>
         </FadeUp>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <FadeUp delay={0.05}>
-            <div className="rounded-2xl border border-charcoal/10 bg-white p-8 shadow-sm">
+            <div className="bookr-card-elevated rounded-2xl p-8">
               <p className="font-display text-5xl font-semibold tracking-tight text-navy sm:text-6xl">
                 78%
               </p>
-              <p className="mt-3 text-sm font-medium text-navy/85">
-                of customers buy from the first business to respond
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-navy/55">
-                If you&apos;re not first, you&apos;re usually out.
+              <p className="mt-3 text-base font-medium leading-snug text-navy/80">
+                of buyers go with the first agent to respond
               </p>
               <p className="mt-4 text-[11px] text-navy/40">
                 Source: Lead Response Management Study (MIT / InsideSales)
@@ -123,15 +134,12 @@ function Problem() {
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <div className="rounded-2xl border border-charcoal/10 bg-white p-8 shadow-sm">
+            <div className="bookr-card-elevated rounded-2xl p-8">
               <p className="font-display text-5xl font-semibold tracking-tight text-navy sm:text-6xl">
-                Minutes
+                Hours
               </p>
-              <p className="mt-3 text-sm font-medium text-navy/85">
-                is how fast intent fades after a form fill
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-navy/55">
-                Zillow at dinner. Facebook at 9pm. Instagram on Sunday.
+              <p className="mt-3 text-base font-medium leading-snug text-navy/80">
+                average time a business takes to reply
               </p>
             </div>
           </FadeUp>
@@ -154,7 +162,7 @@ function DiffHandsFree() {
 
 function DiffBilingual() {
   return (
-    <section className="border-y border-charcoal/8 bg-white py-20 sm:py-28">
+    <section className="bookr-section-surface relative border-y border-charcoal/8 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
           <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
@@ -232,7 +240,7 @@ function HowItWorks() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {steps.map((s, i) => (
             <FadeUp key={s.n} delay={i * 0.05}>
-              <article className="rounded-2xl border border-charcoal/8 bg-white p-8">
+              <article className="bookr-card-elevated rounded-2xl p-8">
                 <p className="font-display text-2xl font-semibold text-navy/35">{s.n}</p>
                 <h3 className="mt-2 text-lg font-semibold text-navy">{s.title}</h3>
                 <p className="prose-measure mt-2 text-base leading-relaxed text-navy/60">
@@ -250,7 +258,7 @@ function HowItWorks() {
 /* ─── GUARANTEE ─── */
 function Guarantee() {
   return (
-    <section className="bg-cream py-20 text-navy sm:py-28">
+    <section className="bookr-section-cream py-20 text-navy sm:py-28">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <FadeUp>
           <h2 className="font-display text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
@@ -270,7 +278,7 @@ function Guarantee() {
 /* ─── PRICING ─── */
 function Pricing() {
   return (
-    <section id="pricing" className="bg-white py-20 text-navy sm:py-28">
+    <section id="pricing" className="bookr-section-surface py-20 text-navy sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
           <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
@@ -327,7 +335,7 @@ function PricingCard({
   features: string[];
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-charcoal/12 bg-white p-8 sm:p-10">
+    <div className="bookr-card-elevated flex flex-col rounded-2xl p-8 sm:p-10">
       <h3 className="font-display text-2xl font-semibold text-navy">{name}</h3>
       <p className="mt-2 text-base text-navy/55">{desc}</p>
       <div className="mt-6 flex items-baseline gap-1">
@@ -352,8 +360,13 @@ function PricingCard({
 /* ─── FOUNDER ─── */
 function Founder() {
   return (
-    <section className="border-t border-charcoal/8 bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section className="bookr-section-base relative overflow-hidden border-t border-charcoal/8 py-20 sm:py-28">
+      <SectionImageAccent
+        src={LANDING_IMAGES.heroInterior}
+        alt=""
+        className="-left-12 bottom-0 h-40 w-56 md:h-52 md:w-72"
+      />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-14">
           <FadeUp>
             <div
@@ -391,7 +404,7 @@ function Founder() {
 
 function TestimonialsPlaceholder() {
   return (
-    <section className="border-t border-charcoal/8 bg-cream/50 py-14 text-navy sm:py-16">
+    <section className="bookr-section-base border-t border-charcoal/8 py-14 text-navy sm:py-16">
       <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
         <FadeUp>
           <p className="text-base text-navy/45">
@@ -443,7 +456,7 @@ function Faq() {
   ];
 
   return (
-    <section id="faq" className="bg-white py-20 text-navy sm:py-28">
+    <section id="faq" className="bookr-section-surface py-20 text-navy sm:py-28">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <FadeUp>
           <h2 className="font-display text-2xl font-semibold tracking-tight text-navy sm:text-3xl">FAQ</h2>
@@ -452,7 +465,7 @@ function Faq() {
           {faqs.map((faq) => (
             <details
               key={faq.q}
-              className="group rounded-xl border border-charcoal/10 px-5 py-4"
+              className="bookr-card-elevated group rounded-xl px-5 py-4"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-navy marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2">
                 {faq.q}
@@ -472,14 +485,14 @@ function Faq() {
 /* ─── FINAL CTA ─── */
 function FinalCta() {
   return (
-    <section className="border-t border-charcoal/8 bg-cream py-20 sm:py-28">
+    <section className="bookr-section-cream border-t border-charcoal/8 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <FadeUp>
           <h2 className="font-display text-2xl font-semibold tracking-tight text-navy sm:text-3xl lg:text-4xl">
             See it answer your next lead.
           </h2>
           <p className="prose-measure mx-auto mt-4 text-lg leading-relaxed text-navy/65">
-            Try the live preview — English or Spanish — right on this page.
+            30 minutes. We walk through your leads, your listings, and your calendar.
           </p>
           <div className="mt-10 flex justify-center">
             <PrimaryCta />
@@ -493,7 +506,7 @@ function FinalCta() {
 /* ─── GHL FORM ─── */
 function ContactForm() {
   return (
-    <section id="contact" className="border-t border-charcoal/8 bg-white py-16 sm:py-20">
+    <section id="contact" className="bookr-section-base border-t border-charcoal/8 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="font-display text-xl font-semibold text-navy">Prefer a form?</h2>

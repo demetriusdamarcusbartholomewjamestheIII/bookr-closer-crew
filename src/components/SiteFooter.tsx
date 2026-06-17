@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/bookr-constants";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-charcoal/10 bg-cream/40 text-navy/65">
+    <footer className="border-t border-charcoal/10 bg-bookr-base text-navy/65">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
         <div className="flex flex-col gap-8 border-b border-charcoal/10 pb-8 md:flex-row md:items-center md:justify-between">
           <Link

@@ -23,7 +23,7 @@ export function DiffSection({
       id={id}
       className={[
         "py-20 sm:py-28",
-        dark ? "bg-navy text-white" : "bg-white text-navy",
+        dark ? "bg-navy text-white" : "bookr-section-base text-navy",
       ].join(" ")}
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-8">

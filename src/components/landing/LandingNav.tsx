@@ -24,8 +24,8 @@ export function LandingNav() {
       className={[
         "sticky top-0 z-50 border-b transition-colors duration-200",
         scrolled
-          ? "border-charcoal/10 bg-white/95 shadow-[0_4px_24px_-8px_rgba(59,74,107,0.12)] backdrop-blur-md"
-          : "border-transparent bg-white/80 backdrop-blur-sm",
+          ? "border-charcoal/10 bg-[#FAFAF8]/95 shadow-[0_4px_24px_-8px_rgba(59,74,107,0.12)] backdrop-blur-md"
+          : "border-transparent bg-[#FAFAF8]/85 backdrop-blur-sm",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
