@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { BookrLogo } from "@/components/BookrLogo";
-import { BOOKING_URL } from "@/lib/bookr-constants";
+import { PrimaryCta } from "@/components/landing/PrimaryCta";
 
 const NAV_LINKS = [
   { href: "#how-it-works", label: "How it works" },
@@ -57,14 +57,7 @@ export function LandingNav() {
             <span className="px-1">·</span>
             <span className="px-2 py-0.5">ES</span>
           </div>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg bg-bookr-stripe-2 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-bookr-stripe-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
-          >
-            Book a demo
-          </a>
+          <PrimaryCta className="!min-h-11 !px-5 !text-sm" />
         </div>
       </div>
     </header>

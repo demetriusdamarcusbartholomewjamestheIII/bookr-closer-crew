@@ -128,7 +128,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
                 "max-w-[88%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug sm:text-sm",
                 m.role === "visitor"
                   ? "rounded-br-md bg-white text-charcoal"
-                  : "rounded-bl-md bg-bookr-stripe-3 text-white",
+                  : "rounded-bl-md bg-charcoal text-white",
               ].join(" ")}
             >
               {m.text}
@@ -137,7 +137,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
         ))}
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-2xl rounded-bl-md bg-bookr-stripe-3/80 px-4 py-3">
+            <div className="rounded-2xl rounded-bl-md bg-charcoal/90 px-4 py-3">
               <span className="inline-flex gap-1">
                 {[0, 1, 2].map((d) => (
                   <span
@@ -184,13 +184,13 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type as a lead would…"
-          className="min-w-0 flex-1 rounded-lg border border-white/12 bg-white/8 px-3 py-2.5 text-sm text-white placeholder:text-white/40 focus-visible:border-bookr-stripe-1 focus-visible:outline-none"
+          className="min-w-0 flex-1 rounded-lg border border-white/12 bg-white/8 px-3 py-2.5 text-base text-white placeholder:text-white/40 focus-visible:border-bookr-stripe-1 focus-visible:outline-none"
           autoComplete="off"
         />
         <button
           type="submit"
           disabled={!input.trim() || typing}
-          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-bookr-stripe-2 px-3 py-2.5 text-white transition-colors hover:bg-bookr-stripe-1 disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-1"
+          className="inline-flex shrink-0 items-center justify-center rounded-lg border border-white/20 bg-white/10 px-3 py-2.5 text-white transition-colors hover:bg-white/15 disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           aria-label="Send message"
         >
           <Send className="h-4 w-4" />

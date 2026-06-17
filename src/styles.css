@@ -78,6 +78,18 @@
     background-color: #FFFFFF;
     color-scheme: light;
   }
+  .prose-measure {
+    max-width: 65ch;
+  }
+  .landing-page {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  @media (min-width: 768px) {
+    .landing-page {
+      font-size: 1.125rem;
+    }
+  }
   html { scroll-behavior: smooth; }
   body {
     background-color: #FFFFFF;
