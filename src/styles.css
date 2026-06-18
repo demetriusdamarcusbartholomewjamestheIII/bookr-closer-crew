@@ -46,8 +46,9 @@
   --navy-soft: #5A6B8E;
   --charcoal: #1F2937;
   --offwhite: #F5F1E8;
-  --cream: #F5F1E8;
-  --bookr-base: #FAFAF8;
+  --cream: #EDE6D6;
+  --bookr-base: #F0EEE8;
+  --bookr-ivory: #FDFCF8;
   --gold: oklch(0.78 0.10 80);
   --bookr-stripe-1: #A4B0E8;
   --bookr-stripe-2: #5B6BCE;
@@ -77,7 +78,7 @@
 @layer base {
   * { border-color: var(--color-border); }
   html, body, #root {
-    background-color: #FAFAF8;
+    background-color: #F0EEE8;
     color-scheme: light;
   }
   .prose-measure {
@@ -187,7 +188,7 @@
 
   .bookr-hero {
     background:
-      linear-gradient(165deg, #FAFAF8 0%, #f6f5f2 38%, #f0efe9 100%);
+      linear-gradient(165deg, #F0EEE8 0%, #e8e6f8 28%, #e2e8f6 55%, #EDE6D6 100%);
   }
   .bookr-hero::before {
     content: "";
@@ -203,10 +204,10 @@
   }
   .bookr-hero-mesh {
     background:
-      radial-gradient(ellipse 70% 55% at 15% 35%, rgba(164, 176, 232, 0.22) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(59, 74, 107, 0.09) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 50% at 70% 85%, rgba(164, 176, 232, 0.14) 0%, transparent 52%),
-      radial-gradient(ellipse 40% 35% at 30% 90%, rgba(245, 241, 232, 0.5) 0%, transparent 55%);
+      radial-gradient(ellipse 70% 55% at 15% 35%, rgba(91, 107, 206, 0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(59, 74, 107, 0.14) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 70% 85%, rgba(164, 176, 232, 0.22) 0%, transparent 52%),
+      radial-gradient(ellipse 40% 35% at 30% 90%, rgba(237, 230, 214, 0.65) 0%, transparent 55%);
     animation: bookr-mesh-drift 24s ease-in-out infinite alternate;
   }
   @keyframes bookr-mesh-drift {
@@ -226,41 +227,55 @@
     50% { transform: translateY(-10px) rotate(0.4deg); }
   }
   .bookr-card-elevated {
-    background: #ffffff;
-    border: 1px solid rgba(59, 74, 107, 0.08);
+    background: linear-gradient(180deg, #FDFCF8 0%, #f8f6f1 100%);
+    border: 1px solid rgba(59, 74, 107, 0.12);
     box-shadow:
-      0 1px 2px rgba(59, 74, 107, 0.04),
-      0 8px 24px -6px rgba(59, 74, 107, 0.1),
-      0 20px 48px -12px rgba(59, 74, 107, 0.06);
+      0 1px 2px rgba(59, 74, 107, 0.05),
+      0 8px 24px -6px rgba(59, 74, 107, 0.12),
+      0 20px 48px -12px rgba(59, 74, 107, 0.08);
+  }
+  .bookr-card-featured {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f3ff 100%);
+    border: 2px solid #5B6BCE;
+    box-shadow:
+      0 4px 16px rgba(91, 107, 206, 0.18),
+      0 24px 48px -12px rgba(59, 74, 107, 0.14);
+  }
+  .bookr-capability-pill {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(232,236,250,0.85) 100%);
+    border: 1px solid rgba(91, 107, 206, 0.2);
+    box-shadow: 0 4px 14px -4px rgba(59, 74, 107, 0.12);
+  }
+  .bookr-stat-accent {
+    border-left: 4px solid #5B6BCE;
   }
   .bookr-section-surface {
     background:
-      linear-gradient(180deg, #ffffff 0%, #FAFAF8 100%);
+      linear-gradient(180deg, #FDFCF8 0%, #F0EEE8 100%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   .bookr-section-cream {
     background:
-      linear-gradient(165deg, #F5F1E8 0%, #f0ebe2 50%, #FAFAF8 100%);
+      linear-gradient(165deg, #EDE6D6 0%, #e4d9c4 55%, #F0EEE8 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.5),
-      0 -1px 0 rgba(59, 74, 107, 0.04);
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      0 1px 0 rgba(59, 74, 107, 0.06);
   }
   .bookr-section-base {
-    background-color: #FAFAF8;
+    background-color: #F0EEE8;
     background-image:
-      radial-gradient(ellipse 90% 40% at 50% 0%, rgba(164, 176, 232, 0.05) 0%, transparent 65%);
+      radial-gradient(ellipse 90% 45% at 50% 0%, rgba(91, 107, 206, 0.09) 0%, transparent 65%);
   }
   .bookr-section-navy-band {
     background:
-      linear-gradient(165deg, #dce2ef 0%, #cfd8ea 45%, #e4e9f4 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.7),
-      0 1px 0 rgba(59, 74, 107, 0.06);
+      linear-gradient(155deg, #3B4A6B 0%, #455578 45%, #4e6285 100%);
+    color: #ffffff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   .bookr-section-periwinkle {
     background:
-      linear-gradient(180deg, #f0f2fc 0%, #e8ecfa 40%, #FAFAF8 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      linear-gradient(180deg, #b8c4ef 0%, #cdd6f5 35%, #e2e8fb 70%, #F0EEE8 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   .bookr-hero-chat-float {
     transform: translateY(-4px);

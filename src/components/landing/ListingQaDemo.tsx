@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { TypewriterBubbles } from "@/components/landing/TypewriterBubbles";
+import { ListingPhoto } from "@/components/landing/ListingPhoto";
 import { useInView } from "@/hooks/use-in-view";
 import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 import { LANDING_IMAGES } from "@/lib/landing-images";
@@ -24,23 +25,19 @@ export function ListingQaDemo() {
       className="bookr-card-elevated grid overflow-hidden rounded-2xl lg:grid-cols-[1.05fr_1fr]"
     >
       <div className="relative min-h-[220px] lg:min-h-[340px]">
-        <img
+        <ListingPhoto
           src={LANDING_IMAGES.listingExterior}
-          alt="Well-maintained single-family home with landscaped yard"
+          alt="Modern home exterior with landscaped yard"
           className="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-          width={1400}
-          height={933}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-white/20" />
-        <div className="absolute bottom-4 left-4 rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-navy shadow-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/30 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/15" />
+        <div className="absolute bottom-4 left-4 rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-navy shadow-md">
           1842 Oak St
         </div>
       </div>
 
-      <div className="flex flex-col justify-center bg-gradient-to-br from-white to-cream/30 p-6 sm:p-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-navy/45">
+      <div className="flex flex-col justify-center bg-gradient-to-br from-white via-cream/50 to-bookr-stripe-1/10 p-6 sm:p-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-bookr-stripe-3">
           Buyer Q&A · from your listing
         </p>
         <div className="mt-4">

@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Phone } from "lucide-react";
 import { BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BilingualTypingDemo } from "@/components/landing/BilingualTypingDemo";
+import { CallsDemo } from "@/components/landing/CallsDemo";
+import { CapabilityStrip } from "@/components/landing/CapabilityStrip";
 import { CtaBand } from "@/components/landing/CtaBand";
 import { HandsFreeDemo } from "@/components/landing/HandsFreeDemo";
+import { ListingPhoto } from "@/components/landing/ListingPhoto";
 import { HeroGradientMesh } from "@/components/landing/HeroGradientMesh";
 import { HeroLiveChat } from "@/components/landing/HeroLiveChat";
 import { HouseLineIllustration } from "@/components/landing/HouseLineIllustration";
@@ -47,6 +50,7 @@ function LandingPage() {
       <DiffHandsFree />
       <DiffBilingual />
       <DiffLeadSources />
+      <DiffCalls />
       <DiffListings />
       <CtaBand />
       <HowItWorks />
@@ -77,6 +81,7 @@ function Hero() {
             <p className="prose-measure mt-4 text-base text-navy/65 sm:text-lg">
               Bilingual replies, qualification, and booking — done for you, day or night.
             </p>
+            <CapabilityStrip />
             <div className="mt-8 hidden sm:block">
               <PrimaryCta />
             </div>
@@ -108,7 +113,7 @@ function Problem() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <FadeUp delay={0.05}>
-            <div className="bookr-card-elevated rounded-2xl p-8 sm:p-10">
+            <div className="bookr-card-elevated bookr-stat-accent rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
                 78%
               </p>
@@ -121,7 +126,7 @@ function Problem() {
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <div className="bookr-card-elevated rounded-2xl p-8 sm:p-10">
+            <div className="bookr-card-elevated bookr-stat-accent rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
                 Hours
               </p>
@@ -144,6 +149,8 @@ function DiffHandsFree() {
         <FadeUp>
           <SectionHeading
             align="center"
+            inverted
+            eyebrow="Hands-free"
             title="You never touch a thing."
             subline="We set it up. It runs. You close."
           />
@@ -166,6 +173,7 @@ function DiffBilingual() {
         <FadeUp>
           <SectionHeading
             align="center"
+            eyebrow="Bilingual"
             title="Answers in English or Spanish — automatically."
             subline="Spanish-speaking leads get native replies, instantly."
           />
@@ -191,6 +199,7 @@ function DiffLeadSources() {
           </FadeUp>
           <FadeUp delay={0.06} className="lg:order-2">
             <SectionHeading
+              eyebrow="Channels"
               title="Works with the leads you already get."
               subline="Zillow, Facebook, Instagram, your site — answered the moment they arrive."
             />
@@ -201,7 +210,30 @@ function DiffLeadSources() {
   );
 }
 
-/* ─── DIFF 4: split image/text on cream ─── */
+/* ─── DIFF 4: split — calls demo right, copy left ─── */
+function DiffCalls() {
+  return (
+    <section className="bookr-section-navy-band py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <FadeUp>
+            <SectionHeading
+              inverted
+              eyebrow="Inbound calls · Pro"
+              title="Missed calls get answered too."
+              subline="Bookr picks up, qualifies, and books — in English or Spanish."
+            />
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <CallsDemo />
+          </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── DIFF 5: split image/text on cream ─── */
 function DiffListings() {
   return (
     <section className="bookr-section-cream py-20 sm:py-28">
@@ -210,18 +242,15 @@ function DiffListings() {
           <FadeUp>
             <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
             <SectionHeading
+              eyebrow="Listings"
               title="Buyers ask about your listings. Bookr answers — instantly."
               subline="Listing details, showings, midnight inquiries — handled from your data."
             />
             <div className="mt-8 hidden lg:block">
-              <img
+              <ListingPhoto
                 src={LANDING_IMAGES.listingInterior}
-                alt="Bright, modern living room interior"
+                alt="Bright modern living room interior"
                 className="bookr-card-elevated aspect-[4/3] w-full max-w-sm rounded-2xl object-cover"
-                loading="lazy"
-                decoding="async"
-                width={1400}
-                height={933}
               />
             </div>
           </FadeUp>
@@ -237,7 +266,7 @@ function DiffListings() {
 /* ─── HOW IT WORKS — cards grid ─── */
 function HowItWorks() {
   const steps = [
-    { n: "01", title: "Lead comes in", body: "Zillow, social, web, or SMS — received immediately." },
+    { n: "01", title: "Lead comes in", body: "Zillow, Instagram, social, web, SMS, or call — received immediately." },
     { n: "02", title: "Answered in seconds", body: "Warm reply in English or Spanish." },
     { n: "03", title: "Qualified", body: "Timeline, financing, listing questions handled." },
     { n: "04", title: "Booked for you", body: "Real slots from your Google Calendar." },
@@ -277,6 +306,7 @@ function Guarantee() {
         <FadeUp>
           <SectionHeading
             align="center"
+            inverted
             title="We put our skin in the game."
             subline="Free setup. You pay when Bookr is booking on your calendar."
           />
@@ -315,6 +345,7 @@ function Pricing() {
           <PricingCard
             name="Pro"
             price="$397"
+            highlighted
             desc="Everything in Standard, plus inbound calls."
             features={[
               "Everything in Standard",
@@ -334,16 +365,31 @@ function PricingCard({
   price,
   desc,
   features,
+  highlighted = false,
 }: {
   name: string;
   price: string;
   desc: string;
   features: string[];
+  highlighted?: boolean;
 }) {
   return (
     <FadeUp>
-      <div className="bookr-card-elevated flex h-full flex-col rounded-2xl p-8 sm:p-10">
-        <h3 className="font-display text-2xl font-bold text-navy">{name}</h3>
+      <div
+        className={[
+          "relative flex h-full flex-col rounded-2xl p-8 sm:p-10",
+          highlighted ? "bookr-card-featured -translate-y-1" : "bookr-card-elevated",
+        ].join(" ")}
+      >
+        {highlighted ? (
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-bookr-stripe-2 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_14px_rgba(91,107,206,0.45)]">
+            Most popular
+          </div>
+        ) : null}
+        <div className="flex items-center gap-2">
+          <h3 className="font-display text-2xl font-bold text-navy">{name}</h3>
+          {highlighted ? <Phone className="h-4 w-4 text-bookr-stripe-3" strokeWidth={2.5} /> : null}
+        </div>
         <p className="mt-2 text-base text-navy/55">{desc}</p>
         <div className="mt-6 flex items-baseline gap-1">
           <span className="font-display text-5xl font-bold tracking-tight text-navy">{price}</span>

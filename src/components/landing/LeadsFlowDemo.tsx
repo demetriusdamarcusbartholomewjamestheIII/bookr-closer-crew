@@ -4,7 +4,12 @@ import { useInView } from "@/hooks/use-in-view";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 
-const SOURCES = ["Zillow", "Facebook", "Instagram", "Your website"];
+const SOURCES = [
+  { name: "Zillow", accent: true },
+  { name: "Instagram", accent: true },
+  { name: "Facebook", accent: false },
+  { name: "Your website", accent: false },
+] as const;
 
 const REPLY_SCRIPT: TypewriterLine[] = [
   {
@@ -74,15 +79,17 @@ export function LeadsFlowDemo() {
       <div className="flex flex-wrap gap-2">
         {SOURCES.map((src, i) => (
           <span
-            key={src}
+            key={src.name}
             className={[
-              "rounded-lg border px-3 py-2 text-sm font-medium transition-all duration-300",
+              "rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-300",
               i <= activeSource
-                ? "border-navy/20 bg-navy/5 text-navy"
+                ? src.accent
+                  ? "border-bookr-stripe-2/40 bg-bookr-stripe-2/15 text-bookr-stripe-3 shadow-sm"
+                  : "border-navy/25 bg-navy/8 text-navy"
                 : "border-charcoal/10 text-charcoal/35",
             ].join(" ")}
           >
-            {src}
+            {src.name}
           </span>
         ))}
       </div>
@@ -96,7 +103,9 @@ export function LeadsFlowDemo() {
       <div
         className={[
           "rounded-xl border p-4 transition-opacity duration-500",
-          showReply ? "border-charcoal/10 bg-cream/40 opacity-100" : "border-charcoal/8 opacity-40",
+          showReply
+            ? "border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 opacity-100"
+            : "border-charcoal/8 opacity-40",
         ].join(" ")}
       >
         <p className="text-xs font-medium text-charcoal/45">Bookr</p>
