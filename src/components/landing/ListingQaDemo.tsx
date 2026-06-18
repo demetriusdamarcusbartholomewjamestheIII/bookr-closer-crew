@@ -29,9 +29,10 @@ export function ListingQaDemo() {
     >
       <div className="relative h-[200px] min-h-0 lg:h-full">
         <ListingPhoto
-          src={LANDING_IMAGES.listingExterior}
+          image={LANDING_IMAGES.listingExterior}
           alt="Modern home exterior with landscaped yard"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy/30 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-white/15" />
         <div className="absolute bottom-4 left-4 rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-navy shadow-md">

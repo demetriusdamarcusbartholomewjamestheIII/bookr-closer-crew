@@ -170,14 +170,25 @@ function RootComponent() {
   useEffect(() => {
     if (!pageLoad.preload) return;
 
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "script";
-    link.href = "https://beta.leadconnectorhq.com/loader.js";
-    document.head.appendChild(link);
+    const preloads: HTMLLinkElement[] = [];
+
+    const addPreload = (href: string, as: string, type?: string) => {
+      if (document.querySelector(`link[rel="preload"][href="${href}"]`)) return;
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.href = href;
+      link.as = as;
+      if (type) link.type = type;
+      document.head.appendChild(link);
+      preloads.push(link);
+    };
+
+    addPreload("https://beta.leadconnectorhq.com/loader.js", "script");
+    addPreload("/images/listing-exterior-800.jpg", "image", "image/jpeg");
+    addPreload("/images/listing-interior-640.jpg", "image", "image/jpeg");
 
     return () => {
-      link.remove();
+      preloads.forEach((link) => link.remove());
     };
   }, [pageLoad.preload]);
 

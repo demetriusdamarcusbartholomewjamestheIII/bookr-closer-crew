@@ -41,7 +41,7 @@ export function LandingNav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-navy/65 transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-2"
+              className="text-sm font-semibold text-navy transition-colors hover:text-bookr-stripe-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bookr-stripe-2"
             >
               {l.label}
             </a>

@@ -13,12 +13,12 @@ export function CapabilityStrip() {
       {CAPABILITIES.map((cap) => (
         <div
           key={cap.label}
-          className="bookr-capability-pill flex flex-col gap-2 rounded-xl px-4 py-3.5"
+          className="bookr-capability-pill flex flex-col gap-2 rounded-xl border border-bookr-stripe-2/15 px-4 py-3.5"
         >
           <cap.icon className="h-5 w-5 text-bookr-stripe-3" strokeWidth={2} />
           <div>
             <p className="text-sm font-bold leading-tight text-navy">{cap.label}</p>
-            <p className="mt-0.5 text-[11px] font-medium text-navy/55">{cap.detail}</p>
+            <p className="mt-0.5 text-[11px] font-semibold text-bookr-stripe-3/80">{cap.detail}</p>
           </div>
         </div>
       ))}

@@ -44,6 +44,20 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: OG_IMAGE_URL },
     ],
+    links: [
+      {
+        rel: "preload",
+        href: "/images/listing-exterior-800.jpg",
+        as: "image",
+        type: "image/jpeg",
+      },
+      {
+        rel: "preload",
+        href: "/images/listing-interior-640.jpg",
+        as: "image",
+        type: "image/jpeg",
+      },
+    ],
   }),
   component: LandingPage,
 });
@@ -80,10 +94,19 @@ function Hero() {
       <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-8 sm:pb-20 lg:pb-24 lg:pt-14">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
           <div>
-            <h1 className="font-display text-[1.875rem] font-bold leading-[1.12] tracking-tight text-navy sm:text-4xl lg:text-5xl">
-              Every lead, answered in seconds — and booked on your calendar.
+            <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-bookr-stripe-2/35 bg-white/90 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-bookr-stripe-3 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bookr-stripe-2 opacity-35" />
+                <span className="relative h-2 w-2 rounded-full bg-bookr-stripe-2" />
+              </span>
+              Bilingual lead desk
+            </p>
+            <h1 className="font-display text-[1.875rem] font-bold leading-[1.1] tracking-tight text-navy sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+              Every lead,{" "}
+              <span className="text-bookr-stripe-3">answered in seconds</span> — and booked on your
+              calendar.
             </h1>
-            <p className="prose-measure mt-4 text-base text-navy/65 sm:text-lg">
+            <p className="prose-measure mt-5 text-base font-medium leading-snug text-navy/85 sm:text-lg">
               Bilingual replies, qualification, and booking — done for you, day or night.
             </p>
             <CapabilityStrip />
@@ -256,9 +279,9 @@ function DiffListings() {
             />
             <div className="mt-8 hidden lg:block">
               <ListingPhoto
-                src={LANDING_IMAGES.listingInterior}
+                image={LANDING_IMAGES.listingInterior}
                 alt="Bright modern living room interior"
-                className="bookr-card-elevated aspect-[4/3] w-full max-w-sm rounded-2xl object-cover"
+                className="bookr-card-elevated aspect-[4/3] w-full max-w-sm rounded-2xl"
               />
             </div>
           </FadeUp>
