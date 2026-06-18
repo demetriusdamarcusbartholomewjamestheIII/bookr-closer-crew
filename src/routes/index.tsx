@@ -102,9 +102,7 @@ function Hero() {
               Bilingual lead desk
             </p>
             <h1 className="font-display text-[1.875rem] font-bold leading-[1.1] tracking-tight text-navy sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
-              Every lead,{" "}
-              <span className="text-bookr-stripe-3">answered in seconds</span> — and booked on your
-              calendar.
+              Every lead, answered in seconds — and booked on your calendar.
             </h1>
             <p className="prose-measure mt-5 text-base font-medium leading-snug text-navy/85 sm:text-lg">
               Bilingual replies, qualification, and booking — done for you, day or night.
