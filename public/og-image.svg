@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0EEE8"/>
+      <stop offset="0.45" stop-color="#E8E6F8"/>
+      <stop offset="1" stop-color="#EDE6D6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 120) rotate(90) scale(280)">
+      <stop stop-color="#A4B0E8" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#A4B0E8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="600" cy="248" r="88" fill="#1F2937"/>
+  <rect x="544" y="206" width="24" height="10" rx="5" fill="#A4B0E8"/>
+  <rect x="544" y="224" width="44" height="10" rx="5" fill="#5B6BCE"/>
+  <rect x="544" y="242" width="64" height="10" rx="5" fill="#2E3A8C"/>
+  <text x="600" y="400" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#3B4A6B" letter-spacing="-2">Bookr</text>
+  <text x="600" y="468" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="500" fill="#3B4A6B" fill-opacity="0.75">Every lead, answered in seconds</text>
+</svg>

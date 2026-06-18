@@ -15,7 +15,8 @@ const SCRIPT: TypewriterLine[] = [
   },
 ];
 
-const CHAT_H = 280;
+/** Fits all four bubbles when the full script has played through */
+const CHAT_H = 420;
 
 export function ListingQaDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ export function ListingQaDemo() {
   return (
     <div
       ref={ref}
-      className="bookr-card-elevated grid h-auto overflow-hidden rounded-2xl lg:h-[400px] lg:max-h-[400px] lg:min-h-[400px] lg:grid-cols-[1.05fr_1fr]"
+      className="bookr-card-elevated grid h-auto overflow-hidden rounded-2xl lg:h-[580px] lg:max-h-[580px] lg:min-h-[580px] lg:grid-cols-[1.05fr_1fr]"
     >
       <div className="relative h-[200px] min-h-0 lg:h-full">
         <ListingPhoto

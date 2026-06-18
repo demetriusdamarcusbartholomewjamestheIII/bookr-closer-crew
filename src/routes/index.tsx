@@ -17,7 +17,7 @@ import { PrimaryCta } from "@/components/landing/PrimaryCta";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
-import { BOOKING_URL } from "@/lib/bookr-constants";
+import { BOOKING_URL, OG_IMAGE_URL, SITE_URL } from "@/lib/bookr-constants";
 import { LANDING_IMAGES } from "@/lib/landing-images";
 
 export const Route = createFileRoute("/")({
@@ -36,6 +36,13 @@ export const Route = createFileRoute("/")({
           "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: "Bookr" },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE_URL },
     ],
   }),
   component: LandingPage,
@@ -284,13 +291,13 @@ function HowItWorks() {
           />
         </FadeUp>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
+        <div className="mt-14 grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2">
           {steps.map((s, i) => (
-            <FadeUp key={s.n} delay={i * 0.05}>
-              <article className="bookr-card-elevated rounded-2xl p-8">
-                <p className="font-display text-2xl font-bold text-navy/30">{s.n}</p>
+            <FadeUp key={s.n} delay={i * 0.05} className="h-full">
+              <article className="bookr-step-card flex h-full min-h-[180px] flex-col rounded-2xl p-8">
+                <p className="font-display text-2xl font-bold text-bookr-stripe-3/50">{s.n}</p>
                 <h3 className="mt-2 text-lg font-bold text-navy">{s.title}</h3>
-                <p className="mt-2 text-base text-navy/60">{s.body}</p>
+                <p className="mt-2 flex-1 text-base leading-relaxed text-navy/60">{s.body}</p>
               </article>
             </FadeUp>
           ))}

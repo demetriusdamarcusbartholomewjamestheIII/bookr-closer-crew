@@ -75,16 +75,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#1F2937" },
-      { title: "Bookr — Realtors close deals. We do everything else." },
-      { name: "description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
+      { name: "theme-color", content: "#3B4A6B" },
+      { title: "Bookr — Every lead, answered in seconds" },
+      {
+        name: "description",
+        content:
+          "Bookr replies to every new lead in seconds, in English or Spanish, qualifies them, and books them on your calendar. Done for you.",
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:title", content: "Bookr — Realtors close deals. We do everything else." },
-      { name: "twitter:title", content: "Bookr — Realtors close deals. We do everything else." },
-      { property: "og:description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
-      { name: "twitter:description", content: "Done-for-you lead handling for real estate agents. Bookr replies, qualifies, and books appointments on your calendar — automatically." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b11dfc51-a1f3-4af9-b63a-c3fa76f3b273/id-preview-fab62ca9--39125925-7c08-477a-833c-0c9422ed0dfd.lovable.app-1778555090244.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b11dfc51-a1f3-4af9-b63a-c3fa76f3b273/id-preview-fab62ca9--39125925-7c08-477a-833c-0c9422ed0dfd.lovable.app-1778555090244.png" },
+      { property: "og:title", content: "Bookr — Every lead, answered in seconds" },
+      { name: "twitter:title", content: "Bookr — Every lead, answered in seconds" },
+      {
+        property: "og:description",
+        content:
+          "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
+      },
+      { property: "og:image", content: "https://heybookr.com/og-image.svg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:image", content: "https://heybookr.com/og-image.svg" },
+      { property: "og:url", content: "https://heybookr.com" },
+      { property: "og:site_name", content: "Bookr" },
       { property: "og:type", content: "website" },
     ],
     links: [
