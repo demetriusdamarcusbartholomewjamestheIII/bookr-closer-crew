@@ -3,16 +3,15 @@ import { Check, ChevronDown } from "lucide-react";
 import { BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BilingualTypingDemo } from "@/components/landing/BilingualTypingDemo";
 import { CtaBand } from "@/components/landing/CtaBand";
-import { DiffSection } from "@/components/landing/DiffSection";
-import { FloatingPropertyCards } from "@/components/landing/FloatingPropertyCards";
 import { HandsFreeDemo } from "@/components/landing/HandsFreeDemo";
 import { HeroGradientMesh } from "@/components/landing/HeroGradientMesh";
 import { HeroLiveChat } from "@/components/landing/HeroLiveChat";
-import { SectionImageAccent } from "@/components/landing/SectionImageAccent";
+import { HouseLineIllustration } from "@/components/landing/HouseLineIllustration";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LeadsFlowDemo } from "@/components/landing/LeadsFlowDemo";
 import { ListingQaDemo } from "@/components/landing/ListingQaDemo";
 import { PrimaryCta } from "@/components/landing/PrimaryCta";
+import { SectionHeading } from "@/components/landing/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
 import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/bookr-constants";
@@ -70,26 +69,21 @@ function Hero() {
     <section id="top" className="bookr-hero relative overflow-hidden">
       <HeroGradientMesh />
       <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-8 sm:pb-20 lg:pb-24 lg:pt-14">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
-          <div className="lg:pt-4">
-            <h1 className="font-display text-[1.75rem] font-semibold leading-[1.2] tracking-tight text-navy sm:text-4xl lg:text-[2.75rem]">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+          <div>
+            <h1 className="font-display text-[1.875rem] font-bold leading-[1.12] tracking-tight text-navy sm:text-4xl lg:text-5xl">
               Every lead, answered in seconds — and booked on your calendar.
             </h1>
-            <p className="prose-measure mt-5 text-base leading-relaxed text-navy/70 sm:text-lg sm:leading-[1.55]">
-              Bookr replies to every new lead in seconds, day or night, in English or Spanish,
-              qualifies them, and books them on your calendar. You never lift a finger — and you
-              never log in.
+            <p className="prose-measure mt-4 text-base text-navy/65 sm:text-lg">
+              Bilingual replies, qualification, and booking — done for you, day or night.
             </p>
             <div className="mt-8 hidden sm:block">
               <PrimaryCta />
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <div className="relative min-h-[420px] pt-4 sm:pt-8">
-              <FloatingPropertyCards />
-              <HeroLiveChat />
-            </div>
+          <div>
+            <HeroLiveChat />
             <div className="mt-6 flex justify-end sm:hidden">
               <PrimaryCta />
             </div>
@@ -100,29 +94,22 @@ function Hero() {
   );
 }
 
-/* ─── PROBLEM ─── */
+/* ─── PROBLEM — stat cards grid on cream ─── */
 function Problem() {
   return (
-    <section className="bookr-section-cream relative overflow-hidden border-t border-charcoal/8 py-20 sm:py-28">
-      <SectionImageAccent
-        src={LANDING_IMAGES.accentKitchen}
-        alt=""
-        className="-right-8 top-8 h-48 w-64 md:h-56 md:w-80"
-      />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <section className="bookr-section-cream border-t border-charcoal/8 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
-          <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            You pay for leads you never answer in time.
-          </h2>
-          <p className="prose-measure mt-4 text-lg leading-relaxed text-navy/65">
-            Speed wins listings. Most agents reply hours after the lead arrives.
-          </p>
+          <SectionHeading
+            title="You pay for leads you never answer in time."
+            subline="Speed wins listings — most agents reply hours late."
+          />
         </FadeUp>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <FadeUp delay={0.05}>
-            <div className="bookr-card-elevated rounded-2xl p-8">
-              <p className="font-display text-5xl font-semibold tracking-tight text-navy sm:text-6xl">
+            <div className="bookr-card-elevated rounded-2xl p-8 sm:p-10">
+              <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
                 78%
               </p>
               <p className="mt-3 text-base font-medium leading-snug text-navy/80">
@@ -134,8 +121,8 @@ function Problem() {
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <div className="bookr-card-elevated rounded-2xl p-8">
-              <p className="font-display text-5xl font-semibold tracking-tight text-navy sm:text-6xl">
+            <div className="bookr-card-elevated rounded-2xl p-8 sm:p-10">
+              <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
                 Hours
               </p>
               <p className="mt-3 text-base font-medium leading-snug text-navy/80">
@@ -149,29 +136,39 @@ function Problem() {
   );
 }
 
-/* ─── DIFFERENTIATORS ─── */
+/* ─── DIFF 1: centered statement on soft navy band ─── */
 function DiffHandsFree() {
   return (
-    <DiffSection
-      title="You never touch a thing."
-      subline="Every tool you've tried died because you had to learn it. We set Bookr up for you — it runs, you close."
-      visual={<HandsFreeDemo />}
-    />
+    <section className="bookr-section-navy-band py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <SectionHeading
+            align="center"
+            title="You never touch a thing."
+            subline="We set it up. It runs. You close."
+          />
+        </FadeUp>
+        <div className="mx-auto mt-12 max-w-lg">
+          <FadeUp delay={0.08}>
+            <HandsFreeDemo />
+          </FadeUp>
+        </div>
+      </div>
+    </section>
   );
 }
 
+/* ─── DIFF 2: full-width centered on periwinkle tint ─── */
 function DiffBilingual() {
   return (
-    <section className="bookr-section-surface relative border-y border-charcoal/8 py-20 sm:py-28">
+    <section className="bookr-section-periwinkle border-y border-charcoal/8 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
-          <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            Answers in English or Spanish — automatically.
-          </h2>
-          <p className="prose-measure mt-4 text-lg leading-relaxed text-navy/65">
-            A Spanish-speaking lead gets answered in Spanish, instantly, around the clock. Most
-            competitors only speak English.
-          </p>
+          <SectionHeading
+            align="center"
+            title="Answers in English or Spanish — automatically."
+            subline="Spanish-speaking leads get native replies, instantly."
+          />
         </FadeUp>
         <div className="mt-12">
           <FadeUp delay={0.08}>
@@ -183,69 +180,86 @@ function DiffBilingual() {
   );
 }
 
+/* ─── DIFF 3: split reversed — demo left, copy right ─── */
 function DiffLeadSources() {
   return (
-    <DiffSection
-      title="Works with the leads you already get."
-      subline="Plugs into Zillow, Facebook, Instagram, and your website — and answers the moment they arrive."
-      visual={<LeadsFlowDemo />}
-    />
+    <section className="bookr-section-base py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <FadeUp className="lg:order-1">
+            <LeadsFlowDemo />
+          </FadeUp>
+          <FadeUp delay={0.06} className="lg:order-2">
+            <SectionHeading
+              title="Works with the leads you already get."
+              subline="Zillow, Facebook, Instagram, your site — answered the moment they arrive."
+            />
+          </FadeUp>
+        </div>
+      </div>
+    </section>
   );
 }
 
+/* ─── DIFF 4: split image/text on cream ─── */
 function DiffListings() {
   return (
-    <DiffSection
-      title="Buyers ask about your listings. Bookr answers — instantly."
-      subline="A buyer asks about one of your homes at midnight. Bookr answers from your listing details and books the showing."
-      visual={<ListingQaDemo />}
-    />
+    <section className="bookr-section-cream py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+          <FadeUp>
+            <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
+            <SectionHeading
+              title="Buyers ask about your listings. Bookr answers — instantly."
+              subline="Listing details, showings, midnight inquiries — handled from your data."
+            />
+            <div className="mt-8 hidden lg:block">
+              <img
+                src={LANDING_IMAGES.listingInterior}
+                alt="Bright, modern living room interior"
+                className="bookr-card-elevated aspect-[4/3] w-full max-w-sm rounded-2xl object-cover"
+                loading="lazy"
+                decoding="async"
+                width={1400}
+                height={933}
+              />
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <ListingQaDemo />
+          </FadeUp>
+        </div>
+      </div>
+    </section>
   );
 }
 
-/* ─── HOW IT WORKS ─── */
+/* ─── HOW IT WORKS — cards grid ─── */
 function HowItWorks() {
   const steps = [
-    {
-      n: "01",
-      title: "Lead comes in",
-      body: "Zillow, Facebook, Instagram, your website, or SMS — Bookr receives it immediately.",
-    },
-    {
-      n: "02",
-      title: "Answered in seconds",
-      body: "A warm reply in English or Spanish, matched to how you sell.",
-    },
-    {
-      n: "03",
-      title: "Qualified + questions handled",
-      body: "Timeline, financing, and listing questions — answered from your own listings.",
-    },
-    {
-      n: "04",
-      title: "Booked & handed to you",
-      body: "Real slots from your Google Calendar. You show up ready to close.",
-    },
+    { n: "01", title: "Lead comes in", body: "Zillow, social, web, or SMS — received immediately." },
+    { n: "02", title: "Answered in seconds", body: "Warm reply in English or Spanish." },
+    { n: "03", title: "Qualified", body: "Timeline, financing, listing questions handled." },
+    { n: "04", title: "Booked for you", body: "Real slots from your Google Calendar." },
   ];
 
   return (
-    <section id="how-it-works" className="bookr-section-light py-20 text-navy sm:py-28">
+    <section id="how-it-works" className="bookr-section-light py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
-          <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            From inquiry to booked showing — without you in the middle.
-          </h2>
+          <SectionHeading
+            align="center"
+            title="From inquiry to booked showing — without you in the middle."
+          />
         </FadeUp>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {steps.map((s, i) => (
             <FadeUp key={s.n} delay={i * 0.05}>
               <article className="bookr-card-elevated rounded-2xl p-8">
-                <p className="font-display text-2xl font-semibold text-navy/35">{s.n}</p>
-                <h3 className="mt-2 text-lg font-semibold text-navy">{s.title}</h3>
-                <p className="prose-measure mt-2 text-base leading-relaxed text-navy/60">
-                  {s.body}
-                </p>
+                <p className="font-display text-2xl font-bold text-navy/30">{s.n}</p>
+                <h3 className="mt-2 text-lg font-bold text-navy">{s.title}</h3>
+                <p className="mt-2 text-base text-navy/60">{s.body}</p>
               </article>
             </FadeUp>
           ))}
@@ -255,20 +269,17 @@ function HowItWorks() {
   );
 }
 
-/* ─── GUARANTEE ─── */
+/* ─── GUARANTEE — big centered statement on navy band ─── */
 function Guarantee() {
   return (
-    <section className="bookr-section-cream py-20 text-navy sm:py-28">
-      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+    <section className="bookr-section-navy-band py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <FadeUp>
-          <h2 className="font-display text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            We put our skin in the game.
-          </h2>
-          <p className="prose-measure mx-auto mt-5 text-lg leading-relaxed text-navy/70">
-            Free setup and a pilot period. You pay when Bookr is booking appointments on your
-            calendar — terms finalized on your walkthrough. No lock-in until it&apos;s working for
-            you.
-          </p>
+          <SectionHeading
+            align="center"
+            title="We put our skin in the game."
+            subline="Free setup. You pay when Bookr is booking on your calendar."
+          />
         </FadeUp>
       </div>
     </section>
@@ -278,15 +289,14 @@ function Guarantee() {
 /* ─── PRICING ─── */
 function Pricing() {
   return (
-    <section id="pricing" className="bookr-section-surface py-20 text-navy sm:py-28">
+    <section id="pricing" className="bookr-section-surface py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
-          <h2 className="font-display max-w-[65ch] text-2xl font-semibold leading-snug tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            One saved commission covers months of Bookr.
-          </h2>
-          <p className="prose-measure mt-4 text-lg leading-relaxed text-navy/60">
-            Inside sales assistants run $1,500–3,000/mo. Bookr starts at $197/mo.
-          </p>
+          <SectionHeading
+            align="center"
+            title="One saved commission covers months of Bookr."
+            subline="Starts at $197/mo. No setup fees."
+          />
         </FadeUp>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
@@ -314,10 +324,6 @@ function Pricing() {
             ]}
           />
         </div>
-
-        <p className="prose-measure mx-auto mt-10 text-center text-base text-navy/50">
-          No setup fees. Cancel anytime.
-        </p>
       </div>
     </section>
   );
@@ -335,65 +341,55 @@ function PricingCard({
   features: string[];
 }) {
   return (
-    <div className="bookr-card-elevated flex flex-col rounded-2xl p-8 sm:p-10">
-      <h3 className="font-display text-2xl font-semibold text-navy">{name}</h3>
-      <p className="mt-2 text-base text-navy/55">{desc}</p>
-      <div className="mt-6 flex items-baseline gap-1">
-        <span className="font-display text-5xl font-semibold tracking-tight text-navy">{price}</span>
-        <span className="text-navy/45">/mo</span>
+    <FadeUp>
+      <div className="bookr-card-elevated flex h-full flex-col rounded-2xl p-8 sm:p-10">
+        <h3 className="font-display text-2xl font-bold text-navy">{name}</h3>
+        <p className="mt-2 text-base text-navy/55">{desc}</p>
+        <div className="mt-6 flex items-baseline gap-1">
+          <span className="font-display text-5xl font-bold tracking-tight text-navy">{price}</span>
+          <span className="text-navy/45">/mo</span>
+        </div>
+        <ul className="mt-8 flex-1 space-y-3">
+          {features.map((f) => (
+            <li key={f} className="flex gap-3 text-base text-navy/75">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-navy/40" strokeWidth={2.5} />
+              {f}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8">
+          <PrimaryCta fullWidth />
+        </div>
       </div>
-      <ul className="mt-8 flex-1 space-y-3">
-        {features.map((f) => (
-          <li key={f} className="flex gap-3 text-base text-navy/75">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-navy/40" strokeWidth={2.5} />
-            {f}
-          </li>
-        ))}
-      </ul>
-      <div className="mt-8">
-        <PrimaryCta fullWidth />
-      </div>
-    </div>
+    </FadeUp>
   );
 }
 
-/* ─── FOUNDER ─── */
+/* ─── FOUNDER — split text / illustration ─── */
 function Founder() {
   return (
-    <section className="bookr-section-base relative overflow-hidden border-t border-charcoal/8 py-20 sm:py-28">
-      <SectionImageAccent
-        src={LANDING_IMAGES.heroInterior}
-        alt=""
-        className="-left-12 bottom-0 h-40 w-56 md:h-52 md:w-72"
-      />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-14">
+    <section className="bookr-section-base border-t border-charcoal/8 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid items-start gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
           <FadeUp>
-            <div
-              className="flex h-24 w-24 items-center justify-center rounded-2xl border border-charcoal/10 bg-cream text-2xl font-semibold text-navy/80"
-              aria-hidden
-            >
-              I
-            </div>
-          </FadeUp>
-          <FadeUp delay={0.06}>
-            <h2 className="font-display text-2xl font-semibold text-navy sm:text-3xl">Ian</h2>
-            <div className="prose-measure mt-5 space-y-4 text-lg leading-relaxed text-navy/70">
+            <SectionHeading title="Built by an agent, for agents." subline="Ian — founder" />
+            <div className="prose-measure mt-6 space-y-4 text-base leading-relaxed text-navy/70 sm:text-lg">
               <p>
-                I built Bookr after watching agents lose deals they should have won — on response
-                time and language, not skill. The lead came in at 9pm. The reply went out at 9am.
-                The showing was already booked elsewhere.
-              </p>
-              <p>
-                Bookr is the lead desk I wished existed: fast, bilingual, done for you. You close
-                deals. We handle the rest.
+                I built Bookr after watching agents lose deals on response time and language — not
+                skill. The lead came in at 9pm. The reply went out at 9am. The showing was already
+                booked elsewhere.
               </p>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-block text-base font-medium text-navy underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2"
+                className="inline-block font-medium text-navy underline-offset-2 hover:underline"
               >
                 {CONTACT_EMAIL}
               </a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.06}>
+            <div className="bookr-card-elevated flex items-center justify-center rounded-2xl p-10">
+              <HouseLineIllustration className="h-36 w-44 sm:h-44 sm:w-52" />
             </div>
           </FadeUp>
         </div>
@@ -404,10 +400,10 @@ function Founder() {
 
 function TestimonialsPlaceholder() {
   return (
-    <section className="bookr-section-base border-t border-charcoal/8 py-14 text-navy sm:py-16">
+    <section className="bookr-section-periwinkle border-y border-charcoal/8 py-14 sm:py-16">
       <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
         <FadeUp>
-          <p className="text-base text-navy/45">
+          <p className="text-base font-medium text-navy/50">
             Agent stories coming soon — real names, real results.
           </p>
         </FadeUp>
@@ -423,8 +419,7 @@ function Faq() {
       q: "How much setup do I have to do?",
       a: (
         <>
-          Almost none. One walkthrough, one short onboarding — we connect your channels and go live.
-          You don&apos;t log in daily.{" "}
+          Almost none. One walkthrough — we connect your channels and go live.{" "}
           <a
             href={BOOKING_URL}
             target="_blank"
@@ -439,41 +434,36 @@ function Faq() {
     },
     {
       q: "Do I have to change my CRM?",
-      a: "No. Bookr works where your leads already arrive — Zillow, Facebook, Instagram, your site, SMS — and books on your Google Calendar.",
+      a: "No. Bookr works where your leads already arrive and books on your Google Calendar.",
     },
     {
       q: "Will this work with my Zillow leads?",
-      a: "Yes. Portal inquiries are a core intake path. Bookr replies in seconds, qualifies, and books showings.",
+      a: "Yes. Portal inquiries are a core intake path.",
     },
     {
       q: "Does it really speak Spanish?",
-      a: "Yes — native Spanish, auto-detected per message. Same qualification and booking flow in both languages.",
+      a: "Yes — native Spanish, auto-detected per message.",
     },
     {
       q: "What does it cost?",
-      a: "Standard is $197/mo. Pro with inbound calls is $397/mo. No setup fees. Cancel anytime.",
+      a: "Standard is $197/mo. Pro with inbound calls is $397/mo.",
     },
   ];
 
   return (
-    <section id="faq" className="bookr-section-surface py-20 text-navy sm:py-28">
+    <section id="faq" className="bookr-section-surface py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <FadeUp>
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-navy sm:text-3xl">FAQ</h2>
+          <SectionHeading align="center" title="FAQ" />
         </FadeUp>
         <div className="mt-10 space-y-3">
           {faqs.map((faq) => (
-            <details
-              key={faq.q}
-              className="bookr-card-elevated group rounded-xl px-5 py-4"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-medium text-navy marker:content-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2">
+            <details key={faq.q} className="bookr-card-elevated group rounded-xl px-5 py-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-navy marker:content-none">
                 {faq.q}
                 <ChevronDown className="h-5 w-5 shrink-0 text-navy/35 transition-transform group-open:rotate-180" />
               </summary>
-              <div className="prose-measure mt-3 pb-1 text-base leading-relaxed text-navy/60">
-                {faq.a}
-              </div>
+              <div className="mt-3 pb-1 text-base leading-relaxed text-navy/60">{faq.a}</div>
             </details>
           ))}
         </div>
@@ -488,12 +478,11 @@ function FinalCta() {
     <section className="bookr-section-cream border-t border-charcoal/8 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <FadeUp>
-          <h2 className="font-display text-2xl font-semibold tracking-tight text-navy sm:text-3xl lg:text-4xl">
-            See it answer your next lead.
-          </h2>
-          <p className="prose-measure mx-auto mt-4 text-lg leading-relaxed text-navy/65">
-            30 minutes. We walk through your leads, your listings, and your calendar.
-          </p>
+          <SectionHeading
+            align="center"
+            title="See it answer your next lead."
+            subline="30-minute walkthrough — your leads, listings, and calendar."
+          />
           <div className="mt-10 flex justify-center">
             <PrimaryCta />
           </div>
@@ -509,8 +498,7 @@ function ContactForm() {
     <section id="contact" className="bookr-section-base border-t border-charcoal/8 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mx-auto max-w-lg text-center">
-          <h2 className="font-display text-xl font-semibold text-navy">Prefer a form?</h2>
-          <p className="mt-2 text-base text-navy/55">Leave your details and we&apos;ll reach out.</p>
+          <SectionHeading align="center" title="Prefer a form?" subline="We'll reach out." />
         </div>
         <div className="mt-10">
           <BookrFormEmbed embedId="bookr-demo-form" label="Request a callback" />

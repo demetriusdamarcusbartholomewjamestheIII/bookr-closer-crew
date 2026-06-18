@@ -21,32 +21,34 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
   const inView = useInView(ref);
 
   return (
-    <div
-      id={id}
-      ref={ref}
-      className="bookr-card-elevated relative z-10 flex min-h-[400px] flex-col overflow-hidden rounded-2xl"
-    >
-      <div className="border-b border-charcoal/8 bg-white/80 px-5 py-3.5 backdrop-blur-sm">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
-          Live preview
-        </p>
-        <p className="text-sm font-semibold text-navy">New lead · answered in seconds</p>
-      </div>
-
+    <div className="bookr-hero-chat-float relative">
       <div
-        className="flex-1 overflow-y-auto bg-white/95 px-5 py-5 backdrop-blur-sm"
-        role="log"
-        aria-live="polite"
-        aria-label="Bookr conversation preview"
+        id={id}
+        ref={ref}
+        className="bookr-card-elevated relative flex min-h-[400px] flex-col overflow-hidden rounded-2xl"
       >
-        <TypewriterBubbles
-          script={HERO_SCRIPT}
-          active={inView}
-          minHeight={280}
-          charMs={28}
-          pauseAfterLineMs={750}
-          pauseBeforeLoopMs={3000}
-        />
+        <div className="border-b border-charcoal/8 bg-white/90 px-5 py-3.5 backdrop-blur-sm">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
+            Live preview
+          </p>
+          <p className="text-sm font-semibold text-navy">New lead · answered in seconds</p>
+        </div>
+
+        <div
+          className="flex-1 overflow-y-auto bg-white px-5 py-5"
+          role="log"
+          aria-live="polite"
+          aria-label="Bookr conversation preview"
+        >
+          <TypewriterBubbles
+            script={HERO_SCRIPT}
+            active={inView}
+            minHeight={280}
+            charMs={28}
+            pauseAfterLineMs={750}
+            pauseBeforeLoopMs={3000}
+          />
+        </div>
       </div>
     </div>
   );

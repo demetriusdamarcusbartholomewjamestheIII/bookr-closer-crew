@@ -21,25 +21,27 @@ export function ListingQaDemo() {
   return (
     <div
       ref={ref}
-      className="bookr-card-elevated grid overflow-hidden rounded-2xl sm:grid-cols-[1fr_1.15fr]"
+      className="bookr-card-elevated grid overflow-hidden rounded-2xl lg:grid-cols-[1.05fr_1fr]"
     >
-      <div className="relative min-h-[200px] sm:min-h-[320px]">
+      <div className="relative min-h-[220px] lg:min-h-[340px]">
         <img
           src={LANDING_IMAGES.listingExterior}
-          alt="Single-family home with landscaped front yard"
+          alt="Well-maintained single-family home with landscaped yard"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
           decoding="async"
+          width={1400}
+          height={933}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/30 sm:bg-gradient-to-r sm:from-transparent sm:via-navy/5 sm:to-white" />
-        <div className="absolute bottom-4 left-4 rounded-lg bg-white/90 px-3 py-1.5 text-xs font-semibold text-navy shadow-sm backdrop-blur-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-white/20" />
+        <div className="absolute bottom-4 left-4 rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-navy shadow-sm">
           1842 Oak St
         </div>
       </div>
 
-      <div className="flex flex-col justify-center bg-gradient-to-br from-cream/40 to-white p-6 sm:p-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
-          Your listing · buyer Q&A
+      <div className="flex flex-col justify-center bg-gradient-to-br from-white to-cream/30 p-6 sm:p-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-navy/45">
+          Buyer Q&A · from your listing
         </p>
         <div className="mt-4">
           <TypewriterBubbles

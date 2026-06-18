@@ -250,6 +250,23 @@
     background-image:
       radial-gradient(ellipse 90% 40% at 50% 0%, rgba(164, 176, 232, 0.05) 0%, transparent 65%);
   }
+  .bookr-section-navy-band {
+    background:
+      linear-gradient(165deg, #dce2ef 0%, #cfd8ea 45%, #e4e9f4 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 1px 0 rgba(59, 74, 107, 0.06);
+  }
+  .bookr-section-periwinkle {
+    background:
+      linear-gradient(180deg, #f0f2fc 0%, #e8ecfa 40%, #FAFAF8 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+  .bookr-hero-chat-float {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 28px 56px rgba(59, 74, 107, 0.14))
+      drop-shadow(0 8px 20px rgba(59, 74, 107, 0.08));
+  }
   .bookr-hero-glow {
     background: none;
   }
