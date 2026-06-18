@@ -33,7 +33,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
       <div
         id={id}
         ref={ref}
-        className="relative flex h-[440px] flex-col overflow-hidden rounded-2xl border-2 border-bookr-stripe-2/35 bg-white shadow-pro"
+        className="relative flex h-[600px] flex-col overflow-hidden rounded-2xl border-2 border-bookr-stripe-2/35 bg-white shadow-pro sm:h-[620px]"
       >
         <div className="flex items-center gap-3 border-b border-bookr-stripe-2/20 bg-gradient-to-r from-bookr-stripe-1/35 via-white to-cream/50 px-5 py-3.5">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-bookr-stripe-2 text-white shadow-sm">
@@ -60,7 +60,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
           <TypewriterBubbles
             script={HERO_SCRIPT}
             active={inView}
-            fixedHeight={320}
+            fixedHeight={500}
             charMs={14}
             pauseAfterLineMs={280}
             pauseBeforeLoopMs={1500}

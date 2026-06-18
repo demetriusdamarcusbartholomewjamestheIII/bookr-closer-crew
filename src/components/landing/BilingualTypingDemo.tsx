@@ -25,11 +25,11 @@ function ThreadCard({ label, script, active }: { label: string; script: Typewrit
           {label}
         </p>
       </div>
-      <div className="h-[260px] overflow-hidden p-4">
+      <div className="h-[400px] overflow-hidden p-4">
         <TypewriterBubbles
           script={script}
           active={active}
-          fixedHeight={228}
+          fixedHeight={368}
           charMs={14}
           pauseAfterLineMs={280}
           pauseBeforeLoopMs={1500}

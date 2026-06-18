@@ -18,7 +18,8 @@ const CALL_SCRIPT: TypewriterLine[] = [
   { role: "bookr", text: "You're booked — confirmation heading your way." },
 ];
 
-const CHAT_H = 300;
+/** Fits all five bubbles including wrapped opener and closer */
+const CHAT_H = 400;
 
 export function CallsDemo() {
   const ref = useRef<HTMLDivElement>(null);
