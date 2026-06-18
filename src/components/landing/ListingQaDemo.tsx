@@ -15,6 +15,8 @@ const SCRIPT: TypewriterLine[] = [
   },
 ];
 
+const CHAT_H = 280;
+
 export function ListingQaDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
@@ -22,9 +24,9 @@ export function ListingQaDemo() {
   return (
     <div
       ref={ref}
-      className="bookr-card-elevated grid overflow-hidden rounded-2xl lg:grid-cols-[1.05fr_1fr]"
+      className="bookr-card-elevated grid h-auto overflow-hidden rounded-2xl lg:h-[400px] lg:max-h-[400px] lg:min-h-[400px] lg:grid-cols-[1.05fr_1fr]"
     >
-      <div className="relative min-h-[220px] lg:min-h-[340px]">
+      <div className="relative h-[200px] min-h-0 lg:h-full">
         <ListingPhoto
           src={LANDING_IMAGES.listingExterior}
           alt="Modern home exterior with landscaped yard"
@@ -36,15 +38,15 @@ export function ListingQaDemo() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center bg-gradient-to-br from-white via-cream/50 to-bookr-stripe-1/10 p-6 sm:p-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-bookr-stripe-3">
+      <div className="flex h-full min-h-0 flex-col bg-gradient-to-br from-white via-cream/50 to-bookr-stripe-1/10 p-6 sm:p-8">
+        <p className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.05em] text-bookr-stripe-3">
           Buyer Q&A · from your listing
         </p>
-        <div className="mt-4">
+        <div className="mt-4 min-h-0 flex-1 overflow-hidden">
           <TypewriterBubbles
             script={SCRIPT}
             active={inView}
-            minHeight={180}
+            fixedHeight={CHAT_H}
             charMs={28}
             pauseAfterLineMs={700}
             pauseBeforeLoopMs={3000}

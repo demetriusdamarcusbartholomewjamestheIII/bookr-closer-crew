@@ -17,7 +17,7 @@ import { PrimaryCta } from "@/components/landing/PrimaryCta";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
-import { BOOKING_URL, CONTACT_EMAIL } from "@/lib/bookr-constants";
+import { BOOKING_URL } from "@/lib/bookr-constants";
 import { LANDING_IMAGES } from "@/lib/landing-images";
 
 export const Route = createFileRoute("/")({
@@ -57,8 +57,6 @@ function LandingPage() {
       <Guarantee />
       <CtaBand />
       <Pricing />
-      <Founder />
-      <TestimonialsPlaceholder />
       <Faq />
       <FinalCta />
       <ContactForm />
@@ -111,13 +109,13 @@ function Problem() {
           />
         </FadeUp>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <FadeUp delay={0.05}>
-            <div className="bookr-card-elevated bookr-stat-accent rounded-2xl p-8 sm:p-10">
+        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-2">
+          <FadeUp delay={0.05} className="h-full">
+            <div className="bookr-card-elevated bookr-stat-accent flex h-full min-h-[220px] flex-col rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
                 78%
               </p>
-              <p className="mt-3 text-base font-medium leading-snug text-navy/80">
+              <p className="mt-3 flex-1 text-base font-medium leading-snug text-navy/80">
                 of buyers go with the first agent to respond
               </p>
               <p className="mt-4 text-[11px] text-navy/40">
@@ -125,13 +123,16 @@ function Problem() {
               </p>
             </div>
           </FadeUp>
-          <FadeUp delay={0.1}>
-            <div className="bookr-card-elevated bookr-stat-accent rounded-2xl p-8 sm:p-10">
+          <FadeUp delay={0.1} className="h-full">
+            <div className="bookr-card-elevated bookr-stat-accent flex h-full min-h-[220px] flex-col rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
-                Hours
+                12 hrs
               </p>
-              <p className="mt-3 text-base font-medium leading-snug text-navy/80">
-                average time a business takes to reply
+              <p className="mt-3 flex-1 text-base font-medium leading-snug text-navy/80">
+                average time for a business to reply by email
+              </p>
+              <p className="mt-4 text-[11px] text-navy/40">
+                Source: Workato State of Inbound Lead Management
               </p>
             </div>
           </FadeUp>
@@ -273,11 +274,12 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="bookr-section-light py-20 sm:py-28">
+    <section id="how-it-works" className="bookr-section-periwinkle py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
           <SectionHeading
             align="center"
+            eyebrow="How it works"
             title="From inquiry to booked showing — without you in the middle."
           />
         </FadeUp>
@@ -319,11 +321,12 @@ function Guarantee() {
 /* ─── PRICING ─── */
 function Pricing() {
   return (
-    <section id="pricing" className="bookr-section-surface py-20 sm:py-28">
+    <section id="pricing" className="bookr-section-cream py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <FadeUp>
           <SectionHeading
             align="center"
+            eyebrow="Pricing"
             title="One saved commission covers months of Bookr."
             subline="Starts at $197/mo. No setup fees."
           />
@@ -411,53 +414,6 @@ function PricingCard({
   );
 }
 
-/* ─── FOUNDER — split text / illustration ─── */
-function Founder() {
-  return (
-    <section className="bookr-section-base border-t border-charcoal/8 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid items-start gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
-          <FadeUp>
-            <SectionHeading title="Built by an agent, for agents." subline="Ian — founder" />
-            <div className="prose-measure mt-6 space-y-4 text-base leading-relaxed text-navy/70 sm:text-lg">
-              <p>
-                I built Bookr after watching agents lose deals on response time and language — not
-                skill. The lead came in at 9pm. The reply went out at 9am. The showing was already
-                booked elsewhere.
-              </p>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-block font-medium text-navy underline-offset-2 hover:underline"
-              >
-                {CONTACT_EMAIL}
-              </a>
-            </div>
-          </FadeUp>
-          <FadeUp delay={0.06}>
-            <div className="bookr-card-elevated flex items-center justify-center rounded-2xl p-10">
-              <HouseLineIllustration className="h-36 w-44 sm:h-44 sm:w-52" />
-            </div>
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TestimonialsPlaceholder() {
-  return (
-    <section className="bookr-section-periwinkle border-y border-charcoal/8 py-14 sm:py-16">
-      <div className="mx-auto max-w-2xl px-5 text-center sm:px-8">
-        <FadeUp>
-          <p className="text-base font-medium text-navy/50">
-            Agent stories coming soon — real names, real results.
-          </p>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
 /* ─── FAQ ─── */
 function Faq() {
   const faqs = [
@@ -497,10 +453,10 @@ function Faq() {
   ];
 
   return (
-    <section id="faq" className="bookr-section-surface py-20 sm:py-28">
+    <section id="faq" className="bookr-section-periwinkle py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <FadeUp>
-          <SectionHeading align="center" title="FAQ" />
+          <SectionHeading align="center" eyebrow="Questions" title="FAQ" />
         </FadeUp>
         <div className="mt-10 space-y-3">
           {faqs.map((faq) => (
@@ -521,11 +477,13 @@ function Faq() {
 /* ─── FINAL CTA ─── */
 function FinalCta() {
   return (
-    <section className="bookr-section-cream border-t border-charcoal/8 py-20 sm:py-28">
+    <section className="bookr-section-navy-band py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <FadeUp>
           <SectionHeading
             align="center"
+            inverted
+            eyebrow="Get started"
             title="See it answer your next lead."
             subline="30-minute walkthrough — your leads, listings, and calendar."
           />
@@ -541,7 +499,7 @@ function FinalCta() {
 /* ─── GHL FORM ─── */
 function ContactForm() {
   return (
-    <section id="contact" className="bookr-section-base border-t border-charcoal/8 py-16 sm:py-20">
+    <section id="contact" className="bookr-section-cream border-t border-charcoal/8 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mx-auto max-w-lg text-center">
           <SectionHeading align="center" title="Prefer a form?" subline="We'll reach out." />

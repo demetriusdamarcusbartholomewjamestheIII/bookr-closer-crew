@@ -18,6 +18,8 @@ const CALL_SCRIPT: TypewriterLine[] = [
   { role: "bookr", text: "You're booked — confirmation heading your way." },
 ];
 
+const CHAT_H = 300;
+
 export function CallsDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
@@ -37,11 +39,14 @@ export function CallsDemo() {
         <Phone className="ml-auto h-4 w-4 text-bookr-stripe-3" />
       </div>
 
-      <div className="bg-gradient-to-b from-white to-cream/40 px-5 py-5">
+      <div
+        className="overflow-hidden bg-gradient-to-b from-white to-cream/40 px-5 py-5"
+        style={{ height: CHAT_H + 40, minHeight: CHAT_H + 40, maxHeight: CHAT_H + 40 }}
+      >
         <TypewriterBubbles
           script={CALL_SCRIPT}
           active={inView}
-          minHeight={200}
+          fixedHeight={CHAT_H}
           charMs={26}
           pauseAfterLineMs={650}
           pauseBeforeLoopMs={2800}

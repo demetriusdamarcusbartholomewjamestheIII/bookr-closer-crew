@@ -18,6 +18,8 @@ const REPLY_SCRIPT: TypewriterLine[] = [
   },
 ];
 
+const REPLY_BOX_H = 132;
+
 export function LeadsFlowDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
@@ -101,29 +103,31 @@ export function LeadsFlowDemo() {
       </div>
 
       <div
-        className={[
-          "rounded-xl border p-4 transition-opacity duration-500",
-          showReply
-            ? "border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 opacity-100"
-            : "border-charcoal/8 opacity-40",
-        ].join(" ")}
+        className="rounded-xl border border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 p-4"
+        style={{ height: REPLY_BOX_H, minHeight: REPLY_BOX_H, maxHeight: REPLY_BOX_H }}
       >
         <p className="text-xs font-medium text-charcoal/45">Bookr</p>
-        {showReply ? (
-          <div className="mt-2">
-            <TypewriterBubbles
-              key={cycle}
-              script={REPLY_SCRIPT}
-              active={showReply}
-              charMs={24}
-              pauseAfterLineMs={0}
-              loop={false}
-            />
-            <p className="mt-3 text-xs font-medium text-emerald-700">Replied in seconds</p>
-          </div>
-        ) : (
-          <p className="mt-2 text-sm text-charcoal/45">Waiting for lead…</p>
-        )}
+        <div className="relative mt-2" style={{ height: REPLY_BOX_H - 36 }}>
+          {!showReply && (
+            <p className="absolute inset-0 text-sm text-charcoal/45">Waiting for lead…</p>
+          )}
+          {showReply && (
+            <div className="absolute inset-0">
+              <TypewriterBubbles
+                key={cycle}
+                script={REPLY_SCRIPT}
+                active={showReply}
+                fixedHeight={REPLY_BOX_H - 56}
+                charMs={24}
+                pauseAfterLineMs={0}
+                loop={false}
+              />
+              <p className="absolute bottom-0 left-0 text-xs font-medium text-emerald-700">
+                Replied in seconds
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

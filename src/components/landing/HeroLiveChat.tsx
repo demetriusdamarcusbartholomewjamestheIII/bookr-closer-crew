@@ -25,7 +25,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
       <div
         id={id}
         ref={ref}
-        className="bookr-card-elevated relative flex min-h-[400px] flex-col overflow-hidden rounded-2xl"
+        className="bookr-card-elevated relative flex h-[440px] flex-col overflow-hidden rounded-2xl"
       >
         <div className="border-b border-charcoal/8 bg-white/90 px-5 py-3.5 backdrop-blur-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
@@ -35,7 +35,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
         </div>
 
         <div
-          className="flex-1 overflow-y-auto bg-white px-5 py-5"
+          className="flex-1 overflow-hidden bg-white px-5 py-5"
           role="log"
           aria-live="polite"
           aria-label="Bookr conversation preview"
@@ -43,7 +43,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
           <TypewriterBubbles
             script={HERO_SCRIPT}
             active={inView}
-            minHeight={280}
+            fixedHeight={320}
             charMs={28}
             pauseAfterLineMs={750}
             pauseBeforeLoopMs={3000}

@@ -9,10 +9,9 @@ const SETUP_STEPS = [
   "Link your calendar",
 ];
 
-const STEP_MS = 2400;
-const PAUSE_BEFORE_RUNNING_MS = 2000;
-const RUNNING_HOLD_MS = 14000;
-
+const STEP_MS = 1000;
+const PAUSE_BEFORE_RUNNING_MS = 600;
+const RUNNING_HOLD_MS = 5000;
 
 export function HandsFreeDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,7 +47,7 @@ export function HandsFreeDemo() {
   return (
     <div
       ref={ref}
-      className="bookr-card-elevated overflow-hidden rounded-2xl p-6 sm:p-8"
+      className="bookr-card-elevated h-[220px] overflow-hidden rounded-2xl p-6 sm:p-8"
       aria-live="polite"
     >
       {phase === "setup" ? (
@@ -59,7 +58,7 @@ export function HandsFreeDemo() {
               <li key={step} className="flex items-center gap-3 text-base text-charcoal/70">
                 <span
                   className={[
-                    "flex h-7 w-7 items-center justify-center rounded-full border transition-colors duration-500",
+                    "flex h-7 w-7 items-center justify-center rounded-full border transition-colors duration-300",
                     i < checked
                       ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-600"
                       : "border-charcoal/15 text-charcoal/25",

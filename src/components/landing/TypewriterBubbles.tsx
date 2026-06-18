@@ -41,6 +41,7 @@ export function TypewriterBubbles({
   active = true,
   className = "",
   minHeight,
+  fixedHeight,
   leadClass = DEFAULT_LEAD,
   bookrClass = DEFAULT_BOOKR,
   charMs,
@@ -52,6 +53,7 @@ export function TypewriterBubbles({
   active?: boolean;
   className?: string;
   minHeight?: number;
+  fixedHeight?: number;
   leadClass?: string;
   bookrClass?: string;
   charMs?: number;
@@ -65,10 +67,19 @@ export function TypewriterBubbles({
     { charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop },
   );
 
+  const height = fixedHeight ?? minHeight;
+  const isFixed = fixedHeight != null;
+
   return (
     <div
-      className={["space-y-3", className].join(" ")}
-      style={minHeight ? { minHeight } : undefined}
+      className={["space-y-3", isFixed ? "overflow-hidden" : "", className].join(" ")}
+      style={
+        height
+          ? isFixed
+            ? { height, minHeight: height, maxHeight: height }
+            : { minHeight: height }
+          : undefined
+      }
     >
       {completed.map((m, i) => (
         <Bubble
