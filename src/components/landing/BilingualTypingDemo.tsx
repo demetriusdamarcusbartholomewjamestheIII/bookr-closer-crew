@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TypewriterBubbles } from "@/components/landing/TypewriterBubbles";
 import { useInView } from "@/hooks/use-in-view";
+import { useIsMobile } from "@/hooks/use-mobile";
 import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 
 const EN_SCRIPT: TypewriterLine[] = [
@@ -42,11 +43,26 @@ function ThreadCard({ label, script, active }: { label: string; script: Typewrit
 export function BilingualTypingDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
+  const isMobile = useIsMobile();
+  const [esReady, setEsReady] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile) {
+      setEsReady(true);
+      return;
+    }
+    if (!inView) {
+      setEsReady(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setEsReady(true), 9000);
+    return () => window.clearTimeout(timer);
+  }, [inView, isMobile]);
 
   return (
     <div ref={ref} className="grid gap-5 sm:grid-cols-2 sm:gap-6">
       <ThreadCard label="English lead" script={EN_SCRIPT} active={inView} />
-      <ThreadCard label="Spanish lead" script={ES_SCRIPT} active={inView} />
+      <ThreadCard label="Spanish lead" script={ES_SCRIPT} active={inView && esReady} />
     </div>
   );
 }

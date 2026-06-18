@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 export type TypewriterLine = { role: string; text: string };
@@ -14,7 +15,9 @@ export function useTypewriterConversation(
   },
 ) {
   const reduced = usePrefersReducedMotion();
-  const charMs = options?.charMs ?? 30;
+  const isMobile = useIsMobile();
+  const baseCharMs = options?.charMs ?? 30;
+  const charMs = isMobile ? Math.max(baseCharMs, 44) : baseCharMs;
   const pauseAfterLineMs = options?.pauseAfterLineMs ?? 700;
   const pauseBeforeLoopMs = options?.pauseBeforeLoopMs ?? 2500;
   const loop = options?.loop ?? true;
@@ -28,9 +31,18 @@ export function useTypewriterConversation(
   const [draft, setDraft] = useState("");
   const [draftRole, setDraftRole] = useState<string | null>(null);
   const [showCursor, setShowCursor] = useState(false);
+  const [pageVisible, setPageVisible] = useState(
+    () => typeof document === "undefined" || document.visibilityState === "visible",
+  );
 
   useEffect(() => {
-    if (!active) return;
+    const onVisibility = () => setPageVisible(document.visibilityState === "visible");
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!active || !pageVisible) return;
 
     if (reduced) {
       setCompleted(script);
@@ -104,7 +116,7 @@ export function useTypewriterConversation(
 
     schedule(400, startLine);
     return cleanup;
-  }, [scriptKey, active, reduced, charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop, script]);
+  }, [scriptKey, active, pageVisible, reduced, charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop, script]);
 
   return { completed, draft, draftRole, showCursor };
 }

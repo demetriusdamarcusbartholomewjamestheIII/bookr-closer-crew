@@ -27,7 +27,7 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
         ref={ref}
         className="bookr-card-elevated relative flex h-[440px] flex-col overflow-hidden rounded-2xl"
       >
-        <div className="border-b border-charcoal/8 bg-white/90 px-5 py-3.5 backdrop-blur-sm">
+        <div className="bookr-hero-chat-header border-b border-charcoal/8 bg-white px-5 py-3.5 sm:bg-white/90 sm:backdrop-blur-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-charcoal/45">
             Live preview
           </p>

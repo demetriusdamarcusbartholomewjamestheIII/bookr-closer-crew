@@ -75,7 +75,7 @@ export function HandsFreeDemo() {
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/8 px-3 py-1.5 text-sm font-medium text-emerald-700">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-40" />
+              <span className="absolute hidden h-full w-full animate-ping rounded-full bg-emerald-500 opacity-40 sm:inline-flex" />
               <span className="relative h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             Bookr is running

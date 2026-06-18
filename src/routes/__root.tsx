@@ -11,6 +11,7 @@ import {
 } from "@tanstack/react-router";
 
 import { BrandLoader } from "../components/BrandLoader";
+import { useIsMobile } from "../hooks/use-mobile";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -163,6 +164,7 @@ function injectChatWidget() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isMobile = useIsMobile();
   const [pageLoad, setPageLoad] = useState({ ready: false, preload: false });
 
   useEffect(() => {
@@ -182,9 +184,34 @@ function RootComponent() {
   useEffect(() => {
     if (!pageLoad.ready) return;
 
-    const timer = window.setTimeout(injectChatWidget, 150);
-    return () => window.clearTimeout(timer);
-  }, [pageLoad.ready]);
+    if (!isMobile) {
+      const timer = window.setTimeout(injectChatWidget, 150);
+      return () => window.clearTimeout(timer);
+    }
+
+    let injected = false;
+    let scrollEndTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const injectOnce = () => {
+      if (injected) return;
+      injected = true;
+      injectChatWidget();
+    };
+
+    const onScroll = () => {
+      if (scrollEndTimer) window.clearTimeout(scrollEndTimer);
+      scrollEndTimer = window.setTimeout(injectOnce, 3000);
+    };
+
+    const fallback = window.setTimeout(injectOnce, 20000);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollEndTimer) window.clearTimeout(scrollEndTimer);
+      window.clearTimeout(fallback);
+    };
+  }, [pageLoad.ready, isMobile]);
 
   const startPreload = useCallback(() => {
     setPageLoad((s) => (s.preload ? s : { ...s, preload: true }));

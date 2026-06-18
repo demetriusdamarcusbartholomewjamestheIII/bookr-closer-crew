@@ -22,10 +22,10 @@ export function LandingNav() {
   return (
     <header
       className={[
-        "sticky top-0 z-50 border-b transition-colors duration-200",
+        "bookr-landing-nav sticky top-0 z-50 border-b transition-colors duration-200",
         scrolled
-          ? "border-charcoal/10 bg-[#F0EEE8]/95 shadow-[0_4px_24px_-8px_rgba(59,74,107,0.14)] backdrop-blur-md"
-          : "border-transparent bg-[#F0EEE8]/90 backdrop-blur-sm",
+          ? "border-charcoal/10 bg-[#F0EEE8] shadow-[0_4px_24px_-8px_rgba(59,74,107,0.14)] sm:bg-[#F0EEE8]/95 sm:backdrop-blur-md"
+          : "border-transparent bg-[#F0EEE8] sm:bg-[#F0EEE8]/90 sm:backdrop-blur-sm",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">

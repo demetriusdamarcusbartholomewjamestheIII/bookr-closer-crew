@@ -34,8 +34,8 @@ export function ListingPhoto({
       className={className}
       loading="lazy"
       decoding="async"
-      width={1600}
-      height={1067}
+      width={1200}
+      height={800}
       onError={() => setFailed(true)}
     />
   );

@@ -1,20 +1,22 @@
-import { useEffect, useState, type RefObject } from "react";
+import { useLayoutEffect, useState, type RefObject } from "react";
 
+/**
+ * Tracks whether `ref` is intersecting the viewport.
+ * Keeps observing (does not disconnect after first hit) so callers can pause
+ * work when the element scrolls off-screen — critical on mobile.
+ */
 export function useInView(ref: RefObject<Element | null>, threshold = 0.2) {
   const [inView, setInView] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
+        setInView(entry.isIntersecting);
       },
-      { threshold },
+      { threshold, rootMargin: "0px 0px -2% 0px" },
     );
 
     observer.observe(el);
