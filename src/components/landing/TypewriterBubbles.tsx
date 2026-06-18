@@ -48,6 +48,7 @@ export function TypewriterBubbles({
   pauseAfterLineMs,
   pauseBeforeLoopMs,
   loop,
+  onComplete,
 }: {
   script: TypewriterLine[];
   active?: boolean;
@@ -60,11 +61,12 @@ export function TypewriterBubbles({
   pauseAfterLineMs?: number;
   pauseBeforeLoopMs?: number;
   loop?: boolean;
+  onComplete?: () => void;
 }) {
   const { completed, draft, draftRole, showCursor } = useTypewriterConversation(
     script,
     active,
-    { charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop },
+    { charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop, onComplete },
   );
 
   const height = fixedHeight ?? minHeight;

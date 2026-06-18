@@ -47,9 +47,9 @@ export function CallsDemo() {
           script={CALL_SCRIPT}
           active={inView}
           fixedHeight={CHAT_H}
-          charMs={26}
-          pauseAfterLineMs={650}
-          pauseBeforeLoopMs={2800}
+          charMs={14}
+          pauseAfterLineMs={280}
+          pauseBeforeLoopMs={1500}
           bookrClass="rounded-br-md bg-bookr-stripe-2/15 text-navy border border-bookr-stripe-2/20"
         />
       </div>

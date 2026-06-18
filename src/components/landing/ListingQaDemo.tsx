@@ -48,9 +48,9 @@ export function ListingQaDemo() {
             script={SCRIPT}
             active={inView}
             fixedHeight={CHAT_H}
-            charMs={28}
-            pauseAfterLineMs={700}
-            pauseBeforeLoopMs={3000}
+            charMs={14}
+            pauseAfterLineMs={280}
+            pauseBeforeLoopMs={1500}
           />
         </div>
       </div>

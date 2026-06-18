@@ -44,9 +44,9 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
             script={HERO_SCRIPT}
             active={inView}
             fixedHeight={320}
-            charMs={28}
-            pauseAfterLineMs={750}
-            pauseBeforeLoopMs={3000}
+            charMs={14}
+            pauseAfterLineMs={280}
+            pauseBeforeLoopMs={1500}
           />
         </div>
       </div>

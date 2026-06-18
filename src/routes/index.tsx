@@ -202,10 +202,10 @@ function DiffLeadSources() {
     <section className="bookr-section-base py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <FadeUp className="lg:order-1">
+          <FadeUp className="order-2 lg:order-1">
             <LeadsFlowDemo />
           </FadeUp>
-          <FadeUp delay={0.06} className="lg:order-2">
+          <FadeUp delay={0.06} className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="Channels"
               title="Works with the leads you already get."

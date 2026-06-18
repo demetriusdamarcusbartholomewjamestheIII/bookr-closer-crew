@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
@@ -12,15 +12,18 @@ export function useTypewriterConversation(
     pauseAfterLineMs?: number;
     pauseBeforeLoopMs?: number;
     loop?: boolean;
+    onComplete?: () => void;
   },
 ) {
   const reduced = usePrefersReducedMotion();
   const isMobile = useIsMobile();
-  const baseCharMs = options?.charMs ?? 30;
-  const charMs = isMobile ? Math.max(baseCharMs, 44) : baseCharMs;
-  const pauseAfterLineMs = options?.pauseAfterLineMs ?? 700;
-  const pauseBeforeLoopMs = options?.pauseBeforeLoopMs ?? 2500;
+  const baseCharMs = options?.charMs ?? 15;
+  const charMs = isMobile ? Math.max(baseCharMs, 16) : baseCharMs;
+  const pauseAfterLineMs = options?.pauseAfterLineMs ?? 280;
+  const pauseBeforeLoopMs = options?.pauseBeforeLoopMs ?? 1500;
   const loop = options?.loop ?? true;
+  const onCompleteRef = useRef(options?.onComplete);
+  onCompleteRef.current = options?.onComplete;
 
   const scriptKey = useMemo(
     () => script.map((s) => `${s.role}:${s.text}`).join("|"),
@@ -49,6 +52,7 @@ export function useTypewriterConversation(
       setDraft("");
       setDraftRole(null);
       setShowCursor(false);
+      if (!loop) onCompleteRef.current?.();
       return;
     }
 
@@ -86,6 +90,8 @@ export function useTypewriterConversation(
             setCompleted([]);
             startLine();
           });
+        } else {
+          onCompleteRef.current?.();
         }
         return;
       }
@@ -114,7 +120,7 @@ export function useTypewriterConversation(
       }, charMs);
     };
 
-    schedule(400, startLine);
+    schedule(200, startLine);
     return cleanup;
   }, [scriptKey, active, pageVisible, reduced, charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop, script]);
 

@@ -18,7 +18,8 @@ const REPLY_SCRIPT: TypewriterLine[] = [
   },
 ];
 
-const REPLY_BOX_H = 132;
+/** Room for a wrapped Bookr bubble (~4 lines at text-sm) */
+const REPLY_BUBBLE_H = 120;
 
 export function LeadsFlowDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,6 +28,7 @@ export function LeadsFlowDemo() {
   const [cycle, setCycle] = useState(0);
   const [activeSource, setActiveSource] = useState(-1);
   const [showReply, setShowReply] = useState(false);
+  const [replyComplete, setReplyComplete] = useState(false);
 
   useEffect(() => {
     if (!inView) return;
@@ -34,11 +36,13 @@ export function LeadsFlowDemo() {
     if (reduced) {
       setActiveSource(SOURCES.length - 1);
       setShowReply(true);
+      setReplyComplete(true);
       return;
     }
 
     setActiveSource(-1);
     setShowReply(false);
+    setReplyComplete(false);
 
     let step = 0;
     let timer: ReturnType<typeof setTimeout> | null = null;
@@ -54,18 +58,18 @@ export function LeadsFlowDemo() {
       if (step < SOURCES.length) {
         setActiveSource(step);
         step += 1;
-        schedule(650, run);
+        schedule(400, run);
         return;
       }
-      schedule(500, () => {
+      schedule(350, () => {
         setShowReply(true);
-        schedule(8000, () => {
+        schedule(6000, () => {
           setCycle((c) => c + 1);
         });
       });
     };
 
-    schedule(400, run);
+    schedule(250, run);
 
     return () => {
       cancelled = true;
@@ -102,32 +106,36 @@ export function LeadsFlowDemo() {
         <span className="h-px flex-1 bg-charcoal/10" />
       </div>
 
-      <div
-        className="rounded-xl border border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 p-4"
-        style={{ height: REPLY_BOX_H, minHeight: REPLY_BOX_H, maxHeight: REPLY_BOX_H }}
-      >
+      <div className="rounded-xl border border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 p-4">
         <p className="text-xs font-medium text-charcoal/45">Bookr</p>
-        <div className="relative mt-2" style={{ height: REPLY_BOX_H - 36 }}>
-          {!showReply && (
-            <p className="absolute inset-0 text-sm text-charcoal/45">Waiting for lead…</p>
-          )}
-          {showReply && (
-            <div className="absolute inset-0">
+
+        {!showReply ? (
+          <p className="mt-3 text-sm text-charcoal/45">Waiting for lead…</p>
+        ) : (
+          <>
+            <div className="mt-2 overflow-hidden" style={{ height: REPLY_BUBBLE_H }}>
               <TypewriterBubbles
                 key={cycle}
                 script={REPLY_SCRIPT}
-                active={showReply}
-                fixedHeight={REPLY_BOX_H - 56}
-                charMs={24}
+                active={showReply && inView}
+                fixedHeight={REPLY_BUBBLE_H}
+                charMs={14}
                 pauseAfterLineMs={0}
                 loop={false}
+                onComplete={() => setReplyComplete(true)}
               />
-              <p className="absolute bottom-0 left-0 text-xs font-medium text-emerald-700">
-                Replied in seconds
-              </p>
             </div>
-          )}
-        </div>
+            <p
+              className={[
+                "mt-3 text-xs font-medium text-emerald-700 transition-opacity duration-300",
+                replyComplete ? "opacity-100" : "opacity-0",
+              ].join(" ")}
+              aria-hidden={!replyComplete}
+            >
+              Replied in seconds
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

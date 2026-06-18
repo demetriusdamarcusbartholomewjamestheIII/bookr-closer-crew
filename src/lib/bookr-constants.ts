@@ -3,7 +3,7 @@ export const SITE_URL = "https://heybookr.com";
 export const OG_IMAGE_URL = `${SITE_URL}/og-image.svg`;
 
 export const BOOKING_URL =
-  "https://book.heybookr.com/widget/booking/lsSVaQRdRil1Jkbwdl9";
+  "https://book.heybookr.com/widget/booking/lsSVaQRdRil1Jkbwdl9B";
 
 export const CONTACT_EMAIL = "ian@heybookr.com";
 
