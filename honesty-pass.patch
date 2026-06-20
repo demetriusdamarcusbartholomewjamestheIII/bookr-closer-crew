@@ -1,0 +1,119 @@
+diff --git a/src/components/landing/BilingualTypingDemo.tsx b/src/components/landing/BilingualTypingDemo.tsx
+index ffaeee8..5dd2e91 100644
+--- a/src/components/landing/BilingualTypingDemo.tsx
++++ b/src/components/landing/BilingualTypingDemo.tsx
+@@ -5,14 +5,14 @@ import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
+ 
+ const EN_SCRIPT: TypewriterLine[] = [
+   { role: "lead", text: "Hi — is 1842 Oak St still available?" },
+-  { role: "bookr", text: "Hi! Yes, still active. Are you hoping to move in the next 60 days?" },
++  { role: "bookr", text: "Hi! Great choice — let me get you a tour. Are you hoping to move in the next 60 days?" },
+   { role: "lead", text: "Yes — pre-approved, within 30 days." },
+   { role: "bookr", text: "Great. Thursday at 2pm or Friday at 10am for a tour?" },
+ ];
+ 
+ const ES_SCRIPT: TypewriterLine[] = [
+   { role: "lead", text: "Hola — ¿sigue disponible la casa en Oak St?" },
+-  { role: "bookr", text: "¡Hola! Sí, sigue activa. ¿Busca mudarse en los próximos 60 días?" },
++  { role: "bookr", text: "¡Hola! Excelente opción — le agendo una visita. ¿Busca mudarse en los próximos 60 días?" },
+   { role: "lead", text: "Sí, con pre-aprobación. En 30 días." },
+   { role: "bookr", text: "Perfecto. ¿Jueves 2pm o viernes 10am para un recorrido?" },
+ ];
+diff --git a/src/components/landing/CallsDemo.tsx b/src/components/landing/CallsDemo.tsx
+index b53beb6..08ef864 100644
+--- a/src/components/landing/CallsDemo.tsx
++++ b/src/components/landing/CallsDemo.tsx
+@@ -12,7 +12,7 @@ const CALL_SCRIPT: TypewriterLine[] = [
+   { role: "lead", text: "Buy — I saw the Maple St listing on Zillow." },
+   {
+     role: "bookr",
+-    text: "Still available. Saturday at 11am or Thursday at 5:30pm for a tour?",
++    text: "Great pick — let me get you a tour. Saturday at 11am or Thursday at 5:30pm?",
+   },
+   { role: "lead", text: "Saturday works." },
+   { role: "bookr", text: "You're booked — confirmation heading your way." },
+diff --git a/src/components/landing/HeroLiveChat.tsx b/src/components/landing/HeroLiveChat.tsx
+index 10353d3..4e0a4d5 100644
+--- a/src/components/landing/HeroLiveChat.tsx
++++ b/src/components/landing/HeroLiveChat.tsx
+@@ -10,7 +10,7 @@ const HERO_SCRIPT: TypewriterLine[] = [
+     text: "Hi! I'm Bookr — I reply to every lead in seconds, in English or Spanish. Looking to buy or sell?",
+   },
+   { role: "lead", text: "Buy — is the Maple St listing still available?" },
+-  { role: "bookr", text: "Yes, still active. Are you hoping to move in the next 60 days?" },
++  { role: "bookr", text: "Maple St — great choice. Let me get you in to see it. Hoping to move in the next 60 days?" },
+   { role: "lead", text: "Yes — pre-approved, within 30 days." },
+   { role: "bookr", text: "Great. Saturday at 11am or Thursday at 5:30pm for a tour?" },
+   { role: "lead", text: "Saturday at 11 works." },
+diff --git a/src/components/landing/ListingQaDemo.tsx b/src/components/landing/ListingQaDemo.tsx
+index bb07617..8fb8811 100644
+--- a/src/components/landing/ListingQaDemo.tsx
++++ b/src/components/landing/ListingQaDemo.tsx
+@@ -6,12 +6,12 @@ import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
+ import { LANDING_IMAGES } from "@/lib/landing-images";
+ 
+ const SCRIPT: TypewriterLine[] = [
+-  { role: "lead", text: "Does the Oak St listing have a garage?" },
+-  { role: "bookr", text: "Yes — 2-car attached garage at 1842 Oak St. Want to see it?" },
+-  { role: "lead", text: "¿Cuál es el HOA?" },
++  { role: "lead", text: "Is the Oak St listing still on the market?" },
++  { role: "bookr", text: "1842 Oak St — that's one of ours. Let me get you in to see it. Are you pre-approved yet?" },
++  { role: "lead", text: "Sí. ¿Cuántas recámaras tiene?" },
+   {
+     role: "bookr",
+-    text: "El HOA es $185/mes e incluye piscina y áreas verdes. ¿Jueves 2pm o viernes 10am?",
++    text: "Tiene 3 recámaras. Los detalles finos se los repasa el agente en la visita — ¿jueves 2pm o viernes 10am?",
+   },
+ ];
+ 
+@@ -42,7 +42,7 @@ export function ListingQaDemo() {
+ 
+       <div className="flex h-full min-h-0 flex-col bg-gradient-to-br from-white via-cream/50 to-bookr-stripe-1/10 p-6 sm:p-8">
+         <p className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.05em] text-bookr-stripe-3">
+-          Buyer Q&A · from your listing
++          Buyer Q&A · your listings, loaded at setup
+         </p>
+         <div className="mt-4 min-h-0 flex-1 overflow-hidden">
+           <TypewriterBubbles
+diff --git a/src/routes/index.tsx b/src/routes/index.tsx
+index c0b3415..d27ee78 100644
+--- a/src/routes/index.tsx
++++ b/src/routes/index.tsx
+@@ -230,7 +230,7 @@ function DiffLeadSources() {
+             <SectionHeading
+               eyebrow="Channels"
+               title="Works with the leads you already get."
+-              subline="Zillow, Facebook, Instagram, your site — answered the moment they arrive."
++              subline="Texts, Facebook, Instagram, your website — answered the moment they arrive. Your Zillow leads connect in too."
+             />
+           </FadeUp>
+         </div>
+@@ -272,8 +272,8 @@ function DiffListings() {
+             <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
+             <SectionHeading
+               eyebrow="Listings"
+-              title="Buyers ask about your listings. Bookr answers — instantly."
+-              subline="Listing details, showings, midnight inquiries — handled from your data."
++              title="Buyers ask about your listings. Bookr answers — and books the showing."
++              subline="We load your listings at setup, so Bookr fields the common questions and gets the tour on your calendar — day or night."
+             />
+             <div className="mt-8 hidden lg:block">
+               <ListingPhoto
+@@ -369,7 +369,7 @@ function Pricing() {
+               "Replies in seconds, 24/7",
+               "English & Spanish, auto-detected",
+               "Qualifies and books on your calendar",
+-              "Answers questions on your listings",
++              "Answers buyer questions on listings you load",
+               "Done-for-you setup",
+             ]}
+           />
+@@ -468,7 +468,7 @@ function Faq() {
+     },
+     {
+       q: "Will this work with my Zillow leads?",
+-      a: "Yes. Portal inquiries are a core intake path.",
++      a: "Yes. If you get leads through Zillow Premier Agent, we connect them so Bookr texts each one back in seconds — the fast follow-up portal leads rarely get.",
+     },
+     {
+       q: "Does it really speak Spanish?",
