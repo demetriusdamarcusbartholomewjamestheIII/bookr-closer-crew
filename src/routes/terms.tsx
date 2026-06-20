@@ -41,6 +41,10 @@ function TermsPage() {
           &quot;Service&quot;). By requesting a demo, creating an account, or using the Service, you
           agree to these Terms. If you do not agree, do not use the Service.
         </p>
+        <p className="mt-4 leading-relaxed text-charcoal/75">
+          Bookr is a brand name operated by Ian Nikel García Colotl, a sole proprietor (&quot;Bookr,&quot;
+          &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
+        </p>
 
         <div className="mt-12 space-y-10 text-charcoal/80">
           <Section title="1. Definitions">

@@ -47,7 +47,8 @@ function PrivacyPage() {
           <Section title="1. Who we are">
             <p>
               Bookr provides a done-for-you lead response and appointment-booking service for real
-              estate professionals. Our website is operated at heybookr.com. For privacy-related
+              estate professionals. Bookr is a brand name operated by Ian Nikel García Colotl, a sole
+              proprietor. Our website is operated at heybookr.com. For privacy-related
               requests, contact us at{" "}
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
                 {CONTACT_EMAIL}
@@ -123,6 +124,15 @@ function PrivacyPage() {
             <p className="mt-4">
               We require subprocessors that handle personal information to provide appropriate
               contractual protections and to use data only for the purposes we specify.
+            </p>
+            <p className="mt-4 font-semibold text-charcoal">
+              SMS / mobile information: No mobile information will be shared with third parties or
+              affiliates for marketing or promotional purposes. Information sharing with
+              subcontractors in support services, such as customer service, is permitted. All other
+              use case categories exclude text messaging originator opt-in data and consent; this
+              information will not be shared with any third parties. Text messaging consent is not
+              shared with any third parties or affiliates other than the messaging and
+              telecommunications providers needed to deliver the messages you requested.
             </p>
           </Section>
 

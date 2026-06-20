@@ -1,6 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { BookrLogo } from "@/components/BookrLogo";
-import { CONTACT_EMAIL } from "@/lib/bookr-constants";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_HREF,
+  BUSINESS_ADDRESS,
+  LEGAL_OPERATOR,
+} from "@/lib/bookr-constants";
 
 export function SiteFooter() {
   return (
@@ -34,14 +40,26 @@ export function SiteFooter() {
             </a>
           </nav>
         </div>
-        <div className="mt-6 flex flex-col gap-2 text-xs md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Bookr. All rights reserved.</p>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2"
-          >
-            {CONTACT_EMAIL}
-          </a>
+        <div className="mt-6 flex flex-col gap-3 text-xs md:flex-row md:items-start md:justify-between">
+          <div className="space-y-1">
+            <p>© 2026 Bookr. All rights reserved.</p>
+            <p>Bookr is a service operated by {LEGAL_OPERATOR} (sole proprietor).</p>
+            <p>{BUSINESS_ADDRESS}</p>
+          </div>
+          <div className="space-y-1 md:text-right">
+            <a
+              href={CONTACT_PHONE_HREF}
+              className="block transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2"
+            >
+              {CONTACT_PHONE}
+            </a>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="block transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bookr-stripe-2"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </div>
         </div>
       </div>
     </footer>
