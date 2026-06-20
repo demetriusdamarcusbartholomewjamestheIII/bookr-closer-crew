@@ -12,7 +12,7 @@ const CALL_SCRIPT: TypewriterLine[] = [
   { role: "lead", text: "Buy — I saw the Maple St listing on Zillow." },
   {
     role: "bookr",
-    text: "Still available. Saturday at 11am or Thursday at 5:30pm for a tour?",
+    text: "Great pick — let me get you a tour. Saturday at 11am or Thursday at 5:30pm?",
   },
   { role: "lead", text: "Saturday works." },
   { role: "bookr", text: "You're booked — confirmation heading your way." },

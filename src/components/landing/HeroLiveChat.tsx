@@ -10,7 +10,7 @@ const HERO_SCRIPT: TypewriterLine[] = [
     text: "Hi! I'm Bookr — I reply to every lead in seconds, in English or Spanish. Looking to buy or sell?",
   },
   { role: "lead", text: "Buy — is the Maple St listing still available?" },
-  { role: "bookr", text: "Yes, still active. Are you hoping to move in the next 60 days?" },
+  { role: "bookr", text: "Maple St — great choice. Let me get you in to see it. Hoping to move in the next 60 days?" },
   { role: "lead", text: "Yes — pre-approved, within 30 days." },
   { role: "bookr", text: "Great. Saturday at 11am or Thursday at 5:30pm for a tour?" },
   { role: "lead", text: "Saturday at 11 works." },

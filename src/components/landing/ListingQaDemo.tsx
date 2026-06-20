@@ -6,12 +6,12 @@ import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 import { LANDING_IMAGES } from "@/lib/landing-images";
 
 const SCRIPT: TypewriterLine[] = [
-  { role: "lead", text: "Does the Oak St listing have a garage?" },
-  { role: "bookr", text: "Yes — 2-car attached garage at 1842 Oak St. Want to see it?" },
-  { role: "lead", text: "¿Cuál es el HOA?" },
+  { role: "lead", text: "Is the Oak St listing still on the market?" },
+  { role: "bookr", text: "1842 Oak St — that's one of ours. Let me get you in to see it. Are you pre-approved yet?" },
+  { role: "lead", text: "Sí. ¿Cuántas recámaras tiene?" },
   {
     role: "bookr",
-    text: "El HOA es $185/mes e incluye piscina y áreas verdes. ¿Jueves 2pm o viernes 10am?",
+    text: "Tiene 3 recámaras. Los detalles finos se los repasa el agente en la visita — ¿jueves 2pm o viernes 10am?",
   },
 ];
 
@@ -42,7 +42,7 @@ export function ListingQaDemo() {
 
       <div className="flex h-full min-h-0 flex-col bg-gradient-to-br from-white via-cream/50 to-bookr-stripe-1/10 p-6 sm:p-8">
         <p className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.05em] text-bookr-stripe-3">
-          Buyer Q&A · from your listing
+          Buyer Q&A · your listings, loaded at setup
         </p>
         <div className="mt-4 min-h-0 flex-1 overflow-hidden">
           <TypewriterBubbles

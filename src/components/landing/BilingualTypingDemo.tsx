@@ -5,14 +5,14 @@ import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 
 const EN_SCRIPT: TypewriterLine[] = [
   { role: "lead", text: "Hi — is 1842 Oak St still available?" },
-  { role: "bookr", text: "Hi! Yes, still active. Are you hoping to move in the next 60 days?" },
+  { role: "bookr", text: "Hi! Great choice — let me get you a tour. Are you hoping to move in the next 60 days?" },
   { role: "lead", text: "Yes — pre-approved, within 30 days." },
   { role: "bookr", text: "Great. Thursday at 2pm or Friday at 10am for a tour?" },
 ];
 
 const ES_SCRIPT: TypewriterLine[] = [
   { role: "lead", text: "Hola — ¿sigue disponible la casa en Oak St?" },
-  { role: "bookr", text: "¡Hola! Sí, sigue activa. ¿Busca mudarse en los próximos 60 días?" },
+  { role: "bookr", text: "¡Hola! Excelente opción — le agendo una visita. ¿Busca mudarse en los próximos 60 días?" },
   { role: "lead", text: "Sí, con pre-aprobación. En 30 días." },
   { role: "bookr", text: "Perfecto. ¿Jueves 2pm o viernes 10am para un recorrido?" },
 ];

@@ -230,7 +230,7 @@ function DiffLeadSources() {
             <SectionHeading
               eyebrow="Channels"
               title="Works with the leads you already get."
-              subline="Zillow, Facebook, Instagram, your site — answered the moment they arrive."
+              subline="Texts, Facebook, Instagram, your website — answered the moment they arrive. Your Zillow leads connect in too."
             />
           </FadeUp>
         </div>
@@ -272,8 +272,8 @@ function DiffListings() {
             <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
             <SectionHeading
               eyebrow="Listings"
-              title="Buyers ask about your listings. Bookr answers — instantly."
-              subline="Listing details, showings, midnight inquiries — handled from your data."
+              title="Buyers ask about your listings. Bookr answers — and books the showing."
+              subline="We load your listings at setup, so Bookr fields the common questions and gets the tour on your calendar — day or night."
             />
             <div className="mt-8 hidden lg:block">
               <ListingPhoto
@@ -369,7 +369,7 @@ function Pricing() {
               "Replies in seconds, 24/7",
               "English & Spanish, auto-detected",
               "Qualifies and books on your calendar",
-              "Answers questions on your listings",
+              "Answers buyer questions on listings you load",
               "Done-for-you setup",
             ]}
           />
@@ -468,7 +468,7 @@ function Faq() {
     },
     {
       q: "Will this work with my Zillow leads?",
-      a: "Yes. Portal inquiries are a core intake path.",
+      a: "Yes. If you get leads through Zillow Premier Agent, we connect them so Bookr texts each one back in seconds — the fast follow-up portal leads rarely get.",
     },
     {
       q: "Does it really speak Spanish?",
