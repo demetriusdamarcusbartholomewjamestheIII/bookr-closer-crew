@@ -1,0 +1,54 @@
+diff --git a/src/routes/privacy.tsx b/src/routes/privacy.tsx
+index 204f6e2..fbd3d60 100644
+--- a/src/routes/privacy.tsx
++++ b/src/routes/privacy.tsx
+@@ -107,31 +107,34 @@ function PrivacyPage() {
+             </p>
+           </Section>
+ 
+-          <Section title="5. How we share information">
++          <Section title="5. Service providers and subprocessors">
+             <p>
+-              We share information only as needed to deliver the service, operate our business, or
+-              comply with law. Categories of recipients may include:
++              We do not sell your personal information, and we do not share it with third parties for
++              their own marketing or promotional purposes. To operate and deliver the service, we rely
++              on a limited set of service providers and subprocessors who process information only on
++              our behalf, under contract, and solely to provide the service to us. These include:
+             </p>
+             <List
+               items={[
+-                "Infrastructure and hosting providers that store and transmit data securely.",
+-                "Messaging, CRM, calendar, and automation platforms used to connect Client accounts and deliver responses (including platforms such as LeadConnector / GoHighLevel, Meta, Google, and telecommunications carriers).",
+-                "Payment processors that handle subscription billing.",
+-                "Professional advisors (lawyers, accountants) under confidentiality obligations.",
+-                "Law enforcement or regulators when required by valid legal process.",
++                "Infrastructure and hosting providers that store and transmit data securely on our behalf.",
++                "Messaging, CRM, calendar, and automation platforms we use to operate the service (such as LeadConnector / GoHighLevel, Meta, Google, and telecommunications providers), which process data on our behalf to deliver the messages and bookings you request.",
++                "Payment processors that handle subscription billing on our behalf.",
++                "Professional advisors (lawyers, accountants) bound by confidentiality obligations.",
++                "Government authorities or regulators, only where required by valid legal process.",
+               ]}
+             />
+             <p className="mt-4">
+-              We require subprocessors that handle personal information to provide appropriate
+-              contractual protections and to use data only for the purposes we specify.
++              We require these service providers to use information only for the purposes we specify
++              and to protect it under appropriate contractual safeguards. They are not permitted to use
++              your information for their own purposes.
+             </p>
+             <p className="mt-4 font-semibold text-charcoal">
+               SMS / mobile information: No mobile information will be shared with third parties or
+-              affiliates for marketing or promotional purposes. Information sharing with
+-              subcontractors in support services, such as customer service, is permitted. All other
+-              use case categories exclude text messaging originator opt-in data and consent; this
+-              information will not be shared with any third parties. Text messaging consent is not
+-              shared with any third parties or affiliates other than the messaging and
++              affiliates for marketing or promotional purposes. Information sharing with subcontractors
++              in support services, such as customer service, is permitted. All other use case
++              categories exclude text messaging originator opt-in data and consent; this information
++              will not be shared with any third parties. Text messaging originator opt-in data and
++              consent will not be shared with any third parties, except for the aggregators and
+               telecommunications providers needed to deliver the messages you requested.
+             </p>
+           </Section>
