@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import {
+  BUSINESS_ADDRESS,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_HREF,
+  LEGAL_OPERATOR,
+} from "@/lib/bookr-constants";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -16,8 +23,7 @@ export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
 });
 
-const LAST_UPDATED = "June 12, 2026";
-const CONTACT_EMAIL = "ian@heybookr.com";
+const LAST_UPDATED = "June 19, 2026";
 
 function PrivacyPage() {
   return (
@@ -61,7 +67,7 @@ function PrivacyPage() {
             <p>Depending on how you interact with Bookr, we may collect the following categories of information:</p>
             <List
               items={[
-                "Account and contact information — name, email address, phone number, brokerage or business name, market area, and billing details you provide when signing up or requesting a demo.",
+                "Account and contact information — name, email address, mobile phone number, brokerage or business name, market area, and billing details you provide when signing up, requesting a demo, or opting in to SMS on our website forms.",
                 "Service configuration data — calendar availability, response preferences, conversation scripts, qualification rules, and connected platform settings needed to operate the service on your behalf.",
                 "Lead and communication data — messages, form submissions, contact details, and metadata from inbound leads received through connected channels (e.g., website forms, social platforms, SMS), including the content of conversations Bookr sends and receives while acting as your lead desk.",
                 "Technical and usage data — IP address, browser type, device information, pages viewed, referral URLs, and similar analytics data collected through cookies and similar technologies on our marketing site.",
@@ -81,7 +87,7 @@ function PrivacyPage() {
               items={[
                 "Provide, configure, monitor, and improve the Bookr service for Clients.",
                 "Respond to inbound leads, qualify prospects, and schedule appointments on a Client's calendar according to agreed rules.",
-                "Send service notifications, onboarding materials, billing communications, and support responses.",
+                "Send service notifications, onboarding materials, billing communications, support responses, and — where you have opted in — SMS text messages as described in Section 14 of this policy.",
                 "Operate, secure, and troubleshoot our website, infrastructure, and integrations.",
                 "Analyze aggregated usage of our marketing site to improve content and conversion.",
                 "Comply with legal obligations, enforce our Terms of Service, and protect the rights and safety of Bookr, our Clients, and third parties.",
@@ -242,13 +248,75 @@ function PrivacyPage() {
             </p>
           </Section>
 
-          <Section title="14. Contact">
+          <Section title="14. SMS text messaging and opt-in">
+            <p>
+              Bookr ({LEGAL_OPERATOR}, operating as a sole proprietor at {BUSINESS_ADDRESS}) may send
+              SMS text messages to individuals who voluntarily opt in on heybookr.com — for example, by
+              submitting a demo request or contact form that includes a mobile number and a consent
+              checkbox that you actively check before submitting.
+            </p>
+            <p className="mt-4 font-semibold text-charcoal">How opt-in works</p>
+            <p>
+              We do not send SMS messages without your express consent. Opt-in is collected only
+              through our website forms where you provide your mobile number and affirmatively agree to
+              receive texts. Your consent is not a condition of purchasing any goods or services except
+              where SMS is the channel you choose for the communications you request (such as
+              appointment confirmations or replies to your inquiry).
+            </p>
+            <p className="mt-4 font-semibold text-charcoal">Program and message types</p>
+            <List
+              items={[
+                "Non-marketing messages: appointment confirmations, reminders, scheduling links, and replies to inquiries you initiated with us or a Client we serve on your behalf.",
+                "Marketing messages (only if you separately opt in to marketing): offers, service updates, and related promotions from Bookr.",
+              ]}
+            />
+            <p className="mt-4">
+              <span className="font-semibold text-charcoal">Message frequency</span> varies based on
+              your interactions with us; typically a handful of messages per conversation or booking
+              flow, not recurring daily marketing unless you have opted in to marketing messages.{" "}
+              <span className="font-semibold text-charcoal">Message and data rates may apply</span>,
+              as charged by your wireless carrier.
+            </p>
+            <p className="mt-4">
+              <span className="font-semibold text-charcoal">Opt out at any time</span> by replying STOP
+              to any message; you will receive a one-time confirmation and no further texts unless you
+              opt in again. Reply HELP for assistance, email{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
+                {CONTACT_EMAIL}
+              </a>
+              , or call{" "}
+              <a href={CONTACT_PHONE_HREF} className="text-navy underline-offset-2 hover:underline">
+                {CONTACT_PHONE}
+              </a>
+              .
+            </p>
+            <p className="mt-4">
+              Mobile carriers are not liable for delayed or undelivered messages. You must be at least
+              18 years old and the account holder or an authorized user of the mobile number you provide
+              to opt in.
+            </p>
+            <p className="mt-4">
+              For full terms governing our SMS program — including message types, frequency, and
+              carrier limitations — see{" "}
+              <a href="/terms" className="text-navy underline-offset-2 hover:underline">
+                Section 17 of our Terms of Service
+              </a>
+              . How we share mobile and opt-in information with service providers is described in
+              Section 5 of this policy.
+            </p>
+          </Section>
+
+          <Section title="15. Contact">
             <p>
               Questions about this Privacy Policy or our data practices? Email{" "}
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
                 {CONTACT_EMAIL}
               </a>
-              .
+              , call{" "}
+              <a href={CONTACT_PHONE_HREF} className="text-navy underline-offset-2 hover:underline">
+                {CONTACT_PHONE}
+              </a>
+              , or write to {BUSINESS_ADDRESS}.
             </p>
           </Section>
         </div>
