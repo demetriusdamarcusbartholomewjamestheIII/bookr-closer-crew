@@ -1,0 +1,95 @@
+diff --git a/src/components/BrandLoader.tsx b/src/components/BrandLoader.tsx
+index 00f660c..a274eab 100644
+--- a/src/components/BrandLoader.tsx
++++ b/src/components/BrandLoader.tsx
+@@ -20,10 +20,12 @@ export function BrandLoader({
+   onFinishedRef.current = onFinished;
+ 
+   useLayoutEffect(() => {
++    const path = window.location.pathname;
++    const isHome = path === "/" || path === "";
+     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+     const seen = sessionStorage.getItem(LOADER_SEEN_KEY);
+ 
+-    if (seen || reducedMotion) {
++    if (!isHome || seen || reducedMotion) {
+       setVisible(false);
+       onFadeStartRef.current?.();
+       onFinishedRef.current?.();
+diff --git a/src/routes/__root.tsx b/src/routes/__root.tsx
+index 9a8a747..5ae48a1 100644
+--- a/src/routes/__root.tsx
++++ b/src/routes/__root.tsx
+@@ -128,7 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+   errorComponent: ErrorComponent,
+ });
+ 
+-const loaderBootScript = `(function(){try{var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
++const loaderBootScript = `(function(){try{var p=window.location.pathname;var home=(p==="/"||p==="");var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!home||s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
+ 
+ function RootShell({ children }: { children: React.ReactNode }) {
+   return (
+@@ -138,7 +138,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
+         <style
+           dangerouslySetInnerHTML={{
+             __html:
+-              "html.bookr-loading #bookr-page-content{visibility:hidden}html.bookr-skip-loader .brand-loader{display:none!important}",
++              "html.bookr-skip-loader .brand-loader{display:none!important}",
+           }}
+         />
+         <script dangerouslySetInnerHTML={{ __html: loaderBootScript }} />
+diff --git a/src/routes/terms.tsx b/src/routes/terms.tsx
+index b0f3bfc..24f0412 100644
+--- a/src/routes/terms.tsx
++++ b/src/routes/terms.tsx
+@@ -267,7 +267,49 @@ function TermsPage() {
+             </p>
+           </Section>
+ 
+-          <Section title="17. Contact">
++          <Section title="17. SMS messaging program">
++            <p>
++              Bookr, on behalf of the businesses it operates for, sends SMS text messages to
++              individuals who opt in through a form on heybookr.com. By providing your mobile number
++              and checking a consent box, you agree to receive the messages described below.
++            </p>
++            <p className="mt-4 font-semibold text-charcoal">Program &amp; message types</p>
++            <List
++              items={[
++                "Non-marketing messages: appointment confirmations, reminders, scheduling links, and replies to inquiries you initiated.",
++                "Marketing messages (only if you separately opt in): offers, service updates, and related promotions.",
++              ]}
++            />
++            <p className="mt-4">
++              <span className="font-semibold text-charcoal">Message frequency</span> varies based on
++              your interactions with us.{" "}
++              <span className="font-semibold text-charcoal">Message and data rates may apply</span>, as
++              charged by your mobile carrier.
++            </p>
++            <p className="mt-4">
++              <span className="font-semibold text-charcoal">Opt out at any time</span> by replying STOP
++              to any message; you will receive a final confirmation and no further texts. Reply HELP
++              for help, or contact us at{" "}
++              <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
++                {CONTACT_EMAIL}
++              </a>
++              .
++            </p>
++            <p className="mt-4">
++              Mobile carriers are not liable for delayed or undelivered messages. You must be at least
++              18 years old and the account holder or an authorized user of the mobile number to opt in.
++            </p>
++            <p className="mt-4">
++              For how we handle your information — including our commitment that mobile opt-in data and
++              consent are never shared with third parties or affiliates for marketing — see our{" "}
++              <a href="/privacy" className="text-navy underline-offset-2 hover:underline">
++                Privacy Policy
++              </a>
++              .
++            </p>
++          </Section>
++
++          <Section title="18. Contact">
+             <p>
+               Questions about these Terms? Email{" "}
+               <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
