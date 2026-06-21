@@ -128,7 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const loaderBootScript = `(function(){try{var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
+const loaderBootScript = `(function(){try{var p=window.location.pathname;var home=(p==="/"||p==="");var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!home||s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
@@ -138,7 +138,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <style
           dangerouslySetInnerHTML={{
             __html:
-              "html.bookr-loading #bookr-page-content{visibility:hidden}html.bookr-skip-loader .brand-loader{display:none!important}",
+              "html.bookr-skip-loader .brand-loader{display:none!important}",
           }}
         />
         <script dangerouslySetInnerHTML={{ __html: loaderBootScript }} />

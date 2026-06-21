@@ -267,7 +267,49 @@ function TermsPage() {
             </p>
           </Section>
 
-          <Section title="17. Contact">
+          <Section title="17. SMS messaging program">
+            <p>
+              Bookr, on behalf of the businesses it operates for, sends SMS text messages to
+              individuals who opt in through a form on heybookr.com. By providing your mobile number
+              and checking a consent box, you agree to receive the messages described below.
+            </p>
+            <p className="mt-4 font-semibold text-charcoal">Program &amp; message types</p>
+            <List
+              items={[
+                "Non-marketing messages: appointment confirmations, reminders, scheduling links, and replies to inquiries you initiated.",
+                "Marketing messages (only if you separately opt in): offers, service updates, and related promotions.",
+              ]}
+            />
+            <p className="mt-4">
+              <span className="font-semibold text-charcoal">Message frequency</span> varies based on
+              your interactions with us.{" "}
+              <span className="font-semibold text-charcoal">Message and data rates may apply</span>, as
+              charged by your mobile carrier.
+            </p>
+            <p className="mt-4">
+              <span className="font-semibold text-charcoal">Opt out at any time</span> by replying STOP
+              to any message; you will receive a final confirmation and no further texts. Reply HELP
+              for help, or contact us at{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
+            <p className="mt-4">
+              Mobile carriers are not liable for delayed or undelivered messages. You must be at least
+              18 years old and the account holder or an authorized user of the mobile number to opt in.
+            </p>
+            <p className="mt-4">
+              For how we handle your information — including our commitment that mobile opt-in data and
+              consent are never shared with third parties or affiliates for marketing — see our{" "}
+              <a href="/privacy" className="text-navy underline-offset-2 hover:underline">
+                Privacy Policy
+              </a>
+              .
+            </p>
+          </Section>
+
+          <Section title="18. Contact">
             <p>
               Questions about these Terms? Email{" "}
               <a href={`mailto:${CONTACT_EMAIL}`} className="text-navy underline-offset-2 hover:underline">

@@ -20,10 +20,12 @@ export function BrandLoader({
   onFinishedRef.current = onFinished;
 
   useLayoutEffect(() => {
+    const path = window.location.pathname;
+    const isHome = path === "/" || path === "";
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const seen = sessionStorage.getItem(LOADER_SEEN_KEY);
 
-    if (seen || reducedMotion) {
+    if (!isHome || seen || reducedMotion) {
       setVisible(false);
       onFadeStartRef.current?.();
       onFinishedRef.current?.();
