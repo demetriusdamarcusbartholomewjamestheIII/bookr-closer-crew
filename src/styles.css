@@ -28,6 +28,8 @@
   --color-offwhite: var(--offwhite);
   --color-navy: var(--navy);
   --color-navy-soft: var(--navy-soft);
+  --color-navy-muted: var(--navy-muted);
+  --color-bookr-mist: var(--bookr-mist);
   --color-charcoal: var(--charcoal);
   --color-cream: var(--cream);
   --color-bookr-stripe-1: var(--bookr-stripe-1);
@@ -44,6 +46,10 @@
   /* Brand — aligned to Bookr logo stripes */
   --navy: #3B4A6B;
   --navy-soft: #5A6B8E;
+  /* Secondary text: stays >= 4.5:1 on cream, base, cards, and the periwinkle bands */
+  --navy-muted: #4A5672;
+  /* Light stripe from the inverted logo: readable eyebrow color on the navy bands */
+  --bookr-mist: #C9D1F2;
   --charcoal: #1F2937;
   --offwhite: #F5F1E8;
   --cream: #EDE6D6;
@@ -77,6 +83,7 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+  /* Matches the sticky nav + footer so iOS overscroll bands don't flash white */
   html, body, #root {
     background-color: #F0EEE8;
     color-scheme: light;
@@ -93,9 +100,12 @@
       font-size: 1.125rem;
     }
   }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    /* Anchor jumps land below the sticky nav instead of under it */
+    scroll-padding-top: 4.5rem;
+  }
   body {
-    background-color: #FFFFFF;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
@@ -107,8 +117,13 @@
     letter-spacing: -0.025em;
     line-height: 1.08;
     font-weight: 700;
+    text-wrap: balance;
   }
   h1 { letter-spacing: -0.035em; }
+  p, li { text-wrap: pretty; }
+  a, button, summary { -webkit-tap-highlight-color: transparent; }
+  /* Safari still draws its own disclosure triangle next to our chevron */
+  summary::-webkit-details-marker { display: none; }
 }
 
 @layer utilities {
@@ -184,6 +199,31 @@
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* FadeUp / Stagger (src/components/Motion.tsx): desktop-only scroll reveals */
+  .bookr-reveal,
+  .bookr-stagger > .bookr-stagger-item {
+    transition:
+      opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .bookr-reveal:not(.is-visible),
+  .bookr-stagger:not(.is-visible) > .bookr-stagger-item {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .bookr-stagger > .bookr-stagger-item:nth-child(2) { transition-delay: 0.04s; }
+  .bookr-stagger > .bookr-stagger-item:nth-child(3) { transition-delay: 0.08s; }
+  .bookr-stagger > .bookr-stagger-item:nth-child(4) { transition-delay: 0.12s; }
+  .bookr-stagger > .bookr-stagger-item:nth-child(n + 5) { transition-delay: 0.16s; }
+
+  /* Chat demos: show the whole conversation statically instead of a scrolling window */
+  @media (prefers-reduced-motion: reduce) {
+    .bookr-chat-viewport {
+      height: auto !important;
+      max-height: none !important;
+    }
   }
 
   .bookr-hero {
@@ -346,10 +386,8 @@
   }
 }
 
-/* Brand Loader */
-html.bookr-loading #bookr-page-content {
-  visibility: hidden;
-}
+/* Brand Loader — the opaque overlay covers the page on its own; content stays
+   visible underneath so crawlers, screen readers, and no-JS visitors can read it. */
 html.bookr-skip-loader .brand-loader {
   display: none !important;
 }
@@ -363,6 +401,14 @@ html.bookr-skip-loader .brand-loader {
   justify-content: center;
   opacity: 1;
   transition: opacity 400ms ease-out;
+  /* Failsafe: if JS never hydrates, never trap the page behind the intro */
+  animation: bookr-loader-failsafe 400ms ease-out 4500ms forwards;
+}
+@keyframes bookr-loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 .brand-loader[data-fading="true"] {
   opacity: 0;

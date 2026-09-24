@@ -2,8 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { usePageLoad } from "@/contexts/page-ready";
 
 const FORM_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
-const FORM_SRC =
-  "https://api.leadconnectorhq.com/widget/form/HyUF0g5OS3M1aVYjGOek";
+const FORM_SRC = "https://api.leadconnectorhq.com/widget/form/HyUF0g5OS3M1aVYjGOek";
 const FORM_ID = "HyUF0g5OS3M1aVYjGOek";
 
 function FormSkeleton() {
@@ -55,12 +54,13 @@ export function BookrFormEmbed({
   return (
     <div
       id={embedId}
-      className="mx-auto w-full max-w-[520px] rounded-xl bg-white p-6 shadow-card"
+      className="mx-auto w-full max-w-[520px] rounded-xl bg-white p-4 shadow-card sm:p-6"
     >
-      <p className="mb-4 text-sm font-semibold tracking-wide text-charcoal uppercase">
-        {label}
-      </p>
-      <div className="relative w-full overflow-hidden rounded-lg bg-white" style={{ minHeight: 720 }}>
+      <p className="mb-4 text-sm font-semibold tracking-wide text-charcoal uppercase">{label}</p>
+      <div
+        className="relative w-full overflow-hidden rounded-lg bg-white"
+        style={{ minHeight: 720 }}
+      >
         {pageReady && !formReady && (
           <div className="absolute inset-0 z-10 bg-white">
             <FormSkeleton />
@@ -69,6 +69,9 @@ export function BookrFormEmbed({
         {shouldLoad && (
           <iframe
             src={FORM_SRC}
+            // The form sits at the very bottom of a long page; let the browser fetch it
+            // as the visitor approaches instead of during the first seconds on a phone.
+            loading="lazy"
             onLoad={() => setIframeLoaded(true)}
             style={{
               width: "100%",

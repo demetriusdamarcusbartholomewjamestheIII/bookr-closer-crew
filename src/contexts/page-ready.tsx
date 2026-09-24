@@ -16,9 +16,7 @@ export function PageReadyProvider({
   state: PageLoadState;
   children: ReactNode;
 }) {
-  return (
-    <PageLoadContext.Provider value={state}>{children}</PageLoadContext.Provider>
-  );
+  return <PageLoadContext.Provider value={state}>{children}</PageLoadContext.Provider>;
 }
 
 export function usePageLoad() {

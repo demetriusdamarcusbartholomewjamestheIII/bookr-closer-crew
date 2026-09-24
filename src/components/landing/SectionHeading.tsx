@@ -1,3 +1,5 @@
+import { keepDashWithPrecedingWord } from "@/lib/typography";
+
 export function SectionEyebrow({
   children,
   inverted = false,
@@ -11,7 +13,7 @@ export function SectionEyebrow({
     <p
       className={[
         "mb-3 text-[11px] font-bold uppercase tracking-[0.14em]",
-        inverted ? "text-bookr-stripe-1" : "text-bookr-stripe-3",
+        inverted ? "text-bookr-mist" : "text-bookr-stripe-3",
         className,
       ].join(" ")}
     >
@@ -53,13 +55,14 @@ export function SectionHeading({
           inverted ? "text-white" : "text-navy",
         ].join(" ")}
       >
-        {title}
+        {keepDashWithPrecedingWord(title)}
       </h2>
       {subline ? (
         <p
           className={[
-            "mt-3 text-base leading-snug sm:text-lg",
-            inverted ? "text-white/80" : "text-navy/65",
+            "mt-3 text-base leading-snug sm:mt-4 sm:text-lg",
+            align === "center" ? "mx-auto max-w-2xl" : "",
+            inverted ? "text-white/80" : "text-navy-muted",
           ].join(" ")}
         >
           {subline}

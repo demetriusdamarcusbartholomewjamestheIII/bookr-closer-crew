@@ -9,6 +9,8 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // html has scroll-behavior: smooth for in-page anchors; route changes should jump, not glide
+    scrollRestorationBehavior: "instant",
     defaultPreloadStaleTime: 0,
   });
 

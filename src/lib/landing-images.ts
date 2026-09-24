@@ -10,8 +10,7 @@ export type LandingImage = {
 export const LANDING_IMAGES = {
   listingExterior: {
     src: "/images/listing-exterior-800.jpg",
-    srcSet:
-      "/images/listing-exterior-480.jpg 480w, /images/listing-exterior-800.jpg 800w",
+    srcSet: "/images/listing-exterior-480.jpg 480w, /images/listing-exterior-800.jpg 800w",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 520px",
     width: 800,
     height: 533,
