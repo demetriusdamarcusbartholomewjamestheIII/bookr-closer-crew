@@ -1,33 +1,45 @@
-import { motion, type Variants } from "framer-motion";
-import { useEffect, useState, type ReactNode } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+type RevealState = "static" | "hidden" | "visible";
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.04, delayChildren: 0.02 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease } },
-};
-
-function useMotionEnabled() {
-  const isMobile = useIsMobile();
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const [mounted, setMounted] = useState(false);
+/**
+ * Desktop-only scroll reveal (IntersectionObserver + CSS classes in styles.css).
+ * Phones and reduced-motion users get plain static content — mobile animations were
+ * turned off on purpose after the scroll renderer crashes.
+ *
+ * The wrapper element never changes type, so children don't remount on hydration,
+ * and anything already on screen at mount is left alone instead of flashing out and in.
+ */
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<RevealState>("static");
 
   useEffect(() => {
-    setMounted(true);
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches) return;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) return;
+
+    setState("hidden");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setState("visible");
+        observer.disconnect();
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  return {
-    mounted,
-    motionEnabled: mounted && !isMobile && !prefersReducedMotion,
-  };
+  return { ref, state };
+}
+
+function classes(...names: (string | false)[]) {
+  return names.filter(Boolean).join(" ");
 }
 
 export function FadeUp({
@@ -39,48 +51,39 @@ export function FadeUp({
   className?: string;
   delay?: number;
 }) {
-  const { mounted, motionEnabled } = useMotionEnabled();
-
-  if (!mounted || !motionEnabled) {
-    return <div className={className}>{children}</div>;
-  }
+  const { ref, state } = useReveal();
+  const style: CSSProperties | undefined =
+    state !== "static" && delay ? { transitionDelay: `${delay}s` } : undefined;
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.3, ease, delay }}
+    <div
+      ref={ref}
+      className={classes(
+        className,
+        state !== "static" && "bookr-reveal",
+        state === "visible" && "is-visible",
+      )}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-export function Stagger({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const { mounted, motionEnabled } = useMotionEnabled();
-
-  if (!mounted || !motionEnabled) {
-    return <div className={className}>{children}</div>;
-  }
+export function Stagger({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const { ref, state } = useReveal();
 
   return (
-    <motion.div
-      className={className}
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.15 }}
+    <div
+      ref={ref}
+      className={classes(
+        className,
+        state !== "static" && "bookr-stagger",
+        state === "visible" && "is-visible",
+      )}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -91,15 +94,5 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  const { mounted, motionEnabled } = useMotionEnabled();
-
-  if (!mounted || !motionEnabled) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div className={className} variants={item}>
-      {children}
-    </motion.div>
-  );
+  return <div className={classes(className, "bookr-stagger-item")}>{children}</div>;
 }

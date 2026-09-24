@@ -12,10 +12,13 @@
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
-  <circle cx="600" cy="248" r="88" fill="#1F2937"/>
-  <rect x="544" y="206" width="24" height="10" rx="5" fill="#A4B0E8"/>
-  <rect x="544" y="224" width="44" height="10" rx="5" fill="#5B6BCE"/>
-  <rect x="544" y="242" width="64" height="10" rx="5" fill="#2E3A8C"/>
+  <circle cx="600" cy="228" r="88" fill="#1F2937"/>
+  <!-- favicon.svg's 48×48 mark, scaled to fill the circle (88 / 24 ≈ 3.6667) -->
+  <g transform="translate(512 140) scale(3.6667)">
+    <rect x="8" y="12.5" width="12" height="5" rx="2.5" fill="#A4B0E8"/>
+    <rect x="8" y="21.5" width="22" height="5" rx="2.5" fill="#5B6BCE"/>
+    <rect x="8" y="30.5" width="32" height="5" rx="2.5" fill="#2E3A8C"/>
+  </g>
   <text x="600" y="400" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#3B4A6B" letter-spacing="-2">Bookr</text>
   <text x="600" y="468" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="500" fill="#3B4A6B" fill-opacity="0.75">Every lead, answered in seconds</text>
 </svg>

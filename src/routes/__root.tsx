@@ -12,6 +12,7 @@ import {
 
 import { BrandLoader } from "../components/BrandLoader";
 import { useIsMobile } from "../hooks/use-mobile";
+import { OG_IMAGE_ALT, OG_IMAGE_URL, SITE_URL } from "../lib/bookr-constants";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -76,7 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#3B4A6B" },
+      // Matches the sticky nav so mobile browser chrome blends into the page
+      { name: "theme-color", content: "#F0EEE8" },
       { title: "Bookr — Every lead, answered in seconds" },
       {
         name: "description",
@@ -96,17 +98,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
       },
-      { property: "og:image", content: "https://heybookr.com/og-image.svg" },
+      // Social scrapers (Facebook, X, LinkedIn, iMessage) don't render SVG — use the PNG
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { name: "twitter:image", content: "https://heybookr.com/og-image.svg" },
-      { property: "og:url", content: "https://heybookr.com" },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
+      { name: "twitter:image", content: OG_IMAGE_URL },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
+      { property: "og:url", content: SITE_URL },
       { property: "og:site_name", content: "Bookr" },
       { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "apple-touch-icon", href: "/favicon.svg" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      // iOS ignores SVG touch icons
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "preconnect", href: "https://api.leadconnectorhq.com" },
@@ -128,22 +136,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const loaderBootScript = `(function(){try{var p=window.location.pathname;var home=(p==="/"||p==="");var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!home||s||r){document.documentElement.classList.add("bookr-skip-loader");return;}document.documentElement.classList.add("bookr-loading");}catch(e){}})();`;
+// Runs before first paint: hide the intro overlay unless this is a first home-page visit.
+const loaderBootScript = `(function(){try{var p=window.location.pathname;var home=(p==="/"||p==="");var s=sessionStorage.getItem("bookr-loader-seen");var r=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!home||s||r){document.documentElement.classList.add("bookr-skip-loader");}}catch(e){}})();`;
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" style={{ backgroundColor: "#FFFFFF" }}>
+    // suppressHydrationWarning: loaderBootScript adds a class to <html> before React hydrates
+    <html lang="en" style={{ backgroundColor: "#F0EEE8" }} suppressHydrationWarning>
       <head>
         <HeadContent />
         <style
           dangerouslySetInnerHTML={{
-            __html:
-              "html.bookr-skip-loader .brand-loader{display:none!important}",
+            __html: "html.bookr-skip-loader .brand-loader{display:none!important}",
           }}
         />
         <script dangerouslySetInnerHTML={{ __html: loaderBootScript }} />
       </head>
-      <body style={{ backgroundColor: "#FFFFFF" }}>
+      <body style={{ backgroundColor: "#F0EEE8" }}>
         {children}
         <Scripts />
       </body>
@@ -151,12 +160,17 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+const CHAT_WIDGET_LOADER = "https://beta.leadconnectorhq.com/loader.js";
+
 function injectChatWidget() {
   if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
 
   const script = document.createElement("script");
-  script.src = "https://beta.leadconnectorhq.com/loader.js";
-  script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
+  script.src = CHAT_WIDGET_LOADER;
+  script.setAttribute(
+    "data-resources-url",
+    "https://beta.leadconnectorhq.com/chat-widget/loader.js",
+  );
   script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
   script.async = true;
   document.body.appendChild(script);
@@ -168,28 +182,18 @@ function RootComponent() {
   const [pageLoad, setPageLoad] = useState({ ready: false, preload: false });
 
   useEffect(() => {
-    if (!pageLoad.preload) return;
+    // Desktop injects the chat widget right after the intro, so warm its script up.
+    // Mobile defers the widget until scrolling settles — preloading there only
+    // competes with the page's own requests. Listing photos lazy-load on their own.
+    // (Media query read directly: useIsMobile may not have updated yet on this render.)
+    if (!pageLoad.preload || window.matchMedia("(max-width: 767px)").matches) return;
+    if (document.querySelector(`link[rel="preload"][href="${CHAT_WIDGET_LOADER}"]`)) return;
 
-    const preloads: HTMLLinkElement[] = [];
-
-    const addPreload = (href: string, as: string, type?: string) => {
-      if (document.querySelector(`link[rel="preload"][href="${href}"]`)) return;
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.href = href;
-      link.as = as;
-      if (type) link.type = type;
-      document.head.appendChild(link);
-      preloads.push(link);
-    };
-
-    addPreload("https://beta.leadconnectorhq.com/loader.js", "script");
-    addPreload("/images/listing-exterior-800.jpg", "image", "image/jpeg");
-    addPreload("/images/listing-interior-640.jpg", "image", "image/jpeg");
-
-    return () => {
-      preloads.forEach((link) => link.remove());
-    };
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.href = CHAT_WIDGET_LOADER;
+    link.as = "script";
+    document.head.appendChild(link);
   }, [pageLoad.preload]);
 
   useEffect(() => {
@@ -201,7 +205,7 @@ function RootComponent() {
     }
 
     let injected = false;
-    let scrollEndTimer: ReturnType<typeof setTimeout> | undefined;
+    let scrollEndTimer: number | undefined;
 
     const injectOnce = () => {
       if (injected) return;
@@ -229,7 +233,6 @@ function RootComponent() {
   }, []);
 
   const finishLoader = useCallback(() => {
-    document.documentElement.classList.remove("bookr-loading");
     setPageLoad((s) => ({ ...s, ready: true, preload: true }));
   }, []);
 
@@ -243,4 +246,4 @@ function RootComponent() {
       </PageReadyProvider>
     </QueryClientProvider>
   );
-  } 
+}

@@ -3,7 +3,41 @@ import { useLayoutEffect, useRef, useState } from "react";
 const LOADER_SEEN_KEY = "bookr-loader-seen";
 const HOLD_MS = 2400;
 const FADE_MS = 500;
-const REMOVE_MS = HOLD_MS + FADE_MS;
+
+/**
+ * How long the intro has already been on screen. The overlay is server-rendered and its
+ * CSS animations start at first paint, so on a slow phone hydration can land seconds
+ * later — count that time toward HOLD_MS instead of restarting the full intro.
+ */
+function introElapsedMs(root: HTMLElement | null) {
+  try {
+    // Finished animations clamp at their end time, so take the longest-running one
+    // (the CSS failsafe on the overlay itself runs past HOLD_MS).
+    const times = (root?.getAnimations({ subtree: true }) ?? [])
+      .map((animation) => animation.currentTime)
+      .filter((time): time is number => typeof time === "number");
+    if (times.length) return Math.max(...times);
+  } catch {
+    // getAnimations unsupported — fall back to time since navigation start
+  }
+  return performance.now();
+}
+
+function readSeen() {
+  try {
+    return sessionStorage.getItem(LOADER_SEEN_KEY) !== null;
+  } catch {
+    return false;
+  }
+}
+
+function markSeen() {
+  try {
+    sessionStorage.setItem(LOADER_SEEN_KEY, "1");
+  } catch {
+    // storage blocked (private mode) — the intro just plays again next visit
+  }
+}
 
 export function BrandLoader({
   onFadeStart,
@@ -14,6 +48,7 @@ export function BrandLoader({
 }) {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
   const onFadeStartRef = useRef(onFadeStart);
   const onFinishedRef = useRef(onFinished);
   onFadeStartRef.current = onFadeStart;
@@ -23,25 +58,25 @@ export function BrandLoader({
     const path = window.location.pathname;
     const isHome = path === "/" || path === "";
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const seen = sessionStorage.getItem(LOADER_SEEN_KEY);
 
-    if (!isHome || seen || reducedMotion) {
+    if (!isHome || readSeen() || reducedMotion) {
       setVisible(false);
       onFadeStartRef.current?.();
       onFinishedRef.current?.();
       return;
     }
 
-    sessionStorage.setItem(LOADER_SEEN_KEY, "1");
+    markSeen();
 
+    const fadeDelay = Math.max(0, HOLD_MS - introElapsedMs(rootRef.current));
     const fadeTimer = window.setTimeout(() => {
       setFading(true);
       onFadeStartRef.current?.();
-    }, HOLD_MS);
+    }, fadeDelay);
     const removeTimer = window.setTimeout(() => {
       setVisible(false);
       onFinishedRef.current?.();
-    }, REMOVE_MS);
+    }, fadeDelay + FADE_MS);
 
     return () => {
       window.clearTimeout(fadeTimer);
@@ -53,6 +88,7 @@ export function BrandLoader({
 
   return (
     <div
+      ref={rootRef}
       aria-hidden="true"
       className="brand-loader"
       style={{

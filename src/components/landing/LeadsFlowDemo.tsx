@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { BookrStripesSvg } from "@/components/BookrIconMark";
 import { TypewriterBubbles } from "@/components/landing/TypewriterBubbles";
 import { useInView } from "@/hooks/use-in-view";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -78,10 +79,7 @@ export function LeadsFlowDemo() {
   }, [inView, reduced, cycle]);
 
   return (
-    <div
-      ref={ref}
-      className="bookr-card-elevated overflow-hidden rounded-2xl p-6 sm:p-8"
-    >
+    <div ref={ref} className="bookr-card-elevated overflow-hidden rounded-2xl p-6 sm:p-8">
       <div className="flex flex-wrap gap-2">
         {SOURCES.map((src, i) => (
           <span
@@ -100,42 +98,47 @@ export function LeadsFlowDemo() {
         ))}
       </div>
 
-      <div className="my-6 flex items-center gap-3 text-charcoal/35">
+      <div className="my-6 flex items-center gap-3 text-navy-muted">
         <span className="h-px flex-1 bg-charcoal/10" />
         <span className="text-[11px] font-semibold uppercase tracking-[0.05em]">New lead</span>
         <span className="h-px flex-1 bg-charcoal/10" />
       </div>
 
-      <div className="rounded-xl border border-bookr-stripe-2/25 bg-gradient-to-br from-bookr-stripe-1/15 to-cream/50 p-4">
-        <p className="text-xs font-medium text-charcoal/45">Bookr</p>
+      <div className="rounded-xl border border-bookr-stripe-2/20 bg-white/80 p-4 shadow-sm">
+        <div className="flex items-center justify-between gap-3">
+          <p className="flex items-center gap-2 text-xs font-semibold text-navy">
+            <BookrStripesSvg className="h-3 w-4" />
+            Bookr
+          </p>
+          <p
+            className={[
+              "text-xs font-semibold text-emerald-700 transition-opacity duration-300",
+              replyComplete ? "opacity-100" : "opacity-0",
+            ].join(" ")}
+            aria-hidden={!replyComplete}
+          >
+            Replied in seconds
+          </p>
+        </div>
 
-        {!showReply ? (
-          <p className="mt-3 text-sm text-charcoal/45">Waiting for lead…</p>
-        ) : (
-          <>
-            <div className="mt-2 overflow-hidden" style={{ height: REPLY_BUBBLE_H }}>
-              <TypewriterBubbles
-                key={cycle}
-                script={REPLY_SCRIPT}
-                active={showReply && inView}
-                fixedHeight={REPLY_BUBBLE_H}
-                charMs={14}
-                pauseAfterLineMs={0}
-                loop={false}
-                onComplete={() => setReplyComplete(true)}
-              />
-            </div>
-            <p
-              className={[
-                "mt-3 text-xs font-medium text-emerald-700 transition-opacity duration-300",
-                replyComplete ? "opacity-100" : "opacity-0",
-              ].join(" ")}
-              aria-hidden={!replyComplete}
-            >
-              Replied in seconds
-            </p>
-          </>
-        )}
+        {/* Fixed height so the card doesn't jump each time the reply cycles */}
+        <div className="mt-3" style={{ height: REPLY_BUBBLE_H }}>
+          {showReply ? (
+            <TypewriterBubbles
+              key={cycle}
+              script={REPLY_SCRIPT}
+              active={showReply && inView}
+              label="Example: Bookr's first reply to a new lead"
+              className="h-full"
+              charMs={14}
+              pauseAfterLineMs={0}
+              loop={false}
+              onComplete={() => setReplyComplete(true)}
+            />
+          ) : (
+            <p className="text-sm text-navy-muted">Waiting for lead…</p>
+          )}
+        </div>
       </div>
     </div>
   );

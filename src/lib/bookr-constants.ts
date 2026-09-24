@@ -1,9 +1,10 @@
 export const SITE_URL = "https://heybookr.com";
 
-export const OG_IMAGE_URL = `${SITE_URL}/og-image.svg`;
+// PNG, not SVG: link-preview scrapers don't render SVG images. og-image.svg is the source.
+export const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
+export const OG_IMAGE_ALT = "Bookr — Every lead, answered in seconds";
 
-export const BOOKING_URL =
-  "https://book.heybookr.com/widget/booking/lsSVaQRdRil1Jkbwdl9B";
+export const BOOKING_URL = "https://book.heybookr.com/widget/booking/lsSVaQRdRil1Jkbwdl9B";
 
 export const CONTACT_EMAIL = "ian@heybookr.com";
 

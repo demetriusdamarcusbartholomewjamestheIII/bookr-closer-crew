@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
-export type TypewriterLine = { role: string; text: string };
+/** `lang` marks non-English lines so screen readers switch pronunciation. */
+export type TypewriterLine = { role: string; text: string; lang?: string };
 
 export function useTypewriterConversation(
   script: TypewriterLine[],
@@ -25,10 +26,7 @@ export function useTypewriterConversation(
   const onCompleteRef = useRef(options?.onComplete);
   onCompleteRef.current = options?.onComplete;
 
-  const scriptKey = useMemo(
-    () => script.map((s) => `${s.role}:${s.text}`).join("|"),
-    [script],
-  );
+  const scriptKey = useMemo(() => script.map((s) => `${s.role}:${s.text}`).join("|"), [script]);
 
   const [completed, setCompleted] = useState<TypewriterLine[]>([]);
   const [draft, setDraft] = useState("");
@@ -122,7 +120,17 @@ export function useTypewriterConversation(
 
     schedule(200, startLine);
     return cleanup;
-  }, [scriptKey, active, pageVisible, reduced, charMs, pauseAfterLineMs, pauseBeforeLoopMs, loop, script]);
+  }, [
+    scriptKey,
+    active,
+    pageVisible,
+    reduced,
+    charMs,
+    pauseAfterLineMs,
+    pauseBeforeLoopMs,
+    loop,
+    script,
+  ]);
 
   return { completed, draft, draftRole, showCursor };
 }
