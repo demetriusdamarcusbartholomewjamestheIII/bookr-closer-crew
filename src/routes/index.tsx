@@ -297,30 +297,35 @@ function Pricing() {
           />
         </FadeUp>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <PricingCard
             name="Standard"
             price="$197"
-            desc="Zillow, social, SMS, and web forms."
+            badge="Available now"
+            featured
+            desc="Website forms, Facebook, and Instagram."
             features={[
-              "Replies in seconds, 24/7",
+              "Replies in under a minute, 24/7",
               "English & Spanish, auto-detected",
               "Qualifies and books on your calendar",
-              "Answers buyer questions on listings you load",
+              "Books showings on your listings",
               "Done-for-you setup",
             ]}
           />
           <PricingCard
             name="Pro"
             price="$397"
-            highlighted
-            desc="Everything in Standard, plus inbound calls."
+            badge="Beta"
+            showPhoneIcon
+            desc="Everything in Standard, plus phone answering — in beta."
             features={[
               "Everything in Standard",
-              "Answers missed calls in English & Spanish",
-              "Qualifies and books live on the phone",
-              "Hot-lead transfer to your mobile",
+              "Answers missed calls",
+              "Qualifies callers and books on the call",
             ]}
+            footnote="Phone answering is in beta — we'll confirm availability on your demo."
+            ctaLabel="Ask about early access"
+            ctaVariant="secondary"
           />
         </div>
       </div>
@@ -333,30 +338,48 @@ function PricingCard({
   price,
   desc,
   features,
-  highlighted = false,
+  badge,
+  featured = false,
+  showPhoneIcon = false,
+  footnote,
+  ctaLabel,
+  ctaVariant = "primary",
 }: {
   name: string;
   price: string;
   desc: string;
   features: string[];
-  highlighted?: boolean;
+  badge: string;
+  /** Primary plan: accent border + filled badge. Otherwise muted/secondary styling. */
+  featured?: boolean;
+  showPhoneIcon?: boolean;
+  footnote?: string;
+  ctaLabel?: string;
+  ctaVariant?: "primary" | "secondary";
 }) {
   return (
-    <FadeUp>
+    <FadeUp className="h-full">
       <div
         className={[
           "relative flex h-full flex-col rounded-2xl p-8 sm:p-10",
-          highlighted ? "bookr-card-featured -translate-y-1" : "bookr-card-elevated",
+          featured ? "bookr-card-featured -translate-y-1" : "bookr-card-elevated",
         ].join(" ")}
       >
-        {highlighted ? (
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-bookr-stripe-2 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_14px_rgba(91,107,206,0.45)]">
-            Most popular
-          </div>
-        ) : null}
+        <div
+          className={[
+            "absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em]",
+            featured
+              ? "bg-bookr-stripe-2 text-white shadow-[0_4px_14px_rgba(91,107,206,0.45)]"
+              : "border border-charcoal/15 bg-white text-navy/70 shadow-sm",
+          ].join(" ")}
+        >
+          {badge}
+        </div>
         <div className="flex items-center gap-2">
           <h3 className="font-display text-2xl font-bold text-navy">{name}</h3>
-          {highlighted ? <Phone className="h-4 w-4 text-bookr-stripe-3" strokeWidth={2.5} /> : null}
+          {showPhoneIcon ? (
+            <Phone className="h-4 w-4 text-bookr-stripe-3" strokeWidth={2.5} aria-hidden />
+          ) : null}
         </div>
         <p className="mt-2 text-base text-navy/55">{desc}</p>
         <div className="mt-6 flex items-baseline gap-1">
@@ -371,8 +394,9 @@ function PricingCard({
             </li>
           ))}
         </ul>
+        {footnote ? <p className="mt-6 text-sm leading-snug text-navy/55">{footnote}</p> : null}
         <div className="mt-8">
-          <PrimaryCta fullWidth />
+          <PrimaryCta fullWidth label={ctaLabel} variant={ctaVariant} />
         </div>
       </div>
     </FadeUp>
@@ -386,7 +410,8 @@ function Faq() {
       q: "How much setup do I have to do?",
       a: (
         <>
-          Almost none. One walkthrough — we connect your channels and go live.{" "}
+          Almost none. One 30-minute call — we connect your calendar and pages, then go live.
+          Texting switches on once carriers approve your number, usually within a week.{" "}
           <a
             href={BOOKING_URL}
             target="_blank"
@@ -401,11 +426,11 @@ function Faq() {
     },
     {
       q: "Do I have to change my CRM?",
-      a: "No. Bookr works where your leads already arrive and books on your Google Calendar.",
+      a: "No. Keep your CRM. Bookr answers where your leads already arrive and books on your calendar.",
     },
     {
-      q: "Will this work with my Zillow leads?",
-      a: "Yes. If you get leads through Zillow Premier Agent, we connect them so Bookr texts each one back in seconds — the fast follow-up portal leads rarely get.",
+      q: "Which leads does it answer?",
+      a: "Your website form, Facebook, and Instagram — replies go out by text or DM. Portal leads like Zillow are on our roadmap; ask on your demo.",
     },
     {
       q: "Does it really speak Spanish?",
@@ -413,7 +438,7 @@ function Faq() {
     },
     {
       q: "What does it cost?",
-      a: "Standard is $197/mo. Pro with inbound calls is $397/mo.",
+      a: "Standard is $197/mo. Pro, with phone answering in beta, is $397/mo. No setup fees.",
     },
   ];
 
