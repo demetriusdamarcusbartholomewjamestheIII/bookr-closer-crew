@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HouseLineIllustration } from "@/components/landing/HouseLineIllustration";
 import type { LandingImage } from "@/lib/landing-images";
 
@@ -15,8 +15,18 @@ export function ListingPhoto({
   illustrationClassName?: string;
   priority?: boolean;
 }) {
+  const imgRef = useRef<HTMLImageElement>(null);
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  // The <img> is server-rendered, so a cached or preloaded image can finish before React
+  // hydrates and attaches onLoad/onError — without this check it stays at opacity-0.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img?.complete) return;
+    if (img.naturalWidth > 0) setLoaded(true);
+    else setFailed(true);
+  }, []);
 
   if (failed) {
     return (
@@ -41,6 +51,7 @@ export function ListingPhoto({
         aria-hidden="true"
       />
       <img
+        ref={imgRef}
         src={image.src}
         srcSet={image.srcSet}
         sizes={image.sizes}
