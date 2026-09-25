@@ -2,16 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Check, ChevronDown, Phone } from "lucide-react";
 import { BookrFormEmbed } from "@/components/BookrFormEmbed";
 import { BilingualTypingDemo } from "@/components/landing/BilingualTypingDemo";
-import { CallsDemo } from "@/components/landing/CallsDemo";
 import { CapabilityStrip } from "@/components/landing/CapabilityStrip";
-import { CtaBand } from "@/components/landing/CtaBand";
-import { HandsFreeDemo } from "@/components/landing/HandsFreeDemo";
 import { ListingPhoto } from "@/components/landing/ListingPhoto";
 import { HeroGradientMesh } from "@/components/landing/HeroGradientMesh";
 import { HeroLiveChat } from "@/components/landing/HeroLiveChat";
 import { HouseLineIllustration } from "@/components/landing/HouseLineIllustration";
 import { LandingNav } from "@/components/landing/LandingNav";
-import { LeadsFlowDemo } from "@/components/landing/LeadsFlowDemo";
 import { ListingQaDemo } from "@/components/landing/ListingQaDemo";
 import { MessageUsLink } from "@/components/landing/MessageUsLink";
 import { PrimaryCta } from "@/components/landing/PrimaryCta";
@@ -73,15 +69,9 @@ function LandingPage() {
       <LandingNav />
       <Hero />
       <Problem />
-      <DiffHandsFree />
-      <DiffBilingual />
-      <DiffLeadSources />
-      <DiffCalls />
-      <DiffListings />
-      <CtaBand />
+      <Bilingual />
       <HowItWorks />
-      <Guarantee />
-      <CtaBand />
+      <Showings />
       <Pricing />
       <Faq />
       <FinalCta />
@@ -177,34 +167,10 @@ function Problem() {
   );
 }
 
-/* ─── DIFF 1: centered statement on soft navy band ─── */
-function DiffHandsFree() {
-  return (
-    <section className="bookr-section-navy-band py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionHeading
-            align="center"
-            inverted
-            eyebrow="Hands-free"
-            title="You never touch a thing."
-            subline="We set it up. It runs. You close."
-          />
-        </FadeUp>
-        <div className="mx-auto mt-12 max-w-lg">
-          <FadeUp delay={0.08}>
-            <HandsFreeDemo />
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── DIFF 2: full-width centered on periwinkle tint ─── */
+/* ─── BILINGUAL — full-width centered on periwinkle tint ─── */
 const CHANNELS = ["Instagram", "Facebook", "Your website"];
 
-function DiffBilingual() {
+function Bilingual() {
   return (
     <section className="bookr-section-periwinkle border-y border-charcoal/8 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
@@ -236,57 +202,63 @@ function DiffBilingual() {
   );
 }
 
-/* ─── DIFF 3: split reversed — demo left, copy right ─── */
-function DiffLeadSources() {
+/* ─── HOW IT WORKS — cards grid on navy band (absorbs the old Hands-free + Channels sections) ─── */
+function HowItWorks() {
+  const steps = [
+    { n: "01", title: "Lead comes in", body: "Your website form, Facebook, or Instagram." },
+    {
+      n: "02",
+      title: "Answered in under a minute",
+      body: "In English or Spanish, matched to the lead.",
+    },
+    { n: "03", title: "Qualified", body: "Timeline, financing, and what they're looking for." },
+    { n: "04", title: "Booked for you", body: "They pick a time on your calendar." },
+  ];
+
+  return (
+    <section id="how-it-works" className="bookr-section-navy-band py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <FadeUp>
+          <SectionHeading
+            align="center"
+            inverted
+            eyebrow="How it works"
+            title="From new lead to booked appointment — without you in the middle."
+          />
+        </FadeUp>
+
+        <div className="mt-14 grid grid-cols-1 auto-rows-fr items-stretch gap-6 sm:grid-cols-2">
+          {steps.map((s, i) => (
+            <FadeUp key={s.n} delay={i * 0.05} className="h-full">
+              <article className="bookr-step-card flex h-full min-h-[180px] flex-col rounded-2xl p-8">
+                <p className="font-display text-2xl font-bold text-bookr-stripe-3/50">{s.n}</p>
+                <h3 className="mt-2 text-lg font-bold text-navy">{s.title}</h3>
+                <p className="mt-2 flex-1 text-base leading-relaxed text-navy/60">{s.body}</p>
+              </article>
+            </FadeUp>
+          ))}
+        </div>
+
+        <FadeUp>
+          <p className="prose-measure mx-auto mt-12 text-center text-base leading-relaxed text-white/85 sm:text-lg">
+            Setup is on us: one 30-minute call to connect your calendar and pages. Then you never
+            touch a thing.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <PrimaryCta />
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+/* ─── SHOWINGS — split image/text (base tint, so it doesn't merge into the cream pricing band) ─── */
+function Showings() {
   return (
     <section className="bookr-section-base py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <FadeUp className="order-2 lg:order-1">
-            <LeadsFlowDemo />
-          </FadeUp>
-          <FadeUp delay={0.06} className="order-1 lg:order-2">
-            <SectionHeading
-              eyebrow="Channels"
-              title="Works with the leads you already get."
-              subline="Texts, Facebook, Instagram, your website — answered the moment they arrive. Your Zillow leads connect in too."
-            />
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── DIFF 4: split — calls demo right, copy left ─── */
-function DiffCalls() {
-  return (
-    <section className="bookr-section-navy-band py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <FadeUp>
-            <SectionHeading
-              inverted
-              eyebrow="Inbound calls · Pro"
-              title="Missed calls get answered too."
-              subline="Bookr picks up, qualifies, and books — in English or Spanish."
-            />
-          </FadeUp>
-          <FadeUp delay={0.08}>
-            <CallsDemo />
-          </FadeUp>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── DIFF 5: split image/text on cream ─── */
-function DiffListings() {
-  return (
-    <section className="bookr-section-cream py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <FadeUp>
             <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
             <SectionHeading
@@ -306,60 +278,6 @@ function DiffListings() {
             <ListingQaDemo />
           </FadeUp>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── HOW IT WORKS — cards grid ─── */
-function HowItWorks() {
-  const steps = [
-    { n: "01", title: "Lead comes in", body: "Zillow, Instagram, social, web, SMS, or call — received immediately." },
-    { n: "02", title: "Answered in seconds", body: "Warm reply in English or Spanish." },
-    { n: "03", title: "Qualified", body: "Timeline, financing, listing questions handled." },
-    { n: "04", title: "Booked for you", body: "Real slots from your Google Calendar." },
-  ];
-
-  return (
-    <section id="how-it-works" className="bookr-section-periwinkle py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <FadeUp>
-          <SectionHeading
-            align="center"
-            eyebrow="How it works"
-            title="From inquiry to booked showing — without you in the middle."
-          />
-        </FadeUp>
-
-        <div className="mt-14 grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2">
-          {steps.map((s, i) => (
-            <FadeUp key={s.n} delay={i * 0.05} className="h-full">
-              <article className="bookr-step-card flex h-full min-h-[180px] flex-col rounded-2xl p-8">
-                <p className="font-display text-2xl font-bold text-bookr-stripe-3/50">{s.n}</p>
-                <h3 className="mt-2 text-lg font-bold text-navy">{s.title}</h3>
-                <p className="mt-2 flex-1 text-base leading-relaxed text-navy/60">{s.body}</p>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── GUARANTEE — big centered statement on navy band ─── */
-function Guarantee() {
-  return (
-    <section className="bookr-section-navy-band py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-        <FadeUp>
-          <SectionHeading
-            align="center"
-            inverted
-            title="We put our skin in the game."
-            subline="Free setup. You pay when Bookr is booking on your calendar."
-          />
-        </FadeUp>
       </div>
     </section>
   );
