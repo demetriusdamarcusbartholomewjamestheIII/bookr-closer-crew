@@ -43,7 +43,8 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-bookr-stripe-3">
               Live preview
             </p>
-            <p className="truncate text-sm font-bold text-navy">
+            {/* Wraps on phones — truncating would cut "in under a minute" mid-word */}
+            <p className="text-sm font-bold leading-snug text-navy sm:truncate">
               New lead · answered in under a minute
             </p>
           </div>
