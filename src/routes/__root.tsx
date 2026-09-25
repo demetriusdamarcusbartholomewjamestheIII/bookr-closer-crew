@@ -12,6 +12,7 @@ import {
 
 import { BrandLoader } from "../components/BrandLoader";
 import { useIsMobile } from "../hooks/use-mobile";
+import { OG_IMAGE_URL, SITE_DESCRIPTION, SITE_TITLE } from "../lib/bookr-constants";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -77,15 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#3B4A6B" },
-      { title: "Bookr — Every lead, answered in seconds" },
-      {
-        name: "description",
-        content:
-          "Bookr replies to every new lead in seconds, in English or Spanish, qualifies them, and books them on your calendar. Done for you.",
-      },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:title", content: "Bookr — Every lead, answered in seconds" },
-      { name: "twitter:title", content: "Bookr — Every lead, answered in seconds" },
+      { property: "og:title", content: SITE_TITLE },
+      { name: "twitter:title", content: SITE_TITLE },
       {
         property: "og:description",
         content:
@@ -96,10 +93,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "A bilingual lead desk for realtors. Replies, qualifies, and books — day and night.",
       },
-      { property: "og:image", content: "https://heybookr.com/og-image.svg" },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { name: "twitter:image", content: "https://heybookr.com/og-image.svg" },
+      { name: "twitter:image", content: OG_IMAGE_URL },
       { property: "og:url", content: "https://heybookr.com" },
       { property: "og:site_name", content: "Bookr" },
       { property: "og:type", content: "website" },

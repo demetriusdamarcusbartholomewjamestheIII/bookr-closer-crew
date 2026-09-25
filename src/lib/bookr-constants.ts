@@ -1,6 +1,12 @@
 export const SITE_URL = "https://heybookr.com";
 
-export const OG_IMAGE_URL = `${SITE_URL}/og-image.svg`;
+export const SITE_TITLE = "Bookr — Every lead answered in under a minute, in English or Spanish";
+
+export const SITE_DESCRIPTION =
+  "Bookr replies to every new lead in under a minute, in English or Spanish, qualifies them, and books them on your calendar. Done for you.";
+
+// PNG, not SVG: link-preview scrapers don't render SVG images. og-image.svg is the source.
+export const OG_IMAGE_URL = `${SITE_URL}/og-image.png`;
 
 export const BOOKING_URL =
   "https://book.heybookr.com/widget/booking/lsSVaQRdRil1Jkbwdl9B";

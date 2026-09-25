@@ -17,19 +17,22 @@ import { PrimaryCta } from "@/components/landing/PrimaryCta";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/Motion";
-import { BOOKING_URL, OG_IMAGE_URL, SITE_URL } from "@/lib/bookr-constants";
+import {
+  BOOKING_URL,
+  OG_IMAGE_URL,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/lib/bookr-constants";
 import { LANDING_IMAGES } from "@/lib/landing-images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bookr — Every lead, answered in seconds" },
-      {
-        name: "description",
-        content:
-          "Bookr replies to every new lead in seconds, in English or Spanish, qualifies them, and books them on your calendar. Done for you.",
-      },
-      { property: "og:title", content: "Bookr — Every lead, answered in seconds" },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { property: "og:title", content: SITE_TITLE },
+      { name: "twitter:title", content: SITE_TITLE },
       {
         property: "og:description",
         content:
@@ -39,6 +42,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: SITE_URL },
       { property: "og:site_name", content: "Bookr" },
       { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
