@@ -1,27 +1,23 @@
-import { Globe, Languages, MessageSquare, Phone } from "lucide-react";
+import { CalendarCheck, Languages, Timer } from "lucide-react";
 
 const CAPABILITIES = [
-  { icon: MessageSquare, label: "Lead messages", detail: "Replied in seconds" },
-  { icon: Phone, label: "Inbound calls", detail: "Pro plan" },
-  { icon: Globe, label: "Zillow · IG · Facebook", detail: "Any trigger" },
-  { icon: Languages, label: "English & Spanish", detail: "Auto-detected" },
+  { icon: Timer, label: "Replies in under a minute" },
+  { icon: Languages, label: "English & Spanish, auto-detected" },
+  { icon: CalendarCheck, label: "Booked on your calendar" },
 ] as const;
 
 export function CapabilityStrip() {
   return (
-    <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+    <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
       {CAPABILITIES.map((cap) => (
-        <div
+        <li
           key={cap.label}
-          className="bookr-capability-pill flex flex-col gap-2 rounded-xl border border-bookr-stripe-2/15 px-4 py-3.5"
+          className="bookr-capability-pill flex items-center gap-3 rounded-xl border border-bookr-stripe-2/15 px-4 py-3 sm:flex-col sm:items-start sm:gap-2 sm:py-3.5"
         >
-          <cap.icon className="h-5 w-5 text-bookr-stripe-3" strokeWidth={2} />
-          <div>
-            <p className="text-sm font-bold leading-tight text-navy">{cap.label}</p>
-            <p className="mt-0.5 text-[11px] font-semibold text-bookr-stripe-3/80">{cap.detail}</p>
-          </div>
-        </div>
+          <cap.icon className="h-5 w-5 shrink-0 text-bookr-stripe-3" strokeWidth={2} aria-hidden />
+          <p className="text-sm font-bold leading-tight text-navy">{cap.label}</p>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

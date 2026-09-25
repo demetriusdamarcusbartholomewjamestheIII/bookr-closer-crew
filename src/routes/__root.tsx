@@ -13,6 +13,7 @@ import {
 import { BrandLoader } from "../components/BrandLoader";
 import { useIsMobile } from "../hooks/use-mobile";
 import { OG_IMAGE_URL, SITE_DESCRIPTION, SITE_TITLE } from "../lib/bookr-constants";
+import { CHAT_WIDGET_LOADER_URL, injectChatWidget } from "../lib/chat-widget";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -149,17 +150,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function injectChatWidget() {
-  if (document.querySelector('script[data-widget-id="6a275596cce0c0ecc8da236a"]')) return;
-
-  const script = document.createElement("script");
-  script.src = "https://beta.leadconnectorhq.com/loader.js";
-  script.setAttribute("data-resources-url", "https://beta.leadconnectorhq.com/chat-widget/loader.js");
-  script.setAttribute("data-widget-id", "6a275596cce0c0ecc8da236a");
-  script.async = true;
-  document.body.appendChild(script);
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const isMobile = useIsMobile();
@@ -181,7 +171,7 @@ function RootComponent() {
       preloads.push(link);
     };
 
-    addPreload("https://beta.leadconnectorhq.com/loader.js", "script");
+    addPreload(CHAT_WIDGET_LOADER_URL, "script");
     addPreload("/images/listing-exterior-800.jpg", "image", "image/jpeg");
     addPreload("/images/listing-interior-640.jpg", "image", "image/jpeg");
 

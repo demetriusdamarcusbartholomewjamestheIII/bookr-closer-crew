@@ -13,6 +13,7 @@ import { HouseLineIllustration } from "@/components/landing/HouseLineIllustratio
 import { LandingNav } from "@/components/landing/LandingNav";
 import { LeadsFlowDemo } from "@/components/landing/LeadsFlowDemo";
 import { ListingQaDemo } from "@/components/landing/ListingQaDemo";
+import { MessageUsLink } from "@/components/landing/MessageUsLink";
 import { PrimaryCta } from "@/components/landing/PrimaryCta";
 import { SectionHeading } from "@/components/landing/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -96,31 +97,35 @@ function Hero() {
     <section id="top" className="bookr-hero relative overflow-hidden">
       <HeroGradientMesh />
       <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 sm:px-8 sm:pb-20 lg:pb-24 lg:pt-14">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-          <div>
+        {/* grid-cols-1 = minmax(0,1fr): otherwise the chat header's one-line label sets the
+            column's minimum width and the hero overflows on phones */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+          <div className="min-w-0">
             <p className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-bookr-stripe-2/35 bg-white/90 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-bookr-stripe-3 shadow-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bookr-stripe-2 opacity-35" />
                 <span className="relative h-2 w-2 rounded-full bg-bookr-stripe-2" />
               </span>
-              Bilingual lead desk
+              Bilingual lead desk for realtors
             </p>
             <h1 className="font-display text-[1.875rem] font-bold leading-[1.1] tracking-tight text-navy sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
-              Every lead, answered in seconds — and booked on your calendar.
+              Every lead answered in under a minute — in English or Spanish.
             </h1>
             <p className="prose-measure mt-5 text-base font-medium leading-snug text-navy/85 sm:text-lg">
-              Bilingual replies, qualification, and booking — done for you, day or night.
+              Qualified and booked on your calendar, day or night. Done for you.
             </p>
             <CapabilityStrip />
-            <div className="mt-8 hidden sm:block">
+            <div className="mt-8 hidden sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-2">
               <PrimaryCta />
+              <MessageUsLink />
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <HeroLiveChat />
-            <div className="mt-6 flex justify-end sm:hidden">
+            <div className="mt-6 flex flex-col items-end gap-2 sm:hidden">
               <PrimaryCta />
+              <MessageUsLink />
             </div>
           </div>
         </div>
@@ -137,35 +142,33 @@ function Problem() {
         <FadeUp>
           <SectionHeading
             title="You pay for leads you never answer in time."
-            subline="Speed wins listings — most agents reply hours late."
+            subline="The first agent to reply usually wins the client."
           />
         </FadeUp>
 
-        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
           <FadeUp delay={0.05} className="h-full">
             <div className="bookr-card-elevated bookr-stat-accent flex h-full min-h-[220px] flex-col rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
-                78%
+                47%
               </p>
               <p className="mt-3 flex-1 text-base font-medium leading-snug text-navy/80">
-                of buyers go with the first agent to respond
+                of buyers — and 59% of sellers — hire the first agent they speak with
               </p>
               <p className="mt-4 text-[11px] text-navy/40">
-                Source: Lead Response Management Study (MIT / InsideSales)
+                Source: Zillow Consumer Housing Trends Report, 2025
               </p>
             </div>
           </FadeUp>
           <FadeUp delay={0.1} className="h-full">
             <div className="bookr-card-elevated bookr-stat-accent flex h-full min-h-[220px] flex-col rounded-2xl p-8 sm:p-10">
               <p className="font-display text-5xl font-bold tracking-tight text-navy sm:text-6xl">
-                12 hrs
+                $181
               </p>
               <p className="mt-3 flex-1 text-base font-medium leading-snug text-navy/80">
-                average time for a business to reply by email
+                average cost of a portal lead in 2026
               </p>
-              <p className="mt-4 text-[11px] text-navy/40">
-                Source: Workato State of Inbound Lead Management
-              </p>
+              <p className="mt-4 text-[11px] text-navy/40">Source: REDX, 2026</p>
             </div>
           </FadeUp>
         </div>
@@ -199,6 +202,8 @@ function DiffHandsFree() {
 }
 
 /* ─── DIFF 2: full-width centered on periwinkle tint ─── */
+const CHANNELS = ["Instagram", "Facebook", "Your website"];
+
 function DiffBilingual() {
   return (
     <section className="bookr-section-periwinkle border-y border-charcoal/8 py-20 sm:py-28">
@@ -208,8 +213,18 @@ function DiffBilingual() {
             align="center"
             eyebrow="Bilingual"
             title="Answers in English or Spanish — automatically."
-            subline="Spanish-speaking leads get native replies, instantly."
+            subline="Spanish-speaking leads get native replies — not a translation."
           />
+          <ul aria-label="Channels" className="mt-6 flex flex-wrap justify-center gap-2">
+            {CHANNELS.map((channel) => (
+              <li
+                key={channel}
+                className="rounded-lg border border-bookr-stripe-2/30 bg-white/80 px-3 py-2 text-sm font-semibold text-bookr-stripe-3 shadow-sm"
+              >
+                {channel}
+              </li>
+            ))}
+          </ul>
         </FadeUp>
         <div className="mt-12">
           <FadeUp delay={0.08}>
@@ -276,8 +291,8 @@ function DiffListings() {
             <HouseLineIllustration className="mb-8 h-28 w-36 opacity-90 sm:h-32 sm:w-40" />
             <SectionHeading
               eyebrow="Listings"
-              title="Buyers ask about your listings. Bookr answers — and books the showing."
-              subline="We load your listings at setup, so Bookr fields the common questions and gets the tour on your calendar — day or night."
+              title="Buyer asking about a listing? Bookr books the showing."
+              subline="Day or night, the tour lands on your calendar. You cover the details in person."
             />
             <div className="mt-8 hidden lg:block">
               <ListingPhoto
@@ -517,7 +532,7 @@ function FinalCta() {
             inverted
             eyebrow="Get started"
             title="See it answer your next lead."
-            subline="30-minute walkthrough — your leads, listings, and calendar."
+            subline="30-minute walkthrough — your leads and your calendar."
           />
           <div className="mt-10 flex justify-center">
             <PrimaryCta />

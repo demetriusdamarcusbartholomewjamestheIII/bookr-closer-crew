@@ -7,7 +7,7 @@ import type { TypewriterLine } from "@/hooks/use-typewriter-conversation";
 const HERO_SCRIPT: TypewriterLine[] = [
   {
     role: "bookr",
-    text: "Hi! I'm Bookr — I reply to every lead in seconds, in English or Spanish. Looking to buy or sell?",
+    text: "Hi! I'm Bookr — I reply to every lead in under a minute, in English or Spanish. Looking to buy or sell?",
   },
   { role: "lead", text: "Buy — is the Maple St listing still available?" },
   { role: "bookr", text: "Maple St — great choice. Let me get you in to see it. Hoping to move in the next 60 days?" },
@@ -43,7 +43,9 @@ export function HeroLiveChat({ id = "bookr-live-demo" }: { id?: string }) {
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-bookr-stripe-3">
               Live preview
             </p>
-            <p className="truncate text-sm font-bold text-navy">New lead · answered in seconds</p>
+            <p className="truncate text-sm font-bold text-navy">
+              New lead · answered in under a minute
+            </p>
           </div>
           <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700 sm:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
